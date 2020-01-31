@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMasterSpbTable extends Migration
+class CreateMasterSpbsTable extends Migration
 {
     /**
      * Run the migrations.
