@@ -2,8 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="019b1718-1ea0-4f4c-9257-af0a934d80ad" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/MasterHargaController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/MasterHarga.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/pages/harga.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/kasir-nma.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kasir-nma.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MasterHargaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HargaController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -19,6 +28,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -109,6 +121,7 @@
       <path value="$PROJECT_DIR$/vendor/phar-io/version" />
       <path value="$PROJECT_DIR$/vendor/phar-io/manifest" />
       <path value="$PROJECT_DIR$/vendor/filp/whoops" />
+      <path value="$PROJECT_DIR$/vendor/laravel-frontend-presets/paper" />
     </include_path>
   </component>
   <component name="ProjectId" id="1X8zoRli4WuAdtphEITGUSx7VOO" />
@@ -161,6 +174,7 @@
       <workItem from="1580442719321" duration="48000" />
       <workItem from="1580442790118" duration="5776000" />
       <workItem from="1580451370767" duration="1057000" />
+      <workItem from="1580510130807" duration="5387000" />
     </task>
     <servers />
   </component>
@@ -175,6 +189,10 @@
       <screen x="0" y="27" width="1360" height="741" />
     </state>
     <state x="363" y="127" width="624" height="540" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.27.1360.741@0.27.1360.741" timestamp="1580442692615" />
+    <state x="341" y="30" key="#phpunit.xml" timestamp="1580518115392">
+      <screen x="0" y="23" width="1366" height="692" />
+    </state>
+    <state x="341" y="30" key="#phpunit.xml/0.23.1366.692@0.23.1366.692" timestamp="1580518115392" />
     <state x="184" y="32" key="SettingsEditor" timestamp="1580442767235">
       <screen x="0" y="27" width="1360" height="741" />
     </state>

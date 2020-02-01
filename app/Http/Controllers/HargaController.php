@@ -4,16 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class MasterHargaController extends Controller
+class HargaController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
         //
+        return view('pages.harga');
     }
 
     /**
