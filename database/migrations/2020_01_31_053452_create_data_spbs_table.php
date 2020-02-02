@@ -15,9 +15,8 @@ class CreateDataSpbsTable extends Migration
     {
         Schema::create('data_spbs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('master_spb_id');
+            $table->string('range_spb');
             $table->unsignedBigInteger('master_korlap_id');
-            $table->foreign('master_spb_id')->references('id')->on('master_spbs')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('master_korlap_id')->references('id')->on('master_korlaps')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });

@@ -2,17 +2,144 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="019b1718-1ea0-4f4c-9257-af0a934d80ad" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/MasterHarga.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/pages/harga.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/php-test-framework.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/DataSpb.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/DataSpbController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/MasterHargaController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/MasterKorlap.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/factories/MasterHargaFactory.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/factories/MasterKorlapFactory.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/seeds/MasterHargasSeeder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/seeds/MasterKorlapSeeder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Buttons-1.6.1/css/buttons.bootstrap.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Buttons-1.6.1/css/buttons.bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Buttons-1.6.1/css/buttons.bootstrap4.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Buttons-1.6.1/css/buttons.bootstrap4.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Buttons-1.6.1/css/buttons.dataTables.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Buttons-1.6.1/css/buttons.dataTables.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Buttons-1.6.1/css/buttons.foundation.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Buttons-1.6.1/css/buttons.foundation.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Buttons-1.6.1/css/buttons.jqueryui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Buttons-1.6.1/css/buttons.jqueryui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Buttons-1.6.1/css/buttons.semanticui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Buttons-1.6.1/css/buttons.semanticui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Buttons-1.6.1/css/common.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Buttons-1.6.1/css/mixins.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Buttons-1.6.1/js/buttons.bootstrap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Buttons-1.6.1/js/buttons.bootstrap.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Buttons-1.6.1/js/buttons.bootstrap4.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Buttons-1.6.1/js/buttons.bootstrap4.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Buttons-1.6.1/js/buttons.colVis.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Buttons-1.6.1/js/buttons.colVis.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Buttons-1.6.1/js/buttons.flash.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Buttons-1.6.1/js/buttons.flash.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Buttons-1.6.1/js/buttons.foundation.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Buttons-1.6.1/js/buttons.foundation.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Buttons-1.6.1/js/buttons.html5.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Buttons-1.6.1/js/buttons.html5.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Buttons-1.6.1/js/buttons.jqueryui.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Buttons-1.6.1/js/buttons.jqueryui.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Buttons-1.6.1/js/buttons.print.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Buttons-1.6.1/js/buttons.print.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Buttons-1.6.1/js/buttons.semanticui.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Buttons-1.6.1/js/buttons.semanticui.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Buttons-1.6.1/js/dataTables.buttons.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Buttons-1.6.1/js/dataTables.buttons.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Buttons-1.6.1/swf/flashExport.swf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/DataTables-1.10.20/css/dataTables.bootstrap.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/DataTables-1.10.20/css/dataTables.bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/DataTables-1.10.20/css/dataTables.bootstrap4.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/DataTables-1.10.20/css/dataTables.bootstrap4.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/DataTables-1.10.20/css/dataTables.foundation.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/DataTables-1.10.20/css/dataTables.foundation.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/DataTables-1.10.20/css/dataTables.jqueryui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/DataTables-1.10.20/css/dataTables.jqueryui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/DataTables-1.10.20/css/dataTables.semanticui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/DataTables-1.10.20/css/dataTables.semanticui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/DataTables-1.10.20/css/jquery.dataTables.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/DataTables-1.10.20/css/jquery.dataTables.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/DataTables-1.10.20/images/sort_asc.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/DataTables-1.10.20/images/sort_asc_disabled.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/DataTables-1.10.20/images/sort_both.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/DataTables-1.10.20/images/sort_desc.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/DataTables-1.10.20/images/sort_desc_disabled.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/DataTables-1.10.20/js/dataTables.bootstrap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/DataTables-1.10.20/js/dataTables.bootstrap.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/DataTables-1.10.20/js/dataTables.bootstrap4.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/DataTables-1.10.20/js/dataTables.bootstrap4.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/DataTables-1.10.20/js/dataTables.foundation.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/DataTables-1.10.20/js/dataTables.foundation.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/DataTables-1.10.20/js/dataTables.jqueryui.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/DataTables-1.10.20/js/dataTables.jqueryui.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/DataTables-1.10.20/js/dataTables.semanticui.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/DataTables-1.10.20/js/dataTables.semanticui.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/DataTables-1.10.20/js/jquery.dataTables.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/DataTables-1.10.20/js/jquery.dataTables.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Responsive-2.2.3/css/responsive.bootstrap.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Responsive-2.2.3/css/responsive.bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Responsive-2.2.3/css/responsive.bootstrap4.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Responsive-2.2.3/css/responsive.bootstrap4.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Responsive-2.2.3/css/responsive.dataTables.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Responsive-2.2.3/css/responsive.dataTables.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Responsive-2.2.3/css/responsive.foundation.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Responsive-2.2.3/css/responsive.foundation.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Responsive-2.2.3/css/responsive.jqueryui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Responsive-2.2.3/css/responsive.jqueryui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Responsive-2.2.3/css/responsive.semanticui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Responsive-2.2.3/css/responsive.semanticui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Responsive-2.2.3/js/dataTables.responsive.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Responsive-2.2.3/js/dataTables.responsive.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Responsive-2.2.3/js/responsive.bootstrap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Responsive-2.2.3/js/responsive.bootstrap.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Responsive-2.2.3/js/responsive.bootstrap4.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Responsive-2.2.3/js/responsive.bootstrap4.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Responsive-2.2.3/js/responsive.foundation.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Responsive-2.2.3/js/responsive.foundation.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Responsive-2.2.3/js/responsive.jqueryui.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Responsive-2.2.3/js/responsive.jqueryui.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Responsive-2.2.3/js/responsive.semanticui.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/Responsive-2.2.3/js/responsive.semanticui.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/datatables.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/datatables.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/datatables.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/datatables.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/jQuery-3.3.1/jquery-3.3.1.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/DataTables/jQuery-3.3.1/jquery-3.3.1.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/bootstrap-datepicker/css/bootstrap-datepicker.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/bootstrap-datepicker/css/bootstrap-datepicker.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/bootstrap-datepicker/css/bootstrap-datepicker.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/bootstrap-datepicker/css/bootstrap-datepicker.standalone.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/bootstrap-datepicker/css/bootstrap-datepicker.standalone.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/bootstrap-datepicker/css/bootstrap-datepicker.standalone.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/bootstrap-datepicker/css/bootstrap-datepicker3.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/bootstrap-datepicker/css/bootstrap-datepicker3.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/bootstrap-datepicker/css/bootstrap-datepicker3.standalone.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/bootstrap-datepicker/css/bootstrap-datepicker3.standalone.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/bootstrap-datepicker/css/bootstrap-datepicker3.standalone.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/bootstrap-datepicker/js/bootstrap-datepicker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/bootstrap-datepicker/js/bootstrap-datepicker.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/bootstrap-datepicker/locales/bootstrap-datepicker.id.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/paper/vendors/momentjs/moment.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/harga/create.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/harga/edit.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/harga/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/korlap/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/storage/debugbar/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/kasir-nma.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kasir-nma.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MasterHargaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HargaController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HargaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MasterKorlapController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/MasterHarga.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/MasterHarga.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_31_053333_create_master_spbs_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_31_053452_create_data_spbs_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_31_053452_create_data_spbs_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/navbars/auth.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/navbars/auth.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/harga.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/users/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/create.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -32,7 +159,7 @@
   <component name="PackageJsonUpdateNotifier">
     <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration">
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/swiftmailer/swiftmailer" />
       <path value="$PROJECT_DIR$/vendor/phpunit/php-token-stream" />
@@ -122,6 +249,8 @@
       <path value="$PROJECT_DIR$/vendor/phar-io/manifest" />
       <path value="$PROJECT_DIR$/vendor/filp/whoops" />
       <path value="$PROJECT_DIR$/vendor/laravel-frontend-presets/paper" />
+      <path value="$PROJECT_DIR$/vendor/maximebf/debugbar" />
+      <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-debugbar" />
     </include_path>
   </component>
   <component name="ProjectId" id="1X8zoRli4WuAdtphEITGUSx7VOO" />
@@ -142,9 +271,20 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views" />
+      <recent name="$PROJECT_DIR$/resources/views/pages" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
-      <TestRunner scope="XML" />
+      <CommandLine>
+        <PhpTestInterpreterSettings>
+          <option name="interpreterName" value="PHP" />
+        </PhpTestInterpreterSettings>
+      </CommandLine>
+      <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" scope="XML" />
       <method v="2" />
     </configuration>
   </component>
@@ -174,7 +314,7 @@
       <workItem from="1580442719321" duration="48000" />
       <workItem from="1580442790118" duration="5776000" />
       <workItem from="1580451370767" duration="1057000" />
-      <workItem from="1580510130807" duration="5387000" />
+      <workItem from="1580510130807" duration="29153000" />
     </task>
     <servers />
   </component>
@@ -185,14 +325,38 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="358" y="23" key="#PHP" timestamp="1580524370145">
+      <screen x="0" y="23" width="1366" height="692" />
+    </state>
+    <state x="358" y="23" key="#PHP/0.23.1366.692@0.23.1366.692" timestamp="1580524370145" />
     <state x="363" y="127" width="624" height="540" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1580442692615">
       <screen x="0" y="27" width="1360" height="741" />
     </state>
     <state x="363" y="127" width="624" height="540" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.27.1360.741@0.27.1360.741" timestamp="1580442692615" />
-    <state x="341" y="30" key="#phpunit.xml" timestamp="1580518115392">
+    <state x="341" y="30" key="#phpunit.xml" timestamp="1580524376564">
       <screen x="0" y="23" width="1366" height="692" />
     </state>
-    <state x="341" y="30" key="#phpunit.xml/0.23.1366.692@0.23.1366.692" timestamp="1580518115392" />
+    <state x="341" y="30" key="#phpunit.xml/0.23.1366.692@0.23.1366.692" timestamp="1580524376564" />
+    <state width="1324" height="169" key="GridCell.Tab.0.bottom" timestamp="1580524401658">
+      <screen x="0" y="23" width="1366" height="692" />
+    </state>
+    <state width="1324" height="169" key="GridCell.Tab.0.bottom/0.23.1366.692@0.23.1366.692" timestamp="1580524401658" />
+    <state width="1324" height="169" key="GridCell.Tab.0.center" timestamp="1580524401657">
+      <screen x="0" y="23" width="1366" height="692" />
+    </state>
+    <state width="1324" height="169" key="GridCell.Tab.0.center/0.23.1366.692@0.23.1366.692" timestamp="1580524401657" />
+    <state width="1324" height="169" key="GridCell.Tab.0.left" timestamp="1580524401656">
+      <screen x="0" y="23" width="1366" height="692" />
+    </state>
+    <state width="1324" height="169" key="GridCell.Tab.0.left/0.23.1366.692@0.23.1366.692" timestamp="1580524401656" />
+    <state width="1324" height="169" key="GridCell.Tab.0.right" timestamp="1580524401657">
+      <screen x="0" y="23" width="1366" height="692" />
+    </state>
+    <state width="1324" height="169" key="GridCell.Tab.0.right/0.23.1366.692@0.23.1366.692" timestamp="1580524401657" />
+    <state x="395" y="47" key="RollbackChangesDialog" timestamp="1580518870272">
+      <screen x="0" y="23" width="1366" height="692" />
+    </state>
+    <state x="395" y="47" key="RollbackChangesDialog/0.23.1366.692@0.23.1366.692" timestamp="1580518870272" />
     <state x="184" y="32" key="SettingsEditor" timestamp="1580442767235">
       <screen x="0" y="27" width="1360" height="741" />
     </state>
@@ -201,9 +365,14 @@
       <screen x="0" y="27" width="1360" height="741" />
     </state>
     <state x="373" y="225" key="com.intellij.ide.util.TipDialog/0.27.1360.741@0.27.1360.741" timestamp="1580442689621" />
-    <state x="343" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1580450020846">
-      <screen x="0" y="27" width="1360" height="741" />
+    <state x="347" y="126" width="671" height="486" key="find.popup" timestamp="1580607416830">
+      <screen x="0" y="23" width="1366" height="694" />
     </state>
+    <state x="347" y="126" width="671" height="486" key="find.popup/0.23.1366.694@0.23.1366.694" timestamp="1580607416830" />
+    <state x="345" y="81" width="675" height="635" key="search.everywhere.popup" timestamp="1580612159735">
+      <screen x="0" y="23" width="1366" height="694" />
+    </state>
+    <state x="345" y="81" width="675" height="635" key="search.everywhere.popup/0.23.1366.694@0.23.1366.694" timestamp="1580612159735" />
     <state x="343" y="89" width="672" height="678" key="search.everywhere.popup/0.27.1360.741@0.27.1360.741" timestamp="1580450020846" />
   </component>
 </project>

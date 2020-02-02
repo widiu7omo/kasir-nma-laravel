@@ -18,18 +18,18 @@
                 </a>
             </li>
             <li class="{{ $elementActive == 'kwitansi' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'icons') }}">
+                <a href="{{ route('page.index', 'kwitansi') }}">
                     <i class="nc-icon nc-diamond"></i>
                     <p>{{ __('Kwitansi') }}</p>
                 </a>
             </li>
             <li class="{{ $elementActive == 'timbangan' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'typography') }}">
+                <a href="{{ route('page.index', 'timbangan') }}">
                     <i class="nc-icon nc-caps-small"></i>
                     <p>{{ __('Data Timbangan') }}</p>
                 </a>
             </li>
-            <li class="{{ $elementActive == 'user' || $elementActive == 'laporan' ? 'active' : '' }}">
+            <li class="{{ $elementActive == 'laporan' ? 'active' : '' }}">
                 <a data-toggle="collapse" aria-expanded="false" href="#laravelExamples">
                     <i class="nc-icon"><img src="{{ asset('paper/img/laravel.svg') }}"></i>
                     <p>
@@ -40,19 +40,19 @@
                 <div class="collapse" id="laravelExamples">
                     <ul class="nav">
                         <li class="{{ $elementActive == 'hari' ? 'active' : '' }}">
-                            <a href="{{ route('profile.edit') }}">
+                            <a href="{{ route('page.index','hari') }}">
                                 <span class="sidebar-mini-icon">{{ __('UP') }}</span>
                                 <span class="sidebar-normal">{{ __(' Harian ') }}</span>
                             </a>
                         </li>
                         <li class="{{ $elementActive == 'minggu' ? 'active' : '' }}">
-                            <a href="{{ route('page.index', 'user') }}">
+                            <a href="{{ route('page.index', 'minggu') }}">
                                 <span class="sidebar-mini-icon">{{ __('U') }}</span>
                                 <span class="sidebar-normal">{{ __(' Mingguan ') }}</span>
                             </a>
                         </li>
                         <li class="{{ $elementActive == 'bulan' ? 'active' : '' }}">
-                            <a href="{{ route('page.index', 'user') }}">
+                            <a href="{{ route('page.index', 'bulan') }}">
                                 <span class="sidebar-mini-icon">{{ __('U') }}</span>
                                 <span class="sidebar-normal">{{ __(' Bulanan ') }}</span>
                             </a>
@@ -61,25 +61,25 @@
                 </div>
             </li>
             <li class="{{ $elementActive == 'harga' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'map') }}">
+                <a href="{{ route('harga.index') }}">
                     <i class="nc-icon nc-pin-3"></i>
                     <p>{{ __('Harga Sawit') }}</p>
                 </a>
             </li>
             <li class="{{ $elementActive == 'spb' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'tables') }}">
+                <a href="{{ route('page.index', 'spb') }}">
                     <i class="nc-icon nc-tile-56"></i>
                     <p>{{ __('Pemilik SPB') }}</p>
                 </a>
             </li>
             <li class="{{ $elementActive == 'korlap' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'notifications') }}">
+                <a href="{{ route('page.index', 'korlap') }}">
                     <i class="nc-icon nc-bell-55"></i>
                     <p>{{ __('Korlap') }}</p>
                 </a>
             </li>
-            <li class="{{ $elementActive == 'akun' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'upgrade') }}">
+            <li class="{{ $elementActive == 'user' ? 'active' : '' }}">
+                <a href="{{ route('page.index', 'user') }}">
                     <i class="nc-icon nc-spaceship"></i>
                     <p>{{ __('Data Akun') }}</p>
                 </a>
