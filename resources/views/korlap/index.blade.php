@@ -29,7 +29,7 @@
                             <div class="card card-body shadow-none">
                                 <div class="form-group">
                                     <label for="nama-korlap" class="col-12">Nama Koordinator Lapangan
-                                        <input type="text"
+                                        <input type="text" required
                                                class="form-control" name="korlap" aria-describedby="helpId"
                                                placeholder="Masukkan Nama"/>
                                     </label>

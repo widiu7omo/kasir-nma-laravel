@@ -16,9 +16,9 @@ class CreateDataSpbsTable extends Migration
         Schema::create('data_spbs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('range_spb');
+            $table->date('tanggal_pengambilan');
             $table->unsignedBigInteger('master_korlap_id');
             $table->foreign('master_korlap_id')->references('id')->on('master_korlaps')->onUpdate('cascade')->onDelete('cascade');
-            $table->timestamps();
         });
     }
 

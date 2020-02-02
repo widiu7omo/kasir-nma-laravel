@@ -35,7 +35,6 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('korlap', 'MasterKorlapController')->except(['create','show']);
 });
-
 Route::group(['middleware' => 'auth'], function () {
     Route::get('{page}', ['as' => 'page.index', 'uses' => 'PageController@index']);
 });

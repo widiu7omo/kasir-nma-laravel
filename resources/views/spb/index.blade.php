@@ -1,6 +1,6 @@
 @extends('layouts.app',[
   'class'=>'',
-  'elementActive'=>'harga'
+  'elementActive'=>'spb'
 ])
 @section('content')
     <div class="content">
@@ -8,13 +8,12 @@
             <div class="col-md-12">
                 <div class="card ">
                     <div class="card-header ">
-                        <h5 class="card-title">Harga Sawit</h5>
-                        <p class="card-category">Daftar harga sawit per hari</p>
+                        <h5 class="card-title">Pemilik SPB</h5>
+                        <p class="card-category">Daftar Pemilik SPB</p>
                         <div class="text-right">
-                            <a data-toggle="collapse" href="#collapseHarga" role="button"
-                               aria-expanded="false" aria-controls="collapseHarga"
-                               class="btn btn-sm btn-primary shadow-sm" id="tambah-harga">Tambah Harga
-                                Sawit</a>
+                            <a data-toggle="collapse" href="#collapseSpb" role="button"
+                               aria-expanded="false" aria-controls="collapseSpb"
+                               class="btn btn-sm btn-primary shadow-sm" id="tambah-spb">Tambah Pemilik SPB</a>
                         </div>
                         @if (session('status'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -26,37 +25,54 @@
                         @endif
                     </div>
                     <div class="card-body">
-                        <div class="collapse" id="collapseHarga">
+                        <div class="collapse" id="collapseSpb">
                             <div class="card card-body shadow-none">
                                 <div class="form-group">
                                     <div class="row">
-                                        <label for="tanggal" class="col-md-6 col-sm-12">Tanggal
+                                        <label for="tanggal" class="col-md-6 col-sm-12">Tanggal pengambilan SPB
                                             <input type="text" autocomplete="off" required
                                                    class="form-control datepicker-dropdown" name="tanggal"
                                                    aria-describedby="helpId"
-                                                   placeholder="Tanggal Input"/>
+                                                   placeholder="Tanggal pengambilan"/>
                                         </label>
-                                        <label for="harga" class="col-md-6 col-sm-12">Harga Sawit
-                                            <input type="text" required
-                                                   class="form-control" name="harga" aria-describedby="helpId"
-                                                   placeholder="Masukkan Harga Sawit"/>
+                                        <label for="range1" class="col-xs-6">Range Nomor SPB yang diambil
+                                            <input type="number" required
+                                                   class="form-control" name="range1" aria-describedby="helpId"
+                                                   placeholder="Mulai angka"/>
+                                        </label>
+                                        <label for="range1" class="col-xs-6 ml-3">&nbsp;
+                                            <input type="number" required
+                                                   class="form-control" name="range2" aria-describedby="helpId"
+                                                   placeholder="Sampai angka"/>
+                                        </label>
+                                        <label for="korlap" class="col-md-6 col-sm-12">Daftar Koordinator Lapangan
+                                            <select class="form-control" name="korlap" id="" aria-describedby="helpId"
+                                                    required>
+                                                <option>--Pilih Koordinator--</option>
+                                                @foreach($korlaps as $korlap)
+                                                    <option value="{{$korlap->id}}">{{$korlap->nama_korlap}}</option>
+                                                @endforeach
+                                            </select>
+                                            <small id="helpId" class="form-text text-muted">Klik untuk memilih
+                                                koordinator lapangan</small>
                                         </label>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table-bordered table" id="harga-table">
+                            <table class="table-bordered table" id="spb-table">
                                 <thead>
                                 <tr>
                                     <th style="width:10%">Aksi</th>
                                     <th style="width:8%">No</th>
-                                    <th>Tanggal</th>
-                                    <th>Harga</th>
+                                    <th>Tanggal pengambilan</th>
+                                    <th>Nama Pemilik SPB</th>
+                                    <th>Range SPB</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($hargas as $key => $hg)
+                                @foreach($dataspb as $key => $spb)
                                     <tr>
                                         <td class="text-center">
                                             <div class="dropdown">
@@ -65,13 +81,14 @@
                                                     <i class="nc-icon nc-ruler-pencil"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                    <form class="form-action" action="{{ route('harga.destroy', $hg) }}" method="post">
+                                                    <form class="form-action" action="{{ route('spb.destroy', $spb) }}"
+                                                          method="post">
                                                         @csrf
                                                         @method('delete')
-                                                        <a class="dropdown-item" id="btn-edit-harga"
-                                                           data-route="{{ route('harga.edit', $hg) }}">{{ __('Edit') }}</a>
+                                                        <a class="dropdown-item" id="btn-edit-spb"
+                                                           data-route="{{ route('spb.edit', $spb) }}">{{ __('Edit') }}</a>
                                                         <button type="button" class="dropdown-item"
-                                                                onclick="confirm('{{ __("Apakah anda yakin menghapus harga ini?") }}') ? this.parentElement.submit() : ''">
+                                                                onclick="confirm('{{ __("Apakah anda yakin menghapus SPB ini?") }}') ? this.parentElement.submit() : ''">
                                                             {{ __('Delete') }}
                                                         </button>
                                                     </form>
@@ -79,8 +96,9 @@
                                             </div>
                                         </td>
                                         <td class="text-center">{{$key+1}}</td>
-                                        <td>{{$hg->tanggal}}</td>
-                                        <td>Rp.{{$hg->harga}}</td>
+                                        <td>{{$spb->tanggal_pengambilan}}</td>
+                                        <td>{{$spb->korlap->nama_korlap}}</td>
+                                        <td>{{$spb->range_spb}}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -94,13 +112,15 @@
 @endsection
 @push('scripts')
     <script>
-        $('#harga-table').dataTable();
+        $('#spb-table').dataTable();
         $('.datepicker-dropdown').datepicker({
             format: "yyyy-mm-dd",
-            language: "id"
+            language: "id",
+            mode: "datetimepicker",
+            autoclose: true
         });
         let formUri = "";
-        $(document).on('click', '#btn-edit-harga', function () {
+        $(document).on('click', '#btn-edit-spb', function () {
             let route = $(this).data('route');
             formUri = $(this).parent().prop('action');
             console.log(formUri);
@@ -109,31 +129,41 @@
                 dataType: "json",
                 success: function (res) {
                     $('.collapse').addClass('show');
-                    $('#tambah-harga').text('Simpan');
+                    $('#tambah-spb').text('Simpan');
+                    let range = res.range_spb.split('-');
                     $(this).data('mode', 'u');
-                    $('[name="tanggal"]').val(res.tanggal);
-                    $('[name="harga"]').val(res.harga);
+                    $('[name="tanggal"]').val(res.tanggal_pengambilan);
+                    $('[name="range1"]').val(range[0]);
+                    $('[name="range2"]').val(range[1]);
+                    $('[name="korlap"]').children().map(function (index, item) {
+                        if ($(item).val() == res.master_korlap_id) {
+                            $(item).prop('selected', true);
+                        }
+                    });
                 },
                 error: function (err) {
                     alert(err.statusText)
                 }
             })
         })
-        $('#tambah-harga').on('click', function () {
+        $('#tambah-spb').on('click', function () {
             if (!$('.collapse').hasClass('show')) {
                 $(this).data('mode', 'i');
                 $(this).text('Simpan');
             } else {
-                $(this).text('Tambah Harga Sawit');
+                $(this).text('Tambah Pemilik SPB');
             }
             if ($(this).text() !== 'Simpan') {
                 let url = "";
+                let range1 = $('[name="range1"]').val();
+                let range2 = $('[name="range2"]').val();
                 let data = {
                     tanggal: $('[name="tanggal"]').val(),
-                    harga: $('[name="harga"]').val()
+                    range: range1 + "-" + range2,
+                    id: $('[name="korlap"]').val()
                 }
                 if ($(this).data('mode') === 'i') {
-                    url = "{{route('harga.store')}}";
+                    url = "{{route('spb.store')}}";
                 } else {
                     url = formUri;
                     console.log(url);
