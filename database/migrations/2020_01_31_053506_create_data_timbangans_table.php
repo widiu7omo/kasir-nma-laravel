@@ -20,8 +20,8 @@ class CreateDataTimbangansTable extends Migration
             $table->string('no_kendaraan');
             $table->string('pelanggan');
             $table->string('tandan');
-            $table->string('1st_weight');
-            $table->string('2nd_weight');
+            $table->string('first_weight');
+            $table->string('second_weight');
             $table->string('netto_weight');
             $table->string('potongan_gradding');
             $table->string('setelah_gradding');

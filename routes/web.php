@@ -30,12 +30,20 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('harga', 'MasterHargaController');
 });
 Route::group(['middleware' => 'auth'], function () {
-    Route::resource('spb', 'DataSpbController');
+    Route::resource('spb', 'DataSpbController')->except(['create','show']);
 });
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('korlap', 'MasterKorlapController')->except(['create','show']);
 });
+Route::group(['middleware'=>'auth'],function(){
+    Route::resource('timbangan','DataTimbanganController')->except(['create','show']);
+});
 Route::group(['middleware' => 'auth'], function () {
     Route::get('{page}', ['as' => 'page.index', 'uses' => 'PageController@index']);
+});
+
+Route::prefix('filepond/api')->group(function () {
+    Route::post('/process', 'FilepondController@upload')->name('filepond.upload');
+    Route::delete('/process', 'FilepondController@delete')->name('filepond.delete');
 });
 
