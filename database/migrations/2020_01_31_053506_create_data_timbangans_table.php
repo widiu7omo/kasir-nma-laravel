@@ -16,7 +16,7 @@ class CreateDataTimbangansTable extends Migration
         Schema::create('data_timbangans', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('no_ticket')->unique();
-            $table->dateTime('tanggal_masuk');
+            $table->date('tanggal_masuk');
             $table->string('no_kendaraan');
             $table->string('pelanggan');
             $table->string('tandan');
@@ -25,6 +25,7 @@ class CreateDataTimbangansTable extends Migration
             $table->string('netto_weight');
             $table->string('potongan_gradding');
             $table->string('setelah_gradding');
+            $table->enum('status_pembayaran',['sudah','belum'])->default('belum');
             $table->timestamps();
         });
     }

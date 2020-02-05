@@ -42,7 +42,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('{page}', ['as' => 'page.index', 'uses' => 'PageController@index']);
 });
 
-Route::prefix('filepond/api')->group(function () {
+Route::prefix('/api')->group(function () {
     Route::post('/process', 'FilepondController@upload')->name('filepond.upload');
     Route::delete('/process', 'FilepondController@delete')->name('filepond.delete');
 });

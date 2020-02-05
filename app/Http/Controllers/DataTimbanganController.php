@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\DataTimbangan;
+use Symfony\Component\VarDumper\Cloner\Data;
+
 class DataTimbanganController extends Controller
 {
     /**
@@ -13,8 +15,10 @@ class DataTimbanganController extends Controller
      */
     public function index()
     {
-        //
         $timbangans = DataTimbangan::all();
+        if(isset($_GET['ajax'])){
+            return json_encode($timbangans);
+        }
         return view('timbangan.index',['timbangans'=>$timbangans]);
     }
 
@@ -32,11 +36,13 @@ class DataTimbanganController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(Request $request,DataTimbangan $dataTimbangan)
     {
         //
+        $dataTimbangan->insert($request->payload);
+        return response()->json(['status'=>'success']);
     }
 
     /**
@@ -79,8 +85,10 @@ class DataTimbanganController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(DataTimbangan $timbangan)
     {
         //
+        $timbangan->delete();
+        return redirect()->route('timbangan.index')->withStatus('Berhasil hapus data timbangan');
     }
 }
