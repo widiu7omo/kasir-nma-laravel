@@ -2,18 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="019b1718-1ea0-4f4c-9257-af0a934d80ad" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/DataKwitansi.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/DataKwitansiController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/invoices.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/kwitansi/create.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/kwitansi/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/kasir-nma.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kasir-nma.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,6 +173,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/resources/views/kwitansi" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/config" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -242,7 +232,7 @@
       <workItem from="1580703017041" duration="104000" />
       <workItem from="1580884809457" duration="17678000" />
       <workItem from="1580904717750" duration="5715000" />
-      <workItem from="1580912612478" duration="9466000" />
+      <workItem from="1580912612478" duration="10225000" />
     </task>
     <servers />
   </component>
@@ -298,6 +288,10 @@
     </state>
     <state x="185" y="34" width="992" height="726" key="SettingsEditor/0.25.1366.743@0.25.1366.743" timestamp="1580904683005" />
     <state x="184" y="32" key="SettingsEditor/0.27.1360.741@0.27.1360.741" timestamp="1580442767235" />
+    <state x="491" y="177" width="374" height="435" key="chooseDestDirectoryDialog" timestamp="1580923249241">
+      <screen x="0" y="25" width="1366" height="743" />
+    </state>
+    <state x="491" y="177" width="374" height="435" key="chooseDestDirectoryDialog/0.25.1366.743@0.25.1366.743" timestamp="1580923249241" />
     <state x="416" y="204" width="524" height="380" key="com.intellij.database.dbimport.ImportUtil.MyDialog" timestamp="1580645811679">
       <screen x="0" y="25" width="1366" height="743" />
     </state>
