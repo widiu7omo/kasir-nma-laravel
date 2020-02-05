@@ -2,128 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="019b1718-1ea0-4f4c-9257-af0a934d80ad" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/.README.md.swp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/.babelrc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/.gitlab-ci.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/.npmignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/.tagconfig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/.travis.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/CHANGELOG.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/CONTRIBUTING.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/Gruntfile.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/bower.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/composer.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/src/basic.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/src/dropzone.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/src/dropzone.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/src/dropzone.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/test/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/test/test-prebuilt.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/test/test.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/test/test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/tool/AMD_footer" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/tool/AMD_header" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/tool/build_configuration_doc.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/tool/build_site_from_readme.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/CNAME" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/Gruntfile.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/Makefile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/_assets/arrows.sketch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/_config.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/_includes/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/_includes/_for_hire.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/_includes/_social_buttons.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/_includes/configuration-options.template.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/_includes/event-list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/_includes/index.template.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/_layouts/default.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/bootstrap.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/css/_pygments.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/css/_reset.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/css/dropzone.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/css/style.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/examples/simple.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/favicons/_source/favicon-ios.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/favicons/_source/favicon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/favicons/apple-touch-icon-114x114.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/favicons/apple-touch-icon-120x120.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/favicons/apple-touch-icon-144x144.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/favicons/apple-touch-icon-152x152.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/favicons/apple-touch-icon-180x180.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/favicons/apple-touch-icon-57x57.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/favicons/apple-touch-icon-60x60.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/favicons/apple-touch-icon-72x72.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/favicons/apple-touch-icon-76x76.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/favicons/apple-touch-icon-precomposed.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/favicons/apple-touch-icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/favicons/browserconfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/favicons/favicon-160x160.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/favicons/favicon-16x16.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/favicons/favicon-192x192.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/favicons/favicon-32x32.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/favicons/favicon-96x96.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/favicons/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/favicons/mstile-144x144.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/favicons/mstile-150x150.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/favicons/mstile-310x150.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/favicons/mstile-310x310.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/favicons/mstile-70x70.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/fonts/league-gothic.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/fonts/league-gothic.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/fonts/league-gothic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/fonts/league-gothic.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/images/_logo.sketch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/images/arrow-hover.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/images/arrow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/images/arrow.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/images/arrow@2x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/images/available-for-hire@2x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/images/background.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/images/check.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/images/dropzonejs.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/images/dropzonejs@2x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/images/error.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/images/fork-me.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/images/fork-me@2x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/images/loading.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/images/loading@2x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/images/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/images/logo@2x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/images/new-logo-icon.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/images/new-logo-white.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/images/new-logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/images/new-logo.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/images/preview.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/images/spritemap.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/images/spritemap@2x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/js/app.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/js/dropzone.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/js/fastclick.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/dropzone/website/test.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/filepond/filepond-plugin-file-validate-type.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/filepond/filepond.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/filepond/filepond.esm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/filepond/filepond.esm.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/filepond/filepond.jquery.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/filepond/filepond.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/paper/vendors/xlsx/xlsx.full.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/DataKwitansi.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/DataKwitansiController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/invoices.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/kwitansi/create.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/kwitansi/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/kasir-nma.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kasir-nma.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DataTimbanganController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DataTimbanganController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/FilepondController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/FilepondController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_31_053506_create_data_timbangans_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_31_053506_create_data_timbangans_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/paper/css/paper-dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/paper/css/paper-dashboard.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/paper/vendors/filepond/filepond.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/paper/vendors/filepond/filepond.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/paper/vendors/filepond/filepond.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/paper/vendors/filepond/filepond.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/timbangan/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/timbangan/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -169,7 +58,7 @@
         <item name="@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="kasir_nma: schema" type="ebfa3cd1:MariaImplModel$Schema" />
-        <item name="data_timbangans: table" type="dbc44a63:MariaImplModel$Table" />
+        <item name="data_kwitansis: table" type="dbc44a63:MariaImplModel$Table" />
       </path>
     </expand>
     <select />
@@ -273,6 +162,11 @@
       <path value="$PROJECT_DIR$/vendor/laravel-frontend-presets/paper" />
       <path value="$PROJECT_DIR$/vendor/maximebf/debugbar" />
       <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-debugbar" />
+      <path value="$PROJECT_DIR$/vendor/dompdf/dompdf" />
+      <path value="$PROJECT_DIR$/vendor/phenx/php-svg-lib" />
+      <path value="$PROJECT_DIR$/vendor/sabberworm/php-css-parser" />
+      <path value="$PROJECT_DIR$/vendor/phenx/php-font-lib" />
+      <path value="$PROJECT_DIR$/vendor/consoletvs/invoices" />
     </include_path>
   </component>
   <component name="ProjectId" id="1X8zoRli4WuAdtphEITGUSx7VOO" />
@@ -290,20 +184,20 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../backend-universitas" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/config" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app" />
-      <recent name="$PROJECT_DIR$/app/Http/Controllers" />
-      <recent name="$PROJECT_DIR$/app/Exceptions" />
-      <recent name="$PROJECT_DIR$/config" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources/views" />
       <recent name="$PROJECT_DIR$/resources/views/pages" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/config" />
+      <recent name="$PROJECT_DIR$/app" />
+      <recent name="$PROJECT_DIR$/app/Http/Controllers" />
+      <recent name="$PROJECT_DIR$/app/Exceptions" />
     </key>
   </component>
   <component name="RunManager">
@@ -348,7 +242,7 @@
       <workItem from="1580703017041" duration="104000" />
       <workItem from="1580884809457" duration="17678000" />
       <workItem from="1580904717750" duration="5715000" />
-      <workItem from="1580912612478" duration="1912000" />
+      <workItem from="1580912612478" duration="9466000" />
     </task>
     <servers />
   </component>
