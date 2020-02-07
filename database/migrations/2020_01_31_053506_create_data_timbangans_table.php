@@ -16,15 +16,16 @@ class CreateDataTimbangansTable extends Migration
         Schema::create('data_timbangans', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('no_ticket')->unique();
-            $table->dateTime('tanggal_masuk');
+            $table->date('tanggal_masuk');
             $table->string('no_kendaraan');
             $table->string('pelanggan');
             $table->string('tandan');
-            $table->string('1st_weight');
-            $table->string('2nd_weight');
+            $table->string('first_weight');
+            $table->string('second_weight');
             $table->string('netto_weight');
             $table->string('potongan_gradding');
             $table->string('setelah_gradding');
+            $table->enum('status_pembayaran',['sudah','belum'])->default('belum');
             $table->timestamps();
         });
     }

@@ -15,7 +15,8 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             MasterHargasSeeder::class,
             MasterKorlapSeeder::class,
-            DataSpbSeeder::class
+            DataSpbSeeder::class,
+            DataTimbanganSeeder::class
         ]);
     }
 }

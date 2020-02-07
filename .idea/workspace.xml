@@ -3,6 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="019b1718-1ea0-4f4c-9257-af0a934d80ad" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
+=======
+      <change beforePath="$PROJECT_DIR$/app/DataTimbangan.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/DataTimbangan.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DataKwitansiController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DataKwitansiController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/kwitansi/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/kwitansi/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+>>>>>>> 5b3b5ecf395991e495d6c8cb6849a4e403079f99
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,11 +22,56 @@
       <executable />
     </execution>
   </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="kasir_nma: schema" type="ebfa3cd1:MariaImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="kasir_nma: schema" type="ebfa3cd1:MariaImplModel$Schema" />
+        <item name="data_kwitansis: table" type="dbc44a63:MariaImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="kasir_nma: schema" type="ebfa3cd1:MariaImplModel$Schema" />
+        <item name="data_timbangans: table" type="dbc44a63:MariaImplModel$Table" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PackageJsonUpdateNotifier">
     <dismissed value="$PROJECT_DIR$/package.json" />
+    <dismissed value="$PROJECT_DIR$/public/paper/vendors/dropzone/package.json" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP">
     <include_path>
@@ -113,6 +165,11 @@
       <path value="$PROJECT_DIR$/vendor/laravel-frontend-presets/paper" />
       <path value="$PROJECT_DIR$/vendor/maximebf/debugbar" />
       <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-debugbar" />
+      <path value="$PROJECT_DIR$/vendor/dompdf/dompdf" />
+      <path value="$PROJECT_DIR$/vendor/phenx/php-svg-lib" />
+      <path value="$PROJECT_DIR$/vendor/sabberworm/php-css-parser" />
+      <path value="$PROJECT_DIR$/vendor/phenx/php-font-lib" />
+      <path value="$PROJECT_DIR$/vendor/consoletvs/invoices" />
     </include_path>
   </component>
   <component name="ProjectId" id="1X8zoRli4WuAdtphEITGUSx7VOO" />
@@ -126,10 +183,12 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="mariadb" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/resources/views/kwitansi" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../si-prakerin" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
@@ -137,6 +196,12 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources/views" />
       <recent name="$PROJECT_DIR$/resources/views/pages" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/config" />
+      <recent name="$PROJECT_DIR$/app" />
+      <recent name="$PROJECT_DIR$/app/Http/Controllers" />
+      <recent name="$PROJECT_DIR$/app/Exceptions" />
     </key>
   </component>
   <component name="RunManager">
@@ -176,8 +241,21 @@
       <workItem from="1580442719321" duration="48000" />
       <workItem from="1580442790118" duration="5776000" />
       <workItem from="1580451370767" duration="1057000" />
+<<<<<<< HEAD
       <workItem from="1580510130807" duration="36410000" />
       <workItem from="1580762335406" duration="20000" />
+=======
+      <workItem from="1580510130807" duration="35747000" />
+      <workItem from="1580644505138" duration="10970000" />
+      <workItem from="1580703017041" duration="104000" />
+      <workItem from="1580884809457" duration="17678000" />
+      <workItem from="1580904717750" duration="5715000" />
+      <workItem from="1580912612478" duration="10887000" />
+      <workItem from="1580951015528" duration="71000" />
+      <workItem from="1580951125574" duration="188000" />
+      <workItem from="1581062807495" duration="2800000" />
+      <workItem from="1581073896873" duration="2812000" />
+>>>>>>> 5b3b5ecf395991e495d6c8cb6849a4e403079f99
     </task>
     <servers />
   </component>
@@ -192,6 +270,10 @@
       <screen x="0" y="23" width="1366" height="692" />
     </state>
     <state x="358" y="23" key="#PHP/0.23.1366.692@0.23.1366.692" timestamp="1580524370145" />
+    <state x="278" y="58" width="800" height="673" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1580644941128">
+      <screen x="0" y="25" width="1366" height="743" />
+    </state>
+    <state x="278" y="58" width="800" height="673" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.1366.743@0.25.1366.743" timestamp="1580644941128" />
     <state x="363" y="127" width="624" height="540" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1580442692615">
       <screen x="0" y="27" width="1360" height="741" />
     </state>
@@ -200,7 +282,17 @@
       <screen x="0" y="23" width="1366" height="692" />
     </state>
     <state x="341" y="30" key="#phpunit.xml/0.23.1366.692@0.23.1366.692" timestamp="1580524376564" />
+<<<<<<< HEAD
     <state width="1324" height="169" key="GridCell.Tab.0.bottom" timestamp="1580642691317">
+=======
+    <state x="400" y="108" width="424" height="480" key="FileChooserDialogImpl" timestamp="1581065005485">
+      <screen x="0" y="25" width="2726" height="743" />
+    </state>
+    <state x="466" y="154" width="424" height="480" key="FileChooserDialogImpl/0.25.1366.743@0.25.1366.743" timestamp="1580703118175" />
+    <state x="400" y="108" key="FileChooserDialogImpl/0.25.2726.743@0.25.2726.743" timestamp="1581065005485" />
+    <state x="1826" y="133" width="424" height="480" key="FileChooserDialogImpl/1360.0.1366.768/0.25.1360.743@1360.0.1366.768" timestamp="1580951311604" />
+    <state width="1324" height="169" key="GridCell.Tab.0.bottom" timestamp="1580524401658">
+>>>>>>> 5b3b5ecf395991e495d6c8cb6849a4e403079f99
       <screen x="0" y="23" width="1366" height="692" />
     </state>
     <state width="1324" height="169" key="GridCell.Tab.0.bottom/0.23.1366.692@0.23.1366.692" timestamp="1580642691317" />
@@ -220,10 +312,19 @@
       <screen x="0" y="23" width="1366" height="692" />
     </state>
     <state x="395" y="47" key="RollbackChangesDialog/0.23.1366.692@0.23.1366.692" timestamp="1580518870272" />
-    <state x="184" y="32" key="SettingsEditor" timestamp="1580442767235">
-      <screen x="0" y="27" width="1360" height="741" />
+    <state x="185" y="34" width="992" height="726" key="SettingsEditor" timestamp="1580904683005">
+      <screen x="0" y="25" width="1366" height="743" />
     </state>
+    <state x="185" y="34" width="992" height="726" key="SettingsEditor/0.25.1366.743@0.25.1366.743" timestamp="1580904683005" />
     <state x="184" y="32" key="SettingsEditor/0.27.1360.741@0.27.1360.741" timestamp="1580442767235" />
+    <state x="491" y="177" width="374" height="435" key="chooseDestDirectoryDialog" timestamp="1580923249241">
+      <screen x="0" y="25" width="1366" height="743" />
+    </state>
+    <state x="491" y="177" width="374" height="435" key="chooseDestDirectoryDialog/0.25.1366.743@0.25.1366.743" timestamp="1580923249241" />
+    <state x="416" y="204" width="524" height="380" key="com.intellij.database.dbimport.ImportUtil.MyDialog" timestamp="1580645811679">
+      <screen x="0" y="25" width="1366" height="743" />
+    </state>
+    <state x="416" y="204" width="524" height="380" key="com.intellij.database.dbimport.ImportUtil.MyDialog/0.25.1366.743@0.25.1366.743" timestamp="1580645811679" />
     <state x="373" y="225" key="com.intellij.ide.util.TipDialog" timestamp="1580442689621">
       <screen x="0" y="27" width="1360" height="741" />
     </state>
@@ -232,10 +333,11 @@
       <screen x="0" y="23" width="1366" height="694" />
     </state>
     <state x="347" y="126" width="671" height="486" key="find.popup/0.23.1366.694@0.23.1366.694" timestamp="1580607416830" />
-    <state x="345" y="81" width="675" height="635" key="search.everywhere.popup" timestamp="1580612159735">
-      <screen x="0" y="23" width="1366" height="694" />
+    <state x="345" y="87" width="675" height="680" key="search.everywhere.popup" timestamp="1580645911947">
+      <screen x="0" y="25" width="1366" height="743" />
     </state>
     <state x="345" y="81" width="675" height="635" key="search.everywhere.popup/0.23.1366.694@0.23.1366.694" timestamp="1580612159735" />
+    <state x="345" y="87" width="675" height="680" key="search.everywhere.popup/0.25.1366.743@0.25.1366.743" timestamp="1580645911947" />
     <state x="343" y="89" width="672" height="678" key="search.everywhere.popup/0.27.1360.741@0.27.1360.741" timestamp="1580450020846" />
   </component>
 </project>
