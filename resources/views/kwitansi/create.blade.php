@@ -56,7 +56,7 @@
                                             <label for="tgl_pembayaran"></label>
                                             <input type="text" name="tgl_pembayaran" id="tgl_pembayaran"
                                                    class="form-control" placeholder="Tanggal Pembayaran"
-                                                   aria-describedby="helpId" readonly>
+                                                   aria-describedby="helpId" readonly value="{{date('Y-m-d')}}">
                                             <small id="helpId" class="text-muted">Otomatis</small>
                                         </div>
                                     </div>
@@ -150,6 +150,26 @@
 @endsection
 @push('scripts')
     <script>
+        $(document).ready(function () {
+            $('#no_tiket').on('blur', function () {
+                let ticket_number = $(this).val();
+                if (ticket_number.length > 4) {
+                    $.ajax({
+                        url: "{{route('kwitansi.tiket')}}",
+                        method: "POST",
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        data: {
+                            no_ticket: ticket_number
+                        },
+                        dataType:"json",
+                        success:function(res){
 
+                        }
+                    })
+                }
+            })
+        })
     </script>
 @endpush

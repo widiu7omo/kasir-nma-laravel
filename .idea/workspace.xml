@@ -3,6 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="019b1718-1ea0-4f4c-9257-af0a934d80ad" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/DataTimbangan.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/DataTimbangan.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DataKwitansiController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DataKwitansiController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/kwitansi/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/kwitansi/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +52,13 @@
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="kasir_nma: schema" type="ebfa3cd1:MariaImplModel$Schema" />
         <item name="data_kwitansis: table" type="dbc44a63:MariaImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="kasir_nma: schema" type="ebfa3cd1:MariaImplModel$Schema" />
+        <item name="data_timbangans: table" type="dbc44a63:MariaImplModel$Table" />
       </path>
     </expand>
     <select />
@@ -174,7 +185,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/resources/views/kwitansi" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/config" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../si-prakerin" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
@@ -232,7 +243,11 @@
       <workItem from="1580703017041" duration="104000" />
       <workItem from="1580884809457" duration="17678000" />
       <workItem from="1580904717750" duration="5715000" />
-      <workItem from="1580912612478" duration="10225000" />
+      <workItem from="1580912612478" duration="10887000" />
+      <workItem from="1580951015528" duration="71000" />
+      <workItem from="1580951125574" duration="188000" />
+      <workItem from="1581062807495" duration="2800000" />
+      <workItem from="1581073896873" duration="2812000" />
     </task>
     <servers />
   </component>
@@ -259,10 +274,12 @@
       <screen x="0" y="23" width="1366" height="692" />
     </state>
     <state x="341" y="30" key="#phpunit.xml/0.23.1366.692@0.23.1366.692" timestamp="1580524376564" />
-    <state x="466" y="154" width="424" height="480" key="FileChooserDialogImpl" timestamp="1580703118175">
-      <screen x="0" y="25" width="1366" height="743" />
+    <state x="400" y="108" width="424" height="480" key="FileChooserDialogImpl" timestamp="1581065005485">
+      <screen x="0" y="25" width="2726" height="743" />
     </state>
     <state x="466" y="154" width="424" height="480" key="FileChooserDialogImpl/0.25.1366.743@0.25.1366.743" timestamp="1580703118175" />
+    <state x="400" y="108" key="FileChooserDialogImpl/0.25.2726.743@0.25.2726.743" timestamp="1581065005485" />
+    <state x="1826" y="133" width="424" height="480" key="FileChooserDialogImpl/1360.0.1366.768/0.25.1360.743@1360.0.1366.768" timestamp="1580951311604" />
     <state width="1324" height="169" key="GridCell.Tab.0.bottom" timestamp="1580524401658">
       <screen x="0" y="23" width="1366" height="692" />
     </state>

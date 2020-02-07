@@ -40,6 +40,7 @@ Route::group(['middleware' => 'auth'], function () {
 });
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('kwitansi', 'DataKwitansiController')->except(['show']);
+    Route::post('kwitansi/tiket', ['as' => 'kwitansi.tiket', 'uses' => 'DataKwitansiController@tiket']);
     Route::get('kwitansi/generate', ['as' => 'kwitansi.generate', 'uses' => 'DataKwitansiController@generate']);
 });
 Route::group(['middleware' => 'auth'], function () {

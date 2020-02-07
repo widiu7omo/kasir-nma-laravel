@@ -19,4 +19,10 @@ class DataTimbangan extends Model
         'potongan_gradding',
         'setelah_gradding'
     ];
+
+    public function getNoTickets()
+    {
+        return $this->no_ticket;
+    }
+
 }
