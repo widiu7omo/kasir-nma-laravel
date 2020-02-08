@@ -14,4 +14,5 @@ class DataSpb extends Model
     {
         return $this->belongsTo('App\MasterKorlap', 'master_korlap_id');
     }
+
 }

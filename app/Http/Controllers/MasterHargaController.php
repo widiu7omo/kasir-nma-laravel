@@ -34,7 +34,7 @@ class MasterHargaController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request, MasterHarga $model)
     {
@@ -44,7 +44,7 @@ class MasterHargaController extends Controller
             'tanggal' => $request->tanggal
         ];
         $model->create($data_request);
-        return redirect()->route('harga.index')->withStatus(__('Harga berhasil ditambahkan'));
+        return response()->json(['status' => 'success']);
     }
 
     /**

@@ -69,6 +69,7 @@ The above copyright notice and this permission notice shall be included in all c
 <script src="{{ asset('paper') }}/vendors/momentjs/moment.min.js" type="text/javascript"></script>
 <script src="{{asset('paper')}}/vendors/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
 <script src="{{asset('paper')}}/vendors/bootstrap-datepicker/locales/bootstrap-datepicker.id.min.js"></script>
+<script src="{{asset('paper')}}/vendors/sweetalert/sweetalert.min.js"></script>
 <script src="{{asset('paper')}}/vendors/filepond/filepond-plugin-file-validate-type.js"></script>
 <script src="{{asset('paper')}}/vendors/filepond/filepond.min.js"></script>
 <script src="{{asset('paper')}}/vendors/filepond/filepond.jquery.js"></script>

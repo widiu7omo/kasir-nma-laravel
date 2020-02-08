@@ -25,4 +25,8 @@ class DataTimbangan extends Model
         return $this->no_ticket;
     }
 
+    public function kwitansi()
+    {
+        return $this->belongsTo('App\DataKwitansi', 'data_timbangan_id');
+    }
 }
