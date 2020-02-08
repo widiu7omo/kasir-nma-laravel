@@ -7,14 +7,20 @@
     <list default="true" id="019b1718-1ea0-4f4c-9257-af0a934d80ad" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/public/paper/vendors/sweetalert/sweetalert.min.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/app/DataKwitansi.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/DataKwitansi.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/DataSpb.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/DataSpb.php" afterDir="false" />
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 323f96a80fc91bffc45b29e82d968efb1d6e66d1
       <change beforePath="$PROJECT_DIR$/app/DataTimbangan.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/DataTimbangan.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DataKwitansiController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DataKwitansiController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MasterHargaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MasterHargaController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/kwitansi/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/kwitansi/create.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+>>>>>>> 5b3b5ecf395991e495d6c8cb6849a4e403079f99
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -272,6 +278,10 @@
       <workItem from="1580442719321" duration="48000" />
       <workItem from="1580442790118" duration="5776000" />
       <workItem from="1580451370767" duration="1057000" />
+<<<<<<< HEAD
+      <workItem from="1580510130807" duration="36410000" />
+      <workItem from="1580762335406" duration="20000" />
+=======
       <workItem from="1580510130807" duration="35747000" />
       <workItem from="1580644505138" duration="10970000" />
       <workItem from="1580703017041" duration="104000" />
@@ -281,8 +291,13 @@
       <workItem from="1580951015528" duration="71000" />
       <workItem from="1580951125574" duration="188000" />
       <workItem from="1581062807495" duration="2800000" />
+<<<<<<< HEAD
       <workItem from="1581073896873" duration="2921000" />
       <workItem from="1581085037725" duration="28759000" />
+=======
+      <workItem from="1581073896873" duration="2812000" />
+>>>>>>> 5b3b5ecf395991e495d6c8cb6849a4e403079f99
+>>>>>>> 323f96a80fc91bffc45b29e82d968efb1d6e66d1
     </task>
     <servers />
   </component>
@@ -309,16 +324,23 @@
       <screen x="0" y="23" width="1366" height="692" />
     </state>
     <state x="341" y="30" key="#phpunit.xml/0.23.1366.692@0.23.1366.692" timestamp="1580524376564" />
+<<<<<<< HEAD
     <state x="431" y="245" width="494" height="299" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1581131525149">
       <screen x="0" y="25" width="1366" height="743" />
     </state>
     <state x="431" y="245" width="494" height="299" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.25.1366.743@0.25.1366.743" timestamp="1581131525149" />
+=======
+<<<<<<< HEAD
+    <state width="1324" height="169" key="GridCell.Tab.0.bottom" timestamp="1580642691317">
+=======
+>>>>>>> 323f96a80fc91bffc45b29e82d968efb1d6e66d1
     <state x="400" y="108" width="424" height="480" key="FileChooserDialogImpl" timestamp="1581065005485">
       <screen x="0" y="25" width="2726" height="743" />
     </state>
     <state x="466" y="154" width="424" height="480" key="FileChooserDialogImpl/0.25.1366.743@0.25.1366.743" timestamp="1580703118175" />
     <state x="400" y="108" key="FileChooserDialogImpl/0.25.2726.743@0.25.2726.743" timestamp="1581065005485" />
     <state x="1826" y="133" width="424" height="480" key="FileChooserDialogImpl/1360.0.1366.768/0.25.1360.743@1360.0.1366.768" timestamp="1580951311604" />
+<<<<<<< HEAD
     <state width="903" height="177" key="GridCell.Tab.0.bottom" timestamp="1581154299310">
       <screen x="0" y="25" width="1366" height="743" />
     </state>
@@ -339,6 +361,25 @@
     </state>
     <state width="1324" height="169" key="GridCell.Tab.0.right/0.23.1366.692@0.23.1366.692" timestamp="1580524401657" />
     <state width="903" height="177" key="GridCell.Tab.0.right/0.25.1366.743@0.25.1366.743" timestamp="1581154299310" />
+=======
+    <state width="1324" height="169" key="GridCell.Tab.0.bottom" timestamp="1580524401658">
+>>>>>>> 5b3b5ecf395991e495d6c8cb6849a4e403079f99
+      <screen x="0" y="23" width="1366" height="692" />
+    </state>
+    <state width="1324" height="169" key="GridCell.Tab.0.bottom/0.23.1366.692@0.23.1366.692" timestamp="1580642691317" />
+    <state width="1324" height="169" key="GridCell.Tab.0.center" timestamp="1580642691315">
+      <screen x="0" y="23" width="1366" height="692" />
+    </state>
+    <state width="1324" height="169" key="GridCell.Tab.0.center/0.23.1366.692@0.23.1366.692" timestamp="1580642691315" />
+    <state width="1324" height="169" key="GridCell.Tab.0.left" timestamp="1580642691310">
+      <screen x="0" y="23" width="1366" height="692" />
+    </state>
+    <state width="1324" height="169" key="GridCell.Tab.0.left/0.23.1366.692@0.23.1366.692" timestamp="1580642691310" />
+    <state width="1324" height="169" key="GridCell.Tab.0.right" timestamp="1580642691316">
+      <screen x="0" y="23" width="1366" height="692" />
+    </state>
+    <state width="1324" height="169" key="GridCell.Tab.0.right/0.23.1366.692@0.23.1366.692" timestamp="1580642691316" />
+>>>>>>> 323f96a80fc91bffc45b29e82d968efb1d6e66d1
     <state x="395" y="47" key="RollbackChangesDialog" timestamp="1580518870272">
       <screen x="0" y="23" width="1366" height="692" />
     </state>
