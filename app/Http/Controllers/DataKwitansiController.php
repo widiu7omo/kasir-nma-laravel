@@ -27,6 +27,12 @@ class DataKwitansiController extends Controller
         return view('kwitansi.index', ['kwitansis' => $kwitansis]);
     }
 
+    public function detail(Request $request, DataKwitansi $dataKwitansi)
+    {
+        $spb = $dataKwitansi->select('*')->where(['no_spb' => $request->spb])->get();
+        return response()->json(['status' => 'success', 'spb' => $spb]);
+    }
+
     public function tiket(Request $request, DataTimbangan $timbangan)
     {
         $noTickets = $timbangan->select('*')->where(['no_ticket' => $request->no_ticket])->get();

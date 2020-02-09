@@ -41,6 +41,7 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('kwitansi', 'DataKwitansiController')->except(['show']);
     Route::post('kwitansi/tiket', ['as' => 'kwitansi.tiket', 'uses' => 'DataKwitansiController@tiket']);
+    Route::post('kwitansi/detail', ['as' => 'kwitansi.detail', 'uses' => 'DataKwitansiController@detail']);
     Route::post('kwitansi/harga', ['as' => 'kwitansi.harga', 'uses' => 'DataKwitansiController@harga']);
     Route::post('kwitansi/spb', ['as' => 'kwitansi.spb', 'uses' => 'DataKwitansiController@spb']);
     Route::post('kwitansi/timbangan', ['as' => 'kwitansi.timbangan', 'uses' => 'DataKwitansiController@detailTimbangan']);

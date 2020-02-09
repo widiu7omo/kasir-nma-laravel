@@ -84,8 +84,7 @@
                                         <input type="number" name="no_spb" id="no_spb" class="form-control"
                                                placeholder="No. SPB"
                                                aria-describedby="helpId" autocomplete="off" required>
-                                        <small id="helpId" class="text-muted">Masukkan Nomor SPB</small>
-                                        {{--                                        @TODO: tambah validasi satu lagi, masuk ke kwitansi, mencari status spb sudah dipakai apa belum--}}
+                                        <small id="no_spb_desc" class="text-muted">Masukkan Nomor SPB</small>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-xs-12">
@@ -259,6 +258,7 @@
         $(document).ready(function () {
             $(document).on('blur', 'input#' + ids[5], function () {
                 let spb = $(this).val();
+                let spb_id = $(this).val();
                 if (spb.length !== 0) {
                     $.ajax({
                         url: "{{route('kwitansi.spb')}}",
@@ -287,6 +287,33 @@
                                     }
                                 })
                             } else {
+                                $.ajax({
+                                    url: "{{route('kwitansi.detail')}}",
+                                    method: "POST",
+                                    headers: {
+                                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                    },
+                                    data: {
+                                        spb: spb_id
+                                    },
+                                    dataType: "json",
+                                    success: function ({status, spb}) {
+                                        if (spb.length > 0) {
+                                            $('#btn-cetak-kwitansi').prop('disabled', true);
+                                            $('#no_spb_desc').text("Nomor SPB sudah dibayar, periksa kembali atau ganti nomor spb lain").addClass('text-danger');
+                                            $('#no_spb').addClass('bg-danger');
+                                            swal({
+                                                title: "Peringantan!!!",
+                                                text: "Nomor SPB sudah dilakukan pembayaran pada tanggal " + spb[0].tanggal_pembayaran + " dengan nomor berkas " + spb[0].no_berkas,
+                                                icon: "error",
+                                                button: "Close"
+                                            })
+                                        }
+                                    },
+                                    error: function () {
+
+                                    }
+                                })
                                 $('#' + ids[7]).val(spb[0].korlap.nama_korlap)
                                 $('[name="spb_id"]').val(spb[0].id);
                                 $('#btn-cetak-kwitansi').prop('disabled', false);
@@ -300,7 +327,13 @@
                     $(this).removeClass('bg-danger');
                     $('#no_tiket_desc').removeClass('text-danger').text("Masukkan Nomor Tiket");
                 }
-            })
+            });
+            $(document).on('focus', 'input#' + ids[5], function () {
+                if ($(this).hasClass('bg-danger')) {
+                    $(this).removeClass('bg-danger');
+                    $('#no_spb_desc').removeClass('text-danger').text("Masukkan Nomor SPB");
+                }
+            });
             $(document).on('blur', 'input#' + ids[3], function () {
                 let ticket_number = $(this).val();
                 let total_berat = 0;
