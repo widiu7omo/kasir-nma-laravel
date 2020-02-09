@@ -58,10 +58,10 @@
                                     <tr>
                                         <td class="text-center">
                                         </td>
-                                        <td>{{$kwitansi->no_ticket}}</td>
-                                        <td>{{$kwitansi->tanggal_masuk}}</td>
-                                        <td>{{$kwitansi->no_kendaraan}}</td>
-                                        <td>{{$kwitansi->pelanggan}}</td>
+                                        <td>{{$kwitansi->no_berkas}}</td>
+                                        <td>{{$kwitansi->tanggal_pembayaran}}</td>
+                                        <td>{{$kwitansi->no_pembayaran}}</td>
+                                        <td>{{$kwitansi->nama_supir}}</td>
                                         <td>{{$kwitansi->tandan}}</td>
                                         <td>{{$kwitansi->first_weight}}</td>
                                         <td>{{$kwitansi->second_weight}}</td>

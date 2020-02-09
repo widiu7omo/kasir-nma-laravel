@@ -18,6 +18,7 @@ class CreateDataKwitansisTable extends Migration
             $table->string('no_berkas')->unique();
             $table->string('tanggal_pembayaran');
             $table->string('no_pembayaran')->unique();
+            $table->string('no_spb')->unique();
             $table->string('nama_supir');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('data_timbangan_id');

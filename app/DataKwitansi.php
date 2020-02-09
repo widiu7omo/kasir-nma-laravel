@@ -11,6 +11,7 @@ class DataKwitansi extends Model
         'no_berkas',
         'tanggal_pembayaran',
         'no_pembayaran',
+        'no_spb',
         'nama_supir',
         'user_id',
         'data_timbangan_id',

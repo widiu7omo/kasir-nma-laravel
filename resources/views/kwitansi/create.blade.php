@@ -6,6 +6,9 @@
     <div class="content">
         <form action="{{route('kwitansi.generate')}}" method="POST">
             @csrf
+            <input type="hidden" name="timbangan_id">
+            <input type="hidden" name="harga_id">
+            <input type="hidden" name="spb_id">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card ">
@@ -82,6 +85,7 @@
                                                placeholder="No. SPB"
                                                aria-describedby="helpId" autocomplete="off" required>
                                         <small id="helpId" class="text-muted">Masukkan Nomor SPB</small>
+                                        {{--                                        @TODO: tambah validasi satu lagi, masuk ke kwitansi, mencari status spb sudah dipakai apa belum--}}
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-xs-12">
@@ -111,7 +115,8 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12 text-right">
-                                    <button type="submit" id="btn-cetak-kwitansi" class="btn btn-primary">Cetak
+                                    <button formtarget="_blank" type="submit" id="btn-cetak-kwitansi"
+                                            class="btn btn-primary">Cetak
                                         Kwitansi
                                     </button>
                                 </div>
@@ -246,6 +251,11 @@
                 ids.push(item.id);
             }
         });
+        $('#btn-cetak-kwitansi').on('click', function () {
+            setTimeout(function () {
+                window.location.reload();
+            }, 1000)
+        })
         $(document).ready(function () {
             $(document).on('blur', 'input#' + ids[5], function () {
                 let spb = $(this).val();
@@ -278,6 +288,7 @@
                                 })
                             } else {
                                 $('#' + ids[7]).val(spb[0].korlap.nama_korlap)
+                                $('[name="spb_id"]').val(spb[0].id);
                                 $('#btn-cetak-kwitansi').prop('disabled', false);
                             }
                         }
@@ -324,6 +335,7 @@
                                 $('#' + ids[11]).val(tickets[0].potongan_gradding + " KG");
                                 $('#' + ids[12]).val(tickets[0].setelah_gradding + " KG");
                                 $('#' + ids[13]).val(tickets[0].setelah_gradding + " KG");
+                                $('[name="timbangan_id"]').val(tickets[0].id);
                                 total_berat = tickets[0].setelah_gradding;
                                 $('#btn-cetak-kwitansi').prop('disabled', false);
                                 $.ajax({
@@ -355,6 +367,7 @@
                                         } else {
                                             $('#btn-cetak-kwitansi').prop('disabled', false);
                                             $('#' + ids[14]).val("Rp. " + harga.harga);
+                                            $('[name="harga_id"]').val(harga.id);
                                             harga_satuan = harga.harga;
                                             total_semua = harga_satuan * total_berat;
                                             $('#' + ids[15]).val("Rp. " + total_semua);

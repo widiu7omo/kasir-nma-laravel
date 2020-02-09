@@ -99,7 +99,7 @@
         <br/>
     </div>
     <br/>
-    {{--    <h2>{{ $invoice->name }} {{ $invoice->number ? '#' . $invoice->number : '' }}</h2>--}}
+        <h2>Nomor Tiket : #{{$invoice->customer_details->get('no_ticket')}}</h2>
 </header>
 <main>
     <div style="clear:both; position:relative;">

@@ -94,8 +94,9 @@ class DataSpbController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param DataSpb $spb
      * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
      */
     public function destroy(DataSpb $spb)
     {

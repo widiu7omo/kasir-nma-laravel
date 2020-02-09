@@ -19,6 +19,7 @@ class DataTimbangan extends Model
         'potongan_gradding',
         'setelah_gradding'
     ];
+    public $timestamps = true;
 
     public function getNoTickets()
     {
