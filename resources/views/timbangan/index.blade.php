@@ -50,7 +50,7 @@
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table-bordered table" id="spb-table">
+                            <table class="table-bordered display responsive nowrap table" id="spb-table" width="100%">
                                 <thead>
                                 <tr>
                                     <th class="sorting_asc_disabled"></th>

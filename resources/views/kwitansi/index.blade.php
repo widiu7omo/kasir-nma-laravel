@@ -36,12 +36,13 @@
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table-bordered table" id="kwitansi-table">
+                            <table class="table-bordered display responsive nowrap table" id="kwitansi-table" width="100%">
                                 <thead>
                                 <tr>
                                     <th class="sorting_asc_disabled"></th>
                                     <th style="width:10%">Nomor Berkas</th>
                                     <th style="width:8%">Tanggal Pembayaran</th>
+                                    <th style="width:8%">Tanggal Timbangan</th>
                                     <th>No Pembayaran</th>
                                     <th>Nama Pengambil</th>
                                     <th>No Kendaraan</th>
@@ -60,14 +61,15 @@
                                         </td>
                                         <td>{{$kwitansi->no_berkas}}</td>
                                         <td>{{$kwitansi->tanggal_pembayaran}}</td>
+                                        <td>{{$kwitansi->timbangan->tanggal_masuk}}</td>
                                         <td>{{$kwitansi->no_pembayaran}}</td>
                                         <td>{{$kwitansi->nama_supir}}</td>
-                                        <td>{{$kwitansi->tandan}}</td>
-                                        <td>{{$kwitansi->first_weight}}</td>
-                                        <td>{{$kwitansi->second_weight}}</td>
-                                        <td>{{$kwitansi->netto_weight}}</td>
-                                        <td>{{$kwitansi->potongan_gradding}}</td>
-                                        <td>{{$kwitansi->setelah_gradding}}</td>
+                                        <td>{{$kwitansi->timbangan->no_kendaraan}}</td>
+                                        <td>{{$kwitansi->timbangan->setelah_gradding}}</td>
+                                        <td>{{$kwitansi->harga->harga}}</td>
+                                        <td>{{$kwitansi->total_harga}}</td>
+                                        <td>{{$kwitansi->total_harga}}</td>
+                                        <td>{{$kwitansi->spb->korlap->nama_korlap}}</td>
                                         <td>
                                             <form class="form-action"
                                                   action="{{ route('kwitansi.destroy', $kwitansi) }}"

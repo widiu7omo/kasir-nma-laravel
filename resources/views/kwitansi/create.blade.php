@@ -99,16 +99,16 @@
                                                 <small id="helpId" class="text-muted">Otomatis</small>
                                             </div>
                                         </div>
-                                        <div class="col-md-6 col-xs-12">
-                                            <div class="form-group">
-                                                <label for="pemilik_spb"></label>
-                                                <input type="text" name="pemilik_spb" id="pemilik_spb"
-                                                       class="form-control"
-                                                       placeholder="Pemilik SPB" readonly
-                                                       aria-describedby="helpId">
-                                                <small id="helpId" class="text-muted">Otomatis</small>
-                                            </div>
-                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="pemilik_spb"></label>
+                                        <input type="text" name="pemilik_spb" id="pemilik_spb"
+                                               class="form-control"
+                                               placeholder="Pemilik SPB" readonly
+                                               aria-describedby="helpId">
+                                        <small id="helpId" class="text-muted">Otomatis</small>
                                     </div>
                                 </div>
                             </div>

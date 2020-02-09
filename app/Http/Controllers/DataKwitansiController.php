@@ -18,12 +18,30 @@ class DataKwitansiController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(Request $request)
     {
         //
-        $kwitansis = DataKwitansi::all();
+        $kwitansis = DataKwitansi::
+        with(
+            ['user' => function ($query) {
+                return $query->select('id', 'name');
+            }])
+            ->with(['timbangan' => function ($query) {
+                return $query->select('id', 'setelah_gradding', 'no_kendaraan', 'tanggal_masuk');
+            }])
+            ->with(['harga' => function ($query) {
+                return $query->select('id', 'harga');
+            }])
+            ->with(['spb' => function ($query) {
+                return $query->with(['korlap' => function ($query) {
+                    return $query->select('id', 'nama_korlap');
+                }]);
+            }])
+            ->get();
+//        return response()->json($kwitansis);
         return view('kwitansi.index', ['kwitansis' => $kwitansis]);
     }
 
@@ -133,6 +151,7 @@ class DataKwitansiController extends Controller
                 'no_pembayaran' => $request->no_tiket,
                 'no_spb' => $request->no_spb,
                 'nama_supir' => $request->supir,
+                'total_harga' => $request->total_pembayaran,
                 'user_id' => Auth::id(),
                 'data_timbangan_id' => $request->timbangan_id,
                 'master_harga_id' => $request->harga_id,
