@@ -4,30 +4,30 @@
 ])
 @section('content')
     <div class="content">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card ">
-                    <div class="card-header ">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5 class="card-title">Buat Kwitansi</h5>
+        <form action="{{route('kwitansi.generate')}}" method="POST">
+            @csrf
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card ">
+                        <div class="card-header ">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5 class="card-title">Buat Kwitansi</h5>
+                                </div>
+                                <div class="col-md-6 text-right">
+                                    <a href="{{route('kwitansi.index')}}" class="btn btn-sm btn-primary">Kembali</a>
+                                </div>
                             </div>
-                            <div class="col-md-6 text-right">
-                                <a href="{{route('kwitansi.index')}}" class="btn btn-sm btn-primary">Kembali</a>
-                            </div>
+                            @if (session('status'))
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    {{ session('status') }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @endif
                         </div>
-                        @if (session('status'))
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                {{ session('status') }}
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                        @endif
-                    </div>
-                    <div class="card-body">
-                        <form action="{{route('kwitansi.generate')}}" method="POST">
-                            @csrf
+                        <div class="card-body">
                             <div class="row">
                                 <div class="col-md-4 col-xs-12">
                                     <div class="form-group">
@@ -116,126 +116,126 @@
                                     </button>
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 col-xs-12">
-                <div class="card ">
-                    <div class="card-header ">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5 class="card-title">Detail Berat</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6 col-xs-12">
-                                <div class="form-group">
-                                    <label for="first_weight">Berat Awal</label>
-                                    <input type="text" name="first_weight" id="first_weight"
-                                           class="form-control"
-                                           placeholder="First Weight" aria-describedby="helpId" readonly>
-                                    <small id="helpId" class="text-muted">Otomatis</small>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-xs-12">
-                                <div class="form-group">
-                                    <label for="second_weight">Berat Kedua</label>
-                                    <input type="text" name="second_weight" id="second_weight"
-                                           class="form-control"
-                                           placeholder="Second Weight"
-                                           aria-describedby="helpId" readonly>
-                                    <small id="helpId" class="text-muted">Otomatis</small>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-xs-12">
-                                <div class="form-group">
-                                    <label for="netto_weight">Netto</label>
-                                    <input type="text" name="netto_weight" id="netto_weight"
-                                           class="form-control"
-                                           placeholder="Netto Weight"
-                                           aria-describedby="helpId" readonly>
-                                    <small id="helpId" class="text-muted">Otomatis</small>
+                <div class="col-md-6 col-xs-12">
+                    <div class="card ">
+                        <div class="card-header ">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5 class="card-title">Detail Berat</h5>
                                 </div>
                             </div>
                         </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-md-6 col-xs-12">
-                                <div class="form-group">
-                                    <label for="potongan_grading">Potongan Grading</label>
-                                    <input type="text" name="potongan_grading" id="potongan_grading"
-                                           class="form-control"
-                                           placeholder="Potongan Grading"
-                                           aria-describedby="helpId" readonly>
-                                    <small id="helpId" class="text-muted">Otomatis</small>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="first_weight">Berat Awal</label>
+                                        <input type="text" name="first_weight" id="first_weight"
+                                               class="form-control"
+                                               placeholder="First Weight" aria-describedby="helpId" readonly>
+                                        <small id="helpId" class="text-muted">Otomatis</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="second_weight">Berat Kedua</label>
+                                        <input type="text" name="second_weight" id="second_weight"
+                                               class="form-control"
+                                               placeholder="Second Weight"
+                                               aria-describedby="helpId" readonly>
+                                        <small id="helpId" class="text-muted">Otomatis</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="netto_weight">Netto</label>
+                                        <input type="text" name="netto_weight" id="netto_weight"
+                                               class="form-control"
+                                               placeholder="Netto Weight"
+                                               aria-describedby="helpId" readonly>
+                                        <small id="helpId" class="text-muted">Otomatis</small>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 col-xs-12">
-                                <div class="form-group">
-                                    <label for="setelah_grading">Berat Total</label>
-                                    <input type="text" name="setelah_grading" id="setelah_grading"
-                                           class="form-control"
-                                           placeholder="Setelah Grading"
-                                           aria-describedby="helpId" readonly>
-                                    <small id="helpId" class="text-muted">Total setelah Grading (Otomatis)</small>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="potongan_grading">Potongan Grading</label>
+                                        <input type="text" name="potongan_grading" id="potongan_grading"
+                                               class="form-control"
+                                               placeholder="Potongan Grading"
+                                               aria-describedby="helpId" readonly>
+                                        <small id="helpId" class="text-muted">Otomatis</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="setelah_grading">Berat Total</label>
+                                        <input type="text" name="setelah_grading" id="setelah_grading"
+                                               class="form-control"
+                                               placeholder="Setelah Grading"
+                                               aria-describedby="helpId" readonly>
+                                        <small id="helpId" class="text-muted">Total setelah Grading (Otomatis)</small>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-xs-12">
-                <div class="card ">
-                    <div class="card-header ">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h5 class="card-title">Total yang harus dibayar</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6 col-xs-12">
-                                <div class="form-group">
-                                    <label for="total_berat">Total Berat Keseluruhan</label>
-                                    <input type="text" name="total_berat" id="total_berat"
-                                           class="form-control"
-                                           placeholder="Total Berat" aria-describedby="helpId" readonly>
-                                    <small id="helpId" class="text-muted">Otomatis</small>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-xs-12">
-                                <div class="form-group">
-                                    <label for="harga_satuan">Harga Satuan</label>
-                                    <input type="text" name="harga_satuan" id="harga_satuan"
-                                           class="form-control"
-                                           placeholder="Harga Satuan"
-                                           aria-describedby="helpId" readonly>
-                                    <small id="helpId" class="text-muted">Harga satuan tanggal timbangan</small>
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-md-12 col-xs-12">
-                                <div class="form-group">
-                                    <label for="total_pembayaran">Jumlah total yang harus dibayar</label>
-                                    <input type="text" name="total_pembayaran" id="total_pembayaran"
-                                           class="form-control"
-                                           placeholder="Total Pembayaran"
-                                           aria-describedby="helpId" readonly>
-                                    <small id="helpId" class="text-muted">Otomatis</small>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="col-md-6 col-xs-12">
+                    <div class="card ">
+                        <div class="card-header ">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h5 class="card-title">Total yang harus dibayar</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="total_berat">Total Berat Keseluruhan</label>
+                                        <input type="text" name="total_berat" id="total_berat"
+                                               class="form-control"
+                                               placeholder="Total Berat" aria-describedby="helpId" readonly>
+                                        <small id="helpId" class="text-muted">Otomatis</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="harga_satuan">Harga Satuan</label>
+                                        <input type="text" name="harga_satuan" id="harga_satuan"
+                                               class="form-control"
+                                               placeholder="Harga Satuan"
+                                               aria-describedby="helpId" readonly>
+                                        <small id="helpId" class="text-muted">Harga satuan tanggal timbangan</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="total_pembayaran">Jumlah total yang harus dibayar</label>
+                                        <input type="text" name="total_pembayaran" id="total_pembayaran"
+                                               class="form-control"
+                                               placeholder="Total Pembayaran"
+                                               aria-describedby="helpId" readonly>
+                                        <small id="helpId" class="text-muted">Otomatis</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 @endsection
 @push('scripts')

@@ -9,6 +9,7 @@ use App\MasterHarga;
 use Carbon\Carbon;
 use ConsoleTVs\Invoices\Classes\Invoice;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\In;
 use Symfony\Component\VarDumper\Cloner\Data;
 
 class DataKwitansiController extends Controller
@@ -78,32 +79,36 @@ class DataKwitansiController extends Controller
         return view('kwitansi.create', ['last_berkas' => $last_berkas]);
     }
 
-    public function generate()
+    public function generate(Request $request, DataTimbangan $dataTimbangan)
     {
-
-        $invoice = Invoice::make("Kwitansi")
-            ->addItem('Test Item', 10.25, 2, 1412)
-            ->addItem('Test Item 2', 5, 2, 923)
-            ->addItem('Test Item 3', 15.55, 5, 42)
-            ->addItem('Test Item 4', 1.25, 1, 923)
-            ->addItem('Test Item 5', 3.12, 1, 3142)
-            ->addItem('Test Item 6', 6.41, 3, 452)
-            ->addItem('Test Item 7', 2.86, 1, 1526)
-            ->number(4021)
+//        return response()->json($request);
+        $exharga = explode(' ', $request->harga_satuan);
+        $extotal_berat = explode(' ', $request->setelah_grading);
+        $harga_satuan = $exharga[1];
+        $total_berat = $extotal_berat[0];
+        $data_pemilik = (object)[
+            'pemilik' => $request->pemilik_spb,
+            'first_w'=>$request->first_weight,
+            'second_w'=>$request->second_weight,
+            'netto_w'=>$request->netto_weight,
+            'gradding'=>$request->potongan_grading,
+            'after_gradding'=>$request->setelah_grading
+        ];
+        $inv = new Invoice();
+        $inv->make("Kwitansi")
+            ->addItem($data_pemilik, $harga_satuan, $total_berat, $request->no_spb)
+            ->number($request->no_berkas)
             ->with_pagination(true)
             ->duplicate_header(true)
-            ->due_date(Carbon::now()->addMonths(1))
-            ->notes('Lrem ipsum dolor sit amet, consectetur adipiscing elit.')
+            ->date(Carbon::parse($request->tgl_pembayaran))
+            ->notes('Mohon periksa kembali sebelum meninggalkan kasir')
             ->customer([
-                'name' => 'Èrik Campobadal Forés',
-                'id' => '12345678A',
-                'phone' => '+34 123 456 789',
-                'location' => 'C / Unknown Street 1st',
-                'zip' => '08241',
-                'city' => 'Manresa',
-                'country' => 'Spain',
+                'name' => $request->supir,
+                'id' => $request->no_kendaraan,
             ])
-            ->download('demo');
+            ->template('print')
+            ->download("no_berkas-$request->no_berkas");
+
     }
 
     /**
