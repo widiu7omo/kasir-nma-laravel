@@ -88,11 +88,12 @@ class DataKwitansiController extends Controller
         $total_berat = $extotal_berat[0];
         $data_pemilik = (object)[
             'pemilik' => $request->pemilik_spb,
-            'first_w'=>$request->first_weight,
-            'second_w'=>$request->second_weight,
-            'netto_w'=>$request->netto_weight,
-            'gradding'=>$request->potongan_grading,
-            'after_gradding'=>$request->setelah_grading
+            'first_w' => $request->first_weight,
+            'second_w' => $request->second_weight,
+            'netto_w' => $request->netto_weight,
+            'gradding' => $request->potongan_grading,
+            'after_gradding' => $request->setelah_grading,
+            'tgl_timbangan'=>Carbon::parse($request->tgl_timbangan)->locale('id')
         ];
         $inv = new Invoice();
         $inv->make("Kwitansi")
@@ -100,7 +101,7 @@ class DataKwitansiController extends Controller
             ->number($request->no_berkas)
             ->with_pagination(true)
             ->duplicate_header(true)
-            ->date(Carbon::parse($request->tgl_pembayaran))
+            ->date(Carbon::parse($request->tgl_pembayaran)->locale('id'))
             ->notes('Mohon periksa kembali sebelum meninggalkan kasir')
             ->customer([
                 'name' => $request->supir,
@@ -108,7 +109,11 @@ class DataKwitansiController extends Controller
             ])
             ->template('print')
             ->download("no_berkas-$request->no_berkas");
-
+        $data_to_store = [
+            'no_berkas'=>$request->no_berkas,
+            'tanggal_pembayaran'
+        ];
+        $dataTimbangan->create();
     }
 
     /**
@@ -120,6 +125,7 @@ class DataKwitansiController extends Controller
     public function store(Request $request)
     {
         //
+
     }
 
     /**

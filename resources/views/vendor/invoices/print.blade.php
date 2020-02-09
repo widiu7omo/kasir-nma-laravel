@@ -89,7 +89,7 @@
         <img class="img-rounded" height="{{ $invoice->logo_height }}" src="{{ $invoice->logo }}">
     </div>
     <div style="margin-left:300pt;">
-        <b>Date: </b> {{ $invoice->date->formatLocalized('%A %d %B %Y') }}<br/>
+        <b>Tanggal Pembayaran: </b> {{ $invoice->date->translatedFormat('l jS F Y') }}<br/>
         {{--        @if ($invoice->due_date)--}}
         {{--            <b>Due date: </b>{{ $invoice->due_date->formatLocalized('%A %d %B %Y') }}<br/>--}}
         {{--        @endif--}}
@@ -155,7 +155,7 @@
                 @endif
                 <td>{{ $item->get('id') }}</td>
                 <td>{{ $item->get('name')->pemilik }}</td>
-                <td>{{ $invoice->formatCurrency()->symbol }}. {{ $item->get('price') }}</td>
+                <td>{{ $invoice->formatCurrency()->symbol }}. {{ $item->get('price') }}<br>(<small>{{$item->get('name')->tgl_timbangan->translatedFormat('jS F Y')}}</small>)</td>
                 <td>{{ $item->get('ammount') }} KG</td>
                 <td>{{ $invoice->formatCurrency()->symbol }}. {{ $item->get('totalPrice') }}</td>
             </tr>
