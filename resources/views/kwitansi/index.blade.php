@@ -36,7 +36,8 @@
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table-bordered display responsive nowrap table" id="kwitansi-table" width="100%">
+                            <table class="table-bordered display responsive nowrap table" id="kwitansi-table"
+                                   width="100%">
                                 <thead>
                                 <tr>
                                     <th class="sorting_asc_disabled"></th>
@@ -95,8 +96,12 @@
 @endsection
 @push('scripts')
     <script>
-        $('#kwitansi-table').dataTable({
-            responsive: true
+        let table = $('#kwitansi-table').dataTable({
+            responsive: true,
+            dom: 'Bfrtip',
+            buttons: [
+                'excel', 'pdf'
+            ]
         })
     </script>
 @endpush

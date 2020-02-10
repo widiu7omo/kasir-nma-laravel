@@ -24,7 +24,7 @@ The above copyright notice and this permission notice shall be included in all c
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>
-        {{ __('Paper Dashboard by Creative Tim') }}
+        {{ __(isset(explode('/',url()->current())[3])?ucfirst(explode('/',url()->current())[3]):"Home")}}
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
           name='viewport'/>
