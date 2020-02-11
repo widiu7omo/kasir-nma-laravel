@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DataKwitansi;
 use App\DataTimbangan;
+use function foo\func;
 
 class HomeController extends Controller
 {
@@ -27,7 +28,9 @@ class HomeController extends Controller
     public function index(DataTimbangan $dataTimbangan, DataKwitansi $dataKwitansi)
     {
         $rangkuman_timbangan = (object)[
-            'total' => $dataTimbangan->where(['tanggal_masuk' => date('Y-m-d')])->sum('setelah_gradding'),
+            'total' => $dataTimbangan->with(['kwitansi'=>function($query){
+                $query->where(['tanggal_pembayaran' => date('Y-m-d')]);
+            }])->sum('setelah_gradding'),
             'belum_dibayar' => $dataTimbangan->where(['status_pembayaran' => 'belum', 'tanggal_masuk' => date('Y-m-d')])->sum('setelah_gradding'),
             'sudah_dibayar' => $dataTimbangan->where(['status_pembayaran' => 'sudah', 'tanggal_masuk' => date('Y-m-d')])->sum('setelah_gradding'),
             'spb_lunas' => $dataTimbangan->where(['status_pembayaran' => 'sudah', 'tanggal_masuk' => date('Y-m-d')])->sum('no_ticket'),
