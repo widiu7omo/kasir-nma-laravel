@@ -33,6 +33,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('spb', 'DataSpbController')->except(['create', 'show']);
 });
 Route::group(['middleware' => 'auth'], function () {
+
+});
+Route::group(['middleware' => 'auth'], function () {
     Route::resource('korlap', 'MasterKorlapController')->except(['create', 'show']);
 });
 Route::group(['middleware' => 'auth'], function () {
