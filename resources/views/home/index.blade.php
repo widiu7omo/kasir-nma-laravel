@@ -18,7 +18,7 @@
                             <div class="col-7 col-md-8">
                                 <div class="numbers">
                                     <p class="card-category">Timbangan</p>
-                                    <p class="card-title">{{$timbangan->total}} KG
+                                    <p class="card-title">{{strlen($timbangan->total) > 2?substr($timbangan->total,0,2)."K":$timbangan->total}} KG
                                     <p>
                                 </div>
                             </div>
