@@ -24,10 +24,10 @@ class CreateDataKwitansisTable extends Migration
             $table->unsignedBigInteger('data_timbangan_id');
             $table->unsignedBigInteger('master_harga_id');
             $table->unsignedBigInteger('data_spb_id');
-            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onUpdate('cascade');
-            $table->foreign('data_timbangan_id')->references('id')->on('data_timbangans')->onUpdate('cascade')->onUpdate('cascade');
-            $table->foreign('master_harga_id')->references('id')->on('master_hargas')->onUpdate('cascade')->onUpdate('cascade');
-            $table->foreign('data_spb_id')->references('id')->on('data_spbs')->onUpdate('cascade')->onUpdate('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('data_timbangan_id')->references('id')->on('data_timbangans')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('master_harga_id')->references('id')->on('master_hargas')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('data_spb_id')->references('id')->on('data_spbs')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

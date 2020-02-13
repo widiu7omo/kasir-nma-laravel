@@ -28,6 +28,6 @@ class DataTimbangan extends Model
 
     public function kwitansi()
     {
-        return $this->belongsTo('App\DataKwitansi', 'data_timbangan_id');
+        return $this->belongsTo('App\DataKwitansi');
     }
 }

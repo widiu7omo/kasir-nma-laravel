@@ -18,7 +18,7 @@
                             <div class="col-7 col-md-8">
                                 <div class="numbers">
                                     <p class="card-category">Timbangan</p>
-                                    <p class="card-title">{{strlen($timbangan->total) > 2?substr($timbangan->total,0,2)."K":$timbangan->total}} KG
+                                    <p class="card-title">{{strlen($timbangan->total_timbangan) > 2?substr($timbangan->total_timbangan,0,2)."K":$timbangan->total_timbangan}} KG
                                     <p>
                                 </div>
                             </div>
@@ -44,7 +44,7 @@
                             <div class="col-7 col-md-8">
                                 <div class="numbers">
                                     <p class="card-category">Kwitansi</p>
-                                    <p class="card-title">{{$kwitansi->total}}
+                                    <p class="card-title">{{$kwitansi->total_dibayar}}
                                     <p>
                                 </div>
                             </div>

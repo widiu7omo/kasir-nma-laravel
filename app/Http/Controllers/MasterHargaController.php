@@ -61,7 +61,7 @@ class MasterHargaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param MasterHarga $harga
      * @return \Illuminate\Http\JsonResponse
      */
     public function edit(MasterHarga $harga)
@@ -74,7 +74,7 @@ class MasterHargaController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param MasterHarga $harga
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, MasterHarga $harga)

@@ -13,10 +13,10 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             UsersTableSeeder::class,
-            MasterHargasSeeder::class,
-            MasterKorlapSeeder::class,
-            DataSpbSeeder::class,
-            DataTimbanganSeeder::class
+//            MasterHargasSeeder::class,
+//            MasterKorlapSeeder::class,
+//            DataSpbSeeder::class,
+//            DataTimbanganSeeder::class
         ]);
     }
 }

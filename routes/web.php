@@ -33,7 +33,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('spb', 'DataSpbController')->except(['create', 'show']);
 });
 Route::group(['middleware' => 'auth'], function () {
-
+    Route::resource('petani', 'DataPetaniController')->except(['create', 'show']);
 });
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('korlap', 'MasterKorlapController')->except(['create', 'show']);
@@ -48,6 +48,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('kwitansi/harga', ['as' => 'kwitansi.harga', 'uses' => 'DataKwitansiController@harga']);
     Route::post('kwitansi/spb', ['as' => 'kwitansi.spb', 'uses' => 'DataKwitansiController@spb']);
     Route::post('kwitansi/timbangan', ['as' => 'kwitansi.timbangan', 'uses' => 'DataKwitansiController@detailTimbangan']);
+    Route::post('kwitansi/petani', ['as' => 'kwitansi.petani', 'uses' => 'DataKwitansiController@detailPetani']);
     Route::post('kwitansi/generate', ['as' => 'kwitansi.generate', 'uses' => 'DataKwitansiController@generate']);
 });
 Route::group(['middleware' => 'auth'], function () {

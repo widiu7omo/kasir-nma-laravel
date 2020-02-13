@@ -72,6 +72,12 @@
                     <p>{{ __('Pemilik SPB') }}</p>
                 </a>
             </li>
+            <li class="{{ $elementActive == 'petani' ? 'active' : '' }}">
+                <a href="{{ route('page.index', 'petani') }}">
+                    <i class="nc-icon nc-book-bookmark"></i>
+                    <p>{{ __('Petani') }}</p>
+                </a>
+            </li>
             <li class="{{ $elementActive == 'korlap' ? 'active' : '' }}">
                 <a href="{{ route('page.index', 'korlap') }}">
                     <i class="nc-icon nc-bell-55"></i>

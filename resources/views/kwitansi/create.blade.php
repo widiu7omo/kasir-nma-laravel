@@ -18,6 +18,9 @@
                                     <h5 class="card-title">Buat Kwitansi</h5>
                                 </div>
                                 <div class="col-md-6 text-right">
+                                    <button name="mode" value="manual" id="input-manual-button"
+                                            class="btn btn-sm btn-danger" data-manual="false">Input Manual
+                                    </button>
                                     <a href="{{route('kwitansi.index')}}" class="btn btn-sm btn-primary">Kembali</a>
                                 </div>
                             </div>
@@ -54,7 +57,7 @@
                                     <div class="form-group">
                                         <label for="tgl_timbangan"></label>
                                         <input type="text" name="tgl_timbangan" id="tgl_timbangan"
-                                               class="form-control" placeholder="Tanggal Timbangan"
+                                               class="form-control datepicker-dropdown" placeholder="Tanggal Timbangan"
                                                aria-describedby="helpId" readonly value="">
                                         <small id="helpId" class="text-muted">Tanggal Masuk Timbangan (Otomatis)</small>
                                     </div>
@@ -70,12 +73,11 @@
                                 </div>
                                 <div class="col-md-4 col-xs-12">
                                     <div class="form-group">
-                                        <label for="supir"></label>
-                                        <input type="text" name="supir" id="supir" class="form-control"
-                                               placeholder="Nama Sopir"
+                                        <label for="nik"></label>
+                                        <input type="number" name="nik" id="nik" class="form-control"
+                                               placeholder="NIK Pengambil"
                                                aria-describedby="helpId" autocomplete="off" required>
-                                        <small id="helpId" class="text-muted">Masukkan nama pengambil
-                                            (Sopir)</small>
+                                        <small id="helpId" class="text-muted">Masukkan NIK Pengambil</small>
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-xs-12">
@@ -87,21 +89,26 @@
                                         <small id="no_spb_desc" class="text-muted">Masukkan Nomor SPB</small>
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-xs-12">
-                                    <div class="row">
-                                        <div class="col-md-6 col-xs-12">
-                                            <div class="form-group">
-                                                <label for="no_kendaraan"></label>
-                                                <input type="text" name="no_kendaraan" id="no_kendaraan"
-                                                       class="form-control"
-                                                       placeholder="Nomor Kendaraan"
-                                                       aria-describedby="helpId" readonly>
-                                                <small id="helpId" class="text-muted">Otomatis</small>
-                                            </div>
-                                        </div>
+                                <div class="col-md-4 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="no_kendaraan"></label>
+                                        <input type="text" name="no_kendaraan" id="no_kendaraan"
+                                               class="form-control"
+                                               placeholder="Nomor Kendaraan"
+                                               aria-describedby="helpId" readonly>
+                                        <small id="helpId" class="text-muted">Otomatis</small>
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-xs-12">
+                                <div class="col-md-4 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="supir"></label>
+                                        <input type="text" name="supir" id="supir" class="form-control"
+                                               placeholder="Nama Pengambil"
+                                               aria-describedby="helpId" autocomplete="off" required readonly>
+                                        <small id="helpId" class="text-muted">Masukkan nama pengambil</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-xs-12">
                                     <div class="form-group">
                                         <label for="pemilik_spb"></label>
                                         <input type="text" name="pemilik_spb" id="pemilik_spb"
@@ -137,7 +144,7 @@
                                 <div class="col-md-6 col-xs-12">
                                     <div class="form-group">
                                         <label for="first_weight">Berat Awal</label>
-                                        <input type="text" name="first_weight" id="first_weight"
+                                        <input type="number" name="first_weight" id="first_weight"
                                                class="form-control"
                                                placeholder="First Weight" aria-describedby="helpId" readonly>
                                         <small id="helpId" class="text-muted">Otomatis</small>
@@ -146,7 +153,7 @@
                                 <div class="col-md-6 col-xs-12">
                                     <div class="form-group">
                                         <label for="second_weight">Berat Kedua</label>
-                                        <input type="text" name="second_weight" id="second_weight"
+                                        <input type="number" name="second_weight" id="second_weight"
                                                class="form-control"
                                                placeholder="Second Weight"
                                                aria-describedby="helpId" readonly>
@@ -169,7 +176,7 @@
                                 <div class="col-md-6 col-xs-12">
                                     <div class="form-group">
                                         <label for="potongan_grading">Potongan Grading</label>
-                                        <input type="text" name="potongan_grading" id="potongan_grading"
+                                        <input type="number" name="potongan_grading" id="potongan_grading"
                                                class="form-control"
                                                placeholder="Potongan Grading"
                                                aria-describedby="helpId" readonly>
@@ -256,9 +263,149 @@
             }, 1000)
         })
         $(document).ready(function () {
+            console.log(ids)
+            $('.datepicker-dropdown').datepicker({
+                format: "yyyy-mm-dd",
+                language: "id"
+            });
+
+            function toggleInput(isManual) {
+                $('#' + ids[2]).prop('readonly', isManual).attr('autocomplete', 'off').val('');
+                $('#' + ids[6]).prop('readonly', isManual).attr('autocomplete', 'off').val('');
+                $('#' + ids[9]).prop('readonly', isManual).attr('autocomplete', 'off').val('');
+                $('#' + ids[10]).prop('readonly', isManual).attr('autocomplete', 'off').val('');
+                $('#' + ids[12]).prop('readonly', isManual).attr('autocomplete', 'off').val('');
+                $('#input-manual-button').data('manual', !isManual).text(isManual ? "Input Manual" : "Input Otomatis");
+            }
+
+            function countTotalWeight(thisVal, secondVal) {
+                let resultVal = 0;
+                if (thisVal !== "" && secondVal !== "") {
+                    resultVal = parseFloat(thisVal) - parseFloat(secondVal);
+                }
+                $('#' + ids[11]).val(resultVal)
+            }
+
+            function getHarga(tanggal) {
+                $.ajax({
+                    url: "{{route('kwitansi.harga')}}",
+                    method: "POST",
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data: {
+                        tanggal: tanggal
+                    },
+                    dataType: "json",
+                    success: function ({status, harga}) {
+                        let total_berat = 0;
+                        let harga_satuan = 0;
+                        let total_semua = 0;
+                        if (harga.length === 0) {
+                            $('#btn-cetak-kwitansi').prop('disabled', true);
+                            swal({
+                                title: "Gagal ambil harga satuan",
+                                text: "Harga satuan belum di atur pada tanggal " + tanggal,
+                                icon: "error",
+                                buttons: {
+                                    close: "Tutup",
+                                    update: "Atur Harga"
+                                }
+                            }).then(val => {
+                                if (val === 'update') {
+                                    window.location.href = "{{route('harga.index')}}"
+                                }
+                            })
+                        } else {
+                            $('#btn-cetak-kwitansi').prop('disabled', false);
+                            $('#' + ids[15]).val("Rp. " + harga[0].harga);
+                            $('[name="harga_id"]').val(harga[0].id);
+                            harga_satuan = harga[0].harga;
+                            total_berat = parseFloat($('#' + ids[14]).val());
+                            total_semua = harga_satuan * total_berat;
+                            $('#' + ids[16]).val("Rp. " + total_semua);
+                        }
+                    }
+                })
+            }
+
+            function countGradding(thisVal, valBefore) {
+                let resultVal = 0;
+                if (thisVal !== "") {
+                    resultVal = parseFloat(valBefore) - parseFloat(thisVal);
+                }
+                $('#' + ids[13]).val(resultVal)
+                $('#' + ids[14]).val(resultVal)
+                getHarga("{{date('Y-m-d')}}")
+
+            }
+
+            //first weight
+            $('#' + ids[9]).on('change', function () {
+                countTotalWeight($(this).val(), $('#' + ids[10]).val());
+            });
+            //second weight
+            $('#' + ids[10]).on('change', function () {
+                countTotalWeight($('#' + ids[9]).val(), $(this).val());
+            });
+            $('#' + ids[12]).on('change', function () {
+                countGradding($(this).val(), $('#' + ids[11]).val())
+            })
+            //@TODO:pemilik spb jika pemilik tidak ditemukan, berikan opsi untuk menambahkan pemilik spb sendiri
+            $('#input-manual-button').on('click', function () {
+                let isManual = $(this).data('manual');
+                toggleInput(isManual);
+            })
+
+            $(document).on('blur', 'input#' + ids[4], function () {
+                let nik = $(this).val();
+                if (!$('#' + ids[7]).prop('readonly')) {
+                    return;
+                }
+                if (nik.length > 6) {
+                    $.ajax({
+                        url: "{{route('kwitansi.petani')}}",
+                        method: "POST",
+                        dataType: "json",
+                        data: {
+                            nik: $(this).val()
+                        },
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function ({status, petani}) {
+                            if (petani.length > 0) {
+                                $('#' + ids[7]).val(petani[0].nama_petani);
+                            } else {
+                                swal({
+                                    title: "Pengambil tidak ditemukan",
+                                    text: "Periksa kembali NIK yang dimasukkan",
+                                    icon: "error",
+                                    buttons: {
+                                        close: "Tutup",
+                                        update: "Input Manual"
+                                    }
+                                }).then(val => {
+                                    if (val === 'update') {
+                                        $('#' + ids[7]).prop('readonly', false).val('');
+                                    }
+                                })
+                            }
+                        },
+                        error: function (err) {
+                            console.log(err)
+                        }
+                    })
+                }
+
+            })
+
             $(document).on('blur', 'input#' + ids[5], function () {
                 let spb = $(this).val();
                 let spb_id = $(this).val();
+                if (!$('#' + ids[8]).prop('readonly')) {
+                    return;
+                }
                 if (spb.length !== 0) {
                     $.ajax({
                         url: "{{route('kwitansi.spb')}}",
@@ -279,11 +426,11 @@
                                     icon: "error",
                                     buttons: {
                                         close: "Tutup",
-                                        update: "Lihat daftar Pemilik SPB"
+                                        manual: "Input Manual"
                                     }
                                 }).then(val => {
-                                    if (val === 'update') {
-                                        window.location.href = "{{route('spb.index')}}"
+                                    if (val === 'manual') {
+                                        $('#pemilik_spb').prop('readonly', false);
                                     }
                                 })
                             } else {
@@ -313,8 +460,8 @@
                                     error: function () {
 
                                     }
-                                })
-                                $('#' + ids[7]).val(spb[0].korlap.nama_korlap)
+                                });
+                                $('#' + ids[8]).val(spb[0].korlap.nama_korlap)
                                 $('[name="spb_id"]').val(spb[0].id);
                                 $('#btn-cetak-kwitansi').prop('disabled', false);
                             }
@@ -357,17 +504,24 @@
                                     title: "Nomor Tiket tidak ditemukan",
                                     text: "Tidak ada data untuk nomor tiket tersebut",
                                     icon: "warning",
-                                    button: "OK"
+                                    buttons: {
+                                        close: "Tutup",
+                                        manual: "Input Manual"
+                                    }
+                                }).then(function (val) {
+                                    if (val === 'manual') {
+                                        toggleInput(false);
+                                    }
                                 })
                             } else if (tickets[0].status_pembayaran === "belum") {
                                 $('#' + ids[2]).val(tickets[0].tanggal_masuk);
                                 $('#' + ids[6]).val(tickets[0].no_kendaraan);
-                                $('#' + ids[8]).val(tickets[0].first_weight + " KG");
-                                $('#' + ids[9]).val(tickets[0].second_weight + " KG");
-                                $('#' + ids[10]).val(tickets[0].netto_weight + " KG");
-                                $('#' + ids[11]).val(tickets[0].potongan_gradding + " KG");
-                                $('#' + ids[12]).val(tickets[0].setelah_gradding + " KG");
-                                $('#' + ids[13]).val(tickets[0].setelah_gradding + " KG");
+                                $('#' + ids[9]).val(tickets[0].first_weight);
+                                $('#' + ids[10]).val(tickets[0].second_weight);
+                                $('#' + ids[11]).val(tickets[0].netto_weight);
+                                $('#' + ids[12]).val(tickets[0].potongan_gradding);
+                                $('#' + ids[13]).val(tickets[0].setelah_gradding);
+                                $('#' + ids[14]).val(tickets[0].setelah_gradding);
                                 $('[name="timbangan_id"]').val(tickets[0].id);
                                 total_berat = tickets[0].setelah_gradding;
                                 $('#btn-cetak-kwitansi').prop('disabled', false);
@@ -382,7 +536,7 @@
                                     },
                                     dataType: "json",
                                     success: function ({status, harga}) {
-                                        if (harga === "null") {
+                                        if (harga.length === 0) {
                                             $('#btn-cetak-kwitansi').prop('disabled', true);
                                             swal({
                                                 title: "Gagal ambil harga satuan",
@@ -399,11 +553,11 @@
                                             })
                                         } else {
                                             $('#btn-cetak-kwitansi').prop('disabled', false);
-                                            $('#' + ids[14]).val("Rp. " + harga.harga);
-                                            $('[name="harga_id"]').val(harga.id);
-                                            harga_satuan = harga.harga;
+                                            $('#' + ids[15]).val("Rp. " + harga[0].harga);
+                                            $('[name="harga_id"]').val(harga[0].id);
+                                            harga_satuan = harga[0].harga;
                                             total_semua = harga_satuan * total_berat;
-                                            $('#' + ids[15]).val("Rp. " + total_semua);
+                                            $('#' + ids[16]).val("Rp. " + total_semua);
                                             $('#_ticket').val(tickets[0].no_ticket)
                                         }
                                     }
