@@ -31,7 +31,7 @@
         }
 
         .panel-default {
-            border-color: #ddd;
+            border-color: #ffffff;
         }
 
         .panel-body {
@@ -87,51 +87,24 @@
 <header>
     <div style="position:absolute; left:0pt; width:250pt;">
         <img class="img-rounded" height="{{ $invoice->logo_height }}" src="{{ $invoice->logo }}">
+        <br/>
+        {{ $invoice->business_details->get('name') }}
+        <br/>
+        {{ $invoice->business_details->get('city') }} {{ $invoice->business_details->get('country') }}
     </div>
     <div style="margin-left:300pt;">
-        <b>Tanggal Pembayaran: </b> {{ $invoice->date->translatedFormat('l jS F Y') }}<br/>
-        {{--        @if ($invoice->due_date)--}}
-        {{--            <b>Due date: </b>{{ $invoice->due_date->formatLocalized('%A %d %B %Y') }}<br/>--}}
-        {{--        @endif--}}
+
         @if ($invoice->number)
             <b>Nomor Berkas #: </b> {{ $invoice->number }}
         @endif
         <br/>
+        <b>Nomor Tiket #: </b> {{$invoice->customer_details->get('no_ticket')}}
     </div>
     <br/>
-        <h2>Nomor Tiket : #{{$invoice->customer_details->get('no_ticket')}}</h2>
 </header>
 <main>
-    <div style="clear:both; position:relative;">
-        <div style="position:absolute; left:0pt; width:250pt;">
-            <h4>Detail Perusahaan:</h4>
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    {!! $invoice->business_details->count() == 0 ? '<i>No business details</i><br />' : '' !!}
-                    {{ $invoice->business_details->get('name') }}<br/>
-                    {{ $invoice->business_details->get('phone') }}<br/>
-                    {{ $invoice->business_details->get('location') }}<br/>
-                    {{ $invoice->business_details->get('zip') }} {{ $invoice->business_details->get('city') }}
-                    {{ $invoice->business_details->get('country') }}<br/>
-                </div>
-            </div>
-        </div>
-        <div style="margin-left: 300pt;">
-            <h4>Pelanggan:</h4>
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    {!! $invoice->customer_details->count() == 0 ? '<i>No customer details</i><br />' : '' !!}
-                    {{ $invoice->customer_details->get('name') }}<br/>
-                    No. Kendaraan: {{ $invoice->customer_details->get('id') }}<br/>
-                    {{ $invoice->customer_details->get('phone') }}<br/>
-                    {{ $invoice->customer_details->get('location') }}<br/>
-                    {{ $invoice->customer_details->get('zip') }} {{ $invoice->customer_details->get('city') }}
-                    {{ $invoice->customer_details->get('country') }}<br/>
-                </div>
-            </div>
-        </div>
-    </div>
-    <h4>Items:</h4>
+
+    <h4><b>Bulan Buku: </b> {{ $invoice->date->translatedFormat('F Y') }}<br/></h4>
     <table class="table table-bordered">
         <thead>
         <tr>
@@ -139,10 +112,12 @@
             @if($invoice->shouldDisplayImageColumn())
                 <th>Image</th>
             @endif
+            <th>Nama</th>
             <th>Nomor SPB</th>
+            <th>No Kendaraan</th>
             <th>Pemilik SPB</th>
-            <th>Harga Satuan</th>
             <th>Total Berat</th>
+            <th>Harga Satuan</th>
             <th>Total Bayar</th>
         </tr>
         </thead>
@@ -153,10 +128,19 @@
                 @if($invoice->shouldDisplayImageColumn())
                     <td>@if(!is_null($item->get('imageUrl'))) <img src="{{ url($item->get('imageUrl')) }}"/>@endif</td>
                 @endif
-                <td>{{ $item->get('id') }}</td>
+                <td>{{ $invoice->customer_details->get('name') }}<br>
+                    NIK : {{ $invoice->customer_details->get('nik') }}</td>
+                <td>{{ $item->get('id') }}<br>
+                    (<small>{{$item->get('name')->tgl_timbangan->translatedFormat('jS F Y')}}</small>)
+                </td>
+                <td>
+                    {{ $invoice->customer_details->get('id') }}
+                </td>
                 <td>{{ $item->get('name')->pemilik }}</td>
-                <td>{{ $invoice->formatCurrency()->symbol }}. {{ $item->get('price') }}<br>(<small>{{$item->get('name')->tgl_timbangan->translatedFormat('jS F Y')}}</small>)</td>
                 <td>{{ $item->get('ammount') }} KG</td>
+                <td>{{ $invoice->formatCurrency()->symbol }}. {{ $item->get('price') }}
+                    <br>(<small>{{$item->get('name')->tgl_timbangan->translatedFormat('jS F Y')}}</small>)
+                </td>
                 <td>{{ $invoice->formatCurrency()->symbol }}. {{ $item->get('totalPrice') }}</td>
             </tr>
         @endforeach
@@ -165,52 +149,14 @@
     <div style="clear:both; position:relative;">
         @if($invoice->notes)
             <div style="position:absolute; left:0pt; width:250pt;">
-                <h4>Detail Berat :</h4>
-                <table class="table table-bordered">
-                    <tbody>
-                    <tr>
-                        <td>First Weight</td>
-                        <td>{{$item->get('name')->first_w}}</td>
-                    </tr>
-                    <tr>
-                        <td>Second Weight</td>
-                        <td>{{$item->get('name')->second_w}}</td>
-                    </tr>
-                    <tr>
-                        <td><b>Netto Weight</b></td>
-                        <td><b>{{$item->get('name')->netto_w}}</b></td>
-                    </tr>
-                    <tr>
-                        <td>Potongan Grading</td>
-                        <td>{{$item->get('name')->gradding}}</td>
-                    </tr>
-                    <tr>
-                        <td><b>Total Keseluruhan</b></td>
-                        <td><b>{{$item->get('name')->after_gradding}}</b></td>
-                    </tr>
-                    </tbody>
-                </table>
+
             </div>
         @endif
-        <div style="margin-left: 300pt;">
-            <h4>Total:</h4>
+        <div style="margin-left: 300pt;margin-top: 20px">
+            {{--            <h4>Total:</h4>--}}
             <table class="table table-bordered">
                 <tbody>
-                <tr>
-                    <td><b>Subtotal</b></td>
-                    <td>{{ $invoice->formatCurrency()->symbol }}. {{ $invoice->subTotalPriceFormatted() }}</td>
-                </tr>
-                @foreach($invoice->tax_rates as $tax_rate)
-                    <tr>
-                        <td>
-                            <b>
-                                {{ $tax_rate['name'].' '.($tax_rate['tax_type'] == 'percentage' ? '(' . $tax_rate['tax'] . '%)' : '') }}
-                            </b>
-                        </td>
-                        <td>{{ $invoice->formatCurrency()->symbol }}
-                            . {{ $invoice->taxPriceFormatted((object)$tax_rate) }}</td>
-                    </tr>
-                @endforeach
+
                 <tr>
                     <td><b>TOTAL</b></td>
                     <td><b>{{ $invoice->formatCurrency()->symbol }}. {{ $invoice->totalPriceFormatted() }}</b></td>
@@ -219,25 +165,24 @@
             </table>
         </div>
     </div>
-    <br/><br/>
-    <div class="well" style="margin-top: 30px">
+    <div class="" style="margin-top: 30px">
         <div style="clear:both; position:relative;">
-            <div>{{ $invoice->notes }}</div>
-            <div style="position:absolute; left:0pt; width:250pt;">
-                <h4>Kasir :</h4>
-                <div class="panel panel-default">
-                    <div class="panel-body">
+            <span style="color:#b21f2d">{{ $invoice->notes }}</span><span style="position: absolute;float: right"><b>Tanggal Dibayar: </b> {{ $invoice->date->translatedFormat('l jS F Y') }}<br/></span>
+            <div style="position:absolute; left:30pt; width:250pt;margin-top: 15px">
+                <h4>Dibayarkan Oleh :</h4>
+                <div class="">
+                    <div class="">
                         <br><br><br><br>
-                        <u>Erni</u>
+                        <b><u>Erni</u></b>
                     </div>
                 </div>
             </div>
-            <div style="margin-left: 300pt;">
-                <h4>Penerima :</h4>
-                <div class="panel panel-default">
-                    <div class="panel-body">
+            <div style="margin-left: 350pt;">
+                <h4>Diterima oleh :</h4>
+                <div class="" style="text-align: left">
+                    <div class="">
                         <br><br><br><br>
-                        <u>{{ $invoice->customer_details->get('name') }}</u>
+                        <b><u>{{ $invoice->customer_details->get('name') }}</u></b>
                     </div>
                 </div>
             </div>
@@ -249,19 +194,126 @@
         </div>
     @endif
 </main>
+<br>
+<div style="border-top: dashed 2px;"></div>
+<br>
+<div style="margin-bottom: 30px">
+    <div style="position:absolute; left:0pt; width:250pt;">
+        <img class="img-rounded" height="{{ $invoice->logo_height }}" src="{{ $invoice->logo }}">
+        <br/>
+        {{ $invoice->business_details->get('name') }}
+        <br/>
+        {{ $invoice->business_details->get('city') }} {{ $invoice->business_details->get('country') }}
+    </div>
+    <div style="margin-left:300pt;">
 
+        @if ($invoice->number)
+            <b>Nomor Berkas #: </b> {{ $invoice->number }}
+        @endif
+        <br/>
+        <b>Nomor Tiket #: </b> {{$invoice->customer_details->get('no_ticket')}}
+    </div>
+    <div style="z-index:-1;position: relative;float: right;margin-right: 10px; transform: rotate(-10deg);border:3px #ddd solid;border-radius: 4px"><h1 style="font-size: 400%;color: #ddd;padding-left:50px;padding-right:50px"><b>COPY</b></h1></div>
+    <br/>
+</div>
+<main>
+
+    <h4><b>Bulan Buku: </b> {{ $invoice->date->translatedFormat('F Y') }}<br/></h4>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>#</th>
+            @if($invoice->shouldDisplayImageColumn())
+                <th>Image</th>
+            @endif
+            <th>Nama</th>
+            <th>Nomor SPB</th>
+            <th>No Kendaraan</th>
+            <th>Pemilik SPB</th>
+            <th>Total Berat</th>
+            <th>Harga Satuan</th>
+            <th>Total Bayar</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach ($invoice->items as $item)
+            <tr>
+                <td>{{ $loop->iteration }}</td>
+                @if($invoice->shouldDisplayImageColumn())
+                    <td>@if(!is_null($item->get('imageUrl'))) <img src="{{ url($item->get('imageUrl')) }}"/>@endif</td>
+                @endif
+                <td>{{ $invoice->customer_details->get('name') }}<br>
+                    NIK : {{ $invoice->customer_details->get('nik') }}</td>
+                <td>{{ $item->get('id') }}<br>
+                    (<small>{{$item->get('name')->tgl_timbangan->translatedFormat('jS F Y')}}</small>)
+                </td>
+                <td>
+                    {{ $invoice->customer_details->get('id') }}
+                </td>
+                <td>{{ $item->get('name')->pemilik }}</td>
+                <td>{{ $item->get('ammount') }} KG</td>
+                <td>{{ $invoice->formatCurrency()->symbol }}. {{ $item->get('price') }}
+                    <br>(<small>{{$item->get('name')->tgl_timbangan->translatedFormat('jS F Y')}}</small>)
+                </td>
+                <td>{{ $invoice->formatCurrency()->symbol }}. {{ $item->get('totalPrice') }}</td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
+    <div style="clear:both; position:relative;">
+        @if($invoice->notes)
+            <div style="position:absolute; left:0pt; width:250pt;">
+
+            </div>
+        @endif
+        <div style="margin-left: 300pt;margin-top: 20px">
+            {{--            <h4>Total:</h4>--}}
+            <table class="table table-bordered">
+                <tbody>
+
+                <tr>
+                    <td><b>TOTAL</b></td>
+                    <td><b>{{ $invoice->formatCurrency()->symbol }}. {{ $invoice->totalPriceFormatted() }}</b></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="" style="margin-top: 30px">
+        <div style="clear:both; position:relative;">
+            <span style="color:#b21f2d">{{ $invoice->notes }}</span><span style="position: absolute;float: right"><b>Tanggal Dibayar: </b> {{ $invoice->date->translatedFormat('l jS F Y') }}<br/></span>
+            <div style="position:absolute; left:30pt; width:250pt;margin-top: 15px">
+                <h4>Dibayarkan Oleh :</h4>
+                <div class="">
+                    <div class="">
+                        <br><br><br><br>
+                        <b><u>Erni</u></b>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-left: 350pt;">
+                <h4>Diterima oleh :</h4>
+                <div class="" style="text-align: left">
+                    <div class="">
+                        <br><br><br><br>
+                        <b><u>{{ $invoice->customer_details->get('name') }}</u></b>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @if ($invoice->footnote)
+        <div>
+            {{ $invoice->footnote }}
+        </div>
+    @endif
+</main>
 <!-- Page count -->
 <script type="text/php">
             if (isset($pdf) && $GLOBALS['with_pagination'] && $PAGE_COUNT > 1) {
                 $pageText = "{PAGE_NUM} of {PAGE_COUNT}";
                 $pdf->page_text(($pdf->get_width()/2) - (strlen($pageText) / 2), $pdf->get_height()-20, $pageText, $fontMetrics->get_font("DejaVu Sans, Arial, Helvetica, sans-serif", "normal"), 7, array(0,0,0));
             }
-
-
-
-
-
-
 
 
 
