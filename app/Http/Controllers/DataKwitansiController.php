@@ -128,8 +128,6 @@ class DataKwitansiController extends Controller
 
     public function generate(Request $request, DataTimbangan $dataTimbangan, DataKwitansi $dataKwitansi, DataPetani $dataPetani, DataSpb $dataSpb, MasterKorlap $masterKorlap)
     {
-//        return response()->json($request);
-
         $berkas_past = $dataKwitansi->select('no_berkas')->where(['no_berkas' => $request->no_berkas, 'no_pembayaran' => $request->no_tiket])->latest()->first();
         if (!(isset($berkas_past->no_berkas)) or $berkas_past->no_berkas != $request->no_berkas) {
             $exharga = explode(' ', $request->harga_satuan);
@@ -161,76 +159,76 @@ class DataKwitansiController extends Controller
                 ])
                 ->template('print')
                 ->download("no_berkas-$request->no_berkas");
-//            DB::beginTransaction();
-//            try {
-//                $no_ticket = $dataTimbangan->select('no_ticket')->where(['no_ticket' => $request->no_tiket])->get();
-//                if (count($no_ticket) == 0) {
-//                    $data_timbangan = [
-//                        "no_ticket" => $request->no_tiket,
-//                        "tanggal_masuk" => $request->tgl_timbangan,
-//                        "no_kendaraan" => $request->no_kendaraan,
-//                        "pelanggan" => "PT. Nabati Mas Asri",
-//                        "tandan" => "0",
-//                        "first_weight" => $request->first_weight,
-//                        "second_weight" => $request->second_weight,
-//                        "netto_weight" => $request->netto_weight,
-//                        "potongan_gradding" => $request->potongan_grading,
-//                        "setelah_gradding" => $request->setelah_grading,
-//                        "status_pembayaran" => "sudah"
-//                    ];
-//                    $dataTimbangan->create($data_timbangan);
-//                }
-//                $nik = $dataPetani->select('nik')->where(['nik' => $request->nik])->get();
-//                if (count($nik) == 0) {
-//                    $data_petani = [
-//                        'nik' => $request->nik,
-//                        'nama_petani' => $request->supir
-//                    ];
-//                    $dataPetani->create($data_petani);
-//                }
-//                $nama_korlap = $masterKorlap->select('nama_korlap')->where(['nama_korlap' => $request->pemilik_spb])->get();
-//                if (count($nama_korlap) == 0) {
-//                    $data_korlap = [
-//                        'nama_korlap' => $request->pemilik_spb
-//                    ];
-//                    $masterKorlap->create($data_korlap);
-//                }
-//                $spb = $dataSpb->select('range_spb')->where(['range_spb' => $request->no_spb . "-" . $request->no_spb])->get();
-//                if (count($spb) == 0) {
-//                    $korlap = $masterKorlap->select('id')->where(['nama_korlap' => $request->pemilik_spb])->first();
-//                    $data_spb = [
-//                        'range_spb' => $request->no_spb . "-" . $request->no_spb,
-//                        'tanggal_pengambilan' => date('Y-m-d'),
-//                        'master_korlap_id' => $korlap->id
-//                    ];
-//                    $dataSpb->create($data_spb);
-//                }
-//                $no_berkas = $dataKwitansi->select('no_berkas')->where(['no_berkas' => $request->no_berkas])->get();
-//                if (count($no_berkas) == 0) {
-//                    $petani = $dataPetani->select('id')->where(['nik' => $request->nik])->first();
-//                    $timbangan = $dataTimbangan->select('id')->where(['no_ticket' => $request->no_tiket])->first();
-//                    $spb = $dataSpb->select('id')->where(['range_spb' => $request->no_spb . "-" . $request->no_spb])->first();
-//                    $data_to_store = [
-//                        'no_berkas' => $request->no_berkas,
-//                        'tanggal_pembayaran' => $request->tgl_pembayaran,
-//                        'no_pembayaran' => $request->no_tiket,
-//                        'no_spb' => $request->no_spb,
-//                        'data_petani_id' => $petani->id,
-//                        'total_harga' => $request->total_pembayaran,
-//                        'user_id' => Auth::id(),
-//                        'data_timbangan_id' => $request->timbangan_id ?? $timbangan->id,
-//                        'master_harga_id' => $request->harga_id,
-//                        'data_spb_id' => $request->spb_id ?? $spb->id
-//                    ];
-//
-//                    $dataKwitansi->create($data_to_store);
-//                    $dataTimbangan->where(['id' => $request->timbangan_id ?? $timbangan->id])->update(['status_pembayaran' => "sudah"]);
-//                }
-//                DB::commit();
-//            } catch (\Exception $exception) {
-//                DB::rollBack();
-//                return response()->json(array('status' => 'error', 'message' => $exception));
-//            }
+            DB::beginTransaction();
+            try {
+                $no_ticket = $dataTimbangan->select('no_ticket')->where(['no_ticket' => $request->no_tiket])->get();
+                if (count($no_ticket) == 0) {
+                    $data_timbangan = [
+                        "no_ticket" => $request->no_tiket,
+                        "tanggal_masuk" => $request->tgl_timbangan,
+                        "no_kendaraan" => $request->no_kendaraan,
+                        "pelanggan" => "PT. Nabati Mas Asri",
+                        "tandan" => "0",
+                        "first_weight" => $request->first_weight,
+                        "second_weight" => $request->second_weight,
+                        "netto_weight" => $request->netto_weight,
+                        "potongan_gradding" => $request->potongan_grading,
+                        "setelah_gradding" => $request->setelah_grading,
+                        "status_pembayaran" => "sudah"
+                    ];
+                    $dataTimbangan->create($data_timbangan);
+                }
+                $nik = $dataPetani->select('nik')->where(['nik' => $request->nik])->get();
+                if (count($nik) == 0) {
+                    $data_petani = [
+                        'nik' => $request->nik,
+                        'nama_petani' => $request->supir
+                    ];
+                    $dataPetani->create($data_petani);
+                }
+                $nama_korlap = $masterKorlap->select('nama_korlap')->where(['nama_korlap' => $request->pemilik_spb])->get();
+                if (count($nama_korlap) == 0) {
+                    $data_korlap = [
+                        'nama_korlap' => $request->pemilik_spb
+                    ];
+                    $masterKorlap->create($data_korlap);
+                }
+                $spb = $dataSpb->select('range_spb')->where(['range_spb' => $request->no_spb . "-" . $request->no_spb])->get();
+                if (count($spb) == 0) {
+                    $korlap = $masterKorlap->select('id')->where(['nama_korlap' => $request->pemilik_spb])->first();
+                    $data_spb = [
+                        'range_spb' => $request->no_spb . "-" . $request->no_spb,
+                        'tanggal_pengambilan' => date('Y-m-d'),
+                        'master_korlap_id' => $korlap->id
+                    ];
+                    $dataSpb->create($data_spb);
+                }
+                $no_berkas = $dataKwitansi->select('no_berkas')->where(['no_berkas' => $request->no_berkas])->get();
+                if (count($no_berkas) == 0) {
+                    $petani = $dataPetani->select('id')->where(['nik' => $request->nik])->first();
+                    $timbangan = $dataTimbangan->select('id')->where(['no_ticket' => $request->no_tiket])->first();
+                    $spb = $dataSpb->select('id')->where(['range_spb' => $request->no_spb . "-" . $request->no_spb])->first();
+                    $data_to_store = [
+                        'no_berkas' => $request->no_berkas,
+                        'tanggal_pembayaran' => $request->tgl_pembayaran,
+                        'no_pembayaran' => $request->no_tiket,
+                        'no_spb' => $request->no_spb,
+                        'data_petani_id' => $petani->id,
+                        'total_harga' => $request->total_pembayaran,
+                        'user_id' => Auth::id(),
+                        'data_timbangan_id' => $request->timbangan_id ?? $timbangan->id,
+                        'master_harga_id' => $request->harga_id,
+                        'data_spb_id' => $request->spb_id ?? $spb->id
+                    ];
+
+                    $dataKwitansi->create($data_to_store);
+                    $dataTimbangan->where(['id' => $request->timbangan_id ?? $timbangan->id])->update(['status_pembayaran' => "sudah"]);
+                }
+                DB::commit();
+            } catch (\Exception $exception) {
+                DB::rollBack();
+                return response()->json(array('status' => 'error', 'message' => $exception));
+            }
         } else {
             return redirect()->route('kwitansi.index')->with('status', "Kwitansi dengan nomor berkas $request->no_berkas sudah dicetak, tidak bisa dicetak lagi");
         }

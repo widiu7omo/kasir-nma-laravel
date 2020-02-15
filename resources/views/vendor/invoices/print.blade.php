@@ -213,7 +213,9 @@
         <br/>
         <b>Nomor Tiket #: </b> {{$invoice->customer_details->get('no_ticket')}}
     </div>
-    <div style="z-index:-1;position: relative;float: right;margin-right: 10px; transform: rotate(-10deg);border:3px #ddd solid;border-radius: 4px"><h1 style="font-size: 400%;color: #ddd;padding-left:50px;padding-right:50px"><b>COPY</b></h1></div>
+    <div
+        style="z-index:-1;position: relative;float: right;margin-right: 10px; transform: rotate(-10deg);border:3px #ddd solid;border-radius: 4px">
+        <h1 style="font-size: 400%;color: #ddd;padding-left:50px;padding-right:50px"><b>COPY</b></h1></div>
     <br/>
 </div>
 <main>
@@ -314,6 +316,7 @@
                 $pageText = "{PAGE_NUM} of {PAGE_COUNT}";
                 $pdf->page_text(($pdf->get_width()/2) - (strlen($pageText) / 2), $pdf->get_height()-20, $pageText, $fontMetrics->get_font("DejaVu Sans, Arial, Helvetica, sans-serif", "normal"), 7, array(0,0,0));
             }
+
 
 
 
