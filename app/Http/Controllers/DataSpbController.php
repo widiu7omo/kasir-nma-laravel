@@ -102,6 +102,6 @@ class DataSpbController extends Controller
     {
         //
         $spb->delete();
-        return redirect()->route('spb.index')->withSuccess('Spb berhasil dihapus');
+        return redirect()->route('spb.index')->withStatus('Spb berhasil dihapus');
     }
 }

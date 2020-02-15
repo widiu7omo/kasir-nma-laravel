@@ -40,6 +40,7 @@ Route::group(['middleware' => 'auth'], function () {
 });
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('timbangan', 'DataTimbanganController')->except(['create', 'show']);
+    Route::post('timbangan/current', ['as' => 'timbangan.currentData', 'uses' => 'DataTimbanganController@currentData']);
 });
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('kwitansi', 'DataKwitansiController')->except(['show']);

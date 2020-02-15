@@ -8,13 +8,20 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="text-center">Import data timbangan {{date('d-m-Y')}}</h5>
+                        <h5 class="text-center">Import data timbangan</h5>
                         <div class="row">
-                            <label for="file-pond" class="col-md-6 col-sm-12">Upload Data Excel disini
+                            <label for="file-pond" class="col-md-12 col-sm-12">Upload Data Excel disini
                                 <input type="file"
                                        accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
                                        class="filepond" name="filepond" id="file-pond">
                             </label>
+                            <label for="tgl_import" class="col-md-6 col-sm-12">Pilih tanggal import data
+                                <input type="text" name="tgl_import" id="tgl_import"
+                                       class="form-control datepicker-dropdown" placeholder="Tanggal Import"
+                                       aria-describedby="helpId">
+                                <small id="helpId" class="text-muted">Tanggal Import data Timbangan</small>
+                            </label>
+
                             <label for="select-customer" class="col-md-6 col-sm-12">Pilih Customer
                                 <select class="form-control" name="select-customer" id="select-customer">
                                     <option>--Pilih customer--</option>
@@ -45,8 +52,10 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <button class="btn btn-sm btn-success"></button><span>Telah dibayar</span>
-                                <button class="btn btn-sm btn-warning"></button><span>Belum dibayar</span>
+                                <button class="btn btn-sm btn-success"></button>
+                                <span>Telah dibayar</span>
+                                <button class="btn btn-sm btn-warning"></button>
+                                <span>Belum dibayar</span>
                             </div>
                         </div>
                         <div class="table-responsive">
@@ -153,7 +162,6 @@
                         setelah_gradding: item[keyHeader[9]]
                     }
                 })
-                console.log(dataWeWant);
                 let uniqueCustomers = customers.filter(distinct);
                 let htmlCustomers = uniqueCustomers.map(item => {
                     return "<option value='" + item + "'>" + item + "</option>";
@@ -174,29 +182,65 @@
             return date_info.getFullYear() + "-" + month + "-" + date_info.getDate();
         }
 
-        function importExcel() {
+        function importToServer(filterData) {
+            if (filterData.length === 0) {
+                alert("Tidak ada data yang perlu di import pada tanggal tersebut");
+                return;
+            }
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: "{{route('timbangan.store')}}",
+                method: "POST",
+                data: {
+                    payload: filterData
+                },
+                success: function (res) {
+                    alert("Excel Berhasil di import");
+                    window.location.reload();
+                },
+                error: function (err) {
+                    if (err.responseJSON.exception === "Illuminate\\Database\\QueryException") {
+                        alert("Tidak bisa mengimport, Data sudah ada");
+                    }
+
+                }
+            })
+        }
+
+        function importExcel(tgl_import) {
             let selectedPelanggan = $('#select-customer').val();
             if (selectedPelanggan !== "") {
                 const filterData = dataWeWant.filter(function (value) {
                     return value.pelanggan === selectedPelanggan;
                 });
                 $('#import-excel').text("Sedang Menyimpan...").addClass('disabled');
-                console.log(filterData);
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    url: "{{route('timbangan.store')}}",
+                    url: "{{route('timbangan.currentData')}}",
                     method: "POST",
                     data: {
-                        payload: filterData
+                        date: tgl_import
                     },
-                    success: function (res) {
-                        alert("Excel Berhasil di import");
-                        window.location.reload();
+                    dataType: 'json',
+                    success: function ({status, timbangans}) {
+                        //filter based on current data
+                        timbangans.forEach(function (timbangan) {
+                            let index = filterData.findIndex(function (item) {
+                                return item.no_ticket === timbangan.no_ticket
+                            });
+                            if (index > -1) {
+                                filterData.splice(index, 1)
+                            }
+                        })
+                        // console.log(filterData);
+                        importToServer(filterData)
                     },
                     error: function (err) {
-                        if(err.responseJSON.exception === "Illuminate\\Database\\QueryException"){
+                        if (err.responseJSON.exception === "Illuminate\\Database\\QueryException") {
                             alert("Tidak bisa mengimport, Data sudah ada");
                         }
 
@@ -207,26 +251,32 @@
             }
         }
 
-        $(document).ready(function () {
-            FilePond.registerPlugin(FilePondPluginFileValidateType);
-            FilePond.setOptions({
-                acceptedFileTypes: ['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-excel'],
-                server: {
-                    url: '/api',
-                    process: '/process',
-                    revert: '/process',
-                    headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    }
+        $('#import-excel').on('click', function () {
+            let tgl_import = $('#tgl_import').val();
+            if (tgl_import === '') {
+                alert('Tanggal Import tidak boleh kosong');
+                return true;
+            }
+            importExcel(tgl_import)
+        });
+        FilePond.registerPlugin(FilePondPluginFileValidateType);
+        FilePond.setOptions({
+            acceptedFileTypes: ['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-excel'],
+            server: {
+                url: '/api',
+                process: '/process',
+                revert: '/process',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 }
-            });
-            const pond = FilePond.create(document.querySelector('input#file-pond'));
-            pond.on('processfilestart', function (file) {
-                handleExcel(file.file);
-            });
+            }
+        });
+        const pond = FilePond.create(document.querySelector('input#file-pond'));
+        pond.on('processfilestart', function (file) {
+            handleExcel(file.file);
         });
         $('#spb-table').dataTable({
-            responsive:true
+            responsive: true
         });
         $('.datepicker-dropdown').datepicker({
             format: "yyyy-mm-dd",
@@ -235,9 +285,7 @@
             autoclose: true
         });
         let formUri = "";
-        $('#import-excel').on('click', function () {
-            importExcel()
-        });
+
         $(document).on('click', '#btn-edit-spb', function () {
             let route = $(this).data('route');
             formUri = $(this).parent().prop('action');

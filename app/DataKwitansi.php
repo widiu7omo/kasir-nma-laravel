@@ -17,7 +17,8 @@ class DataKwitansi extends Model
         'user_id',
         'data_timbangan_id',
         'master_harga_id',
-        'data_spb_id'
+        'data_spb_id',
+        'data_petani_id'
     ];
 
     public function timbangan()
@@ -38,6 +39,9 @@ class DataKwitansi extends Model
     public function spb()
     {
         return $this->belongsTo('App\DataSpb', 'data_spb_id');
+    }
+    public function petani(){
+        return $this->belongsTo('App\DataPetani','data_petani_id');
     }
 }
 

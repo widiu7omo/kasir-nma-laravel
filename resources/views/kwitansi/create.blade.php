@@ -58,7 +58,7 @@
                                         <label for="tgl_timbangan"></label>
                                         <input type="text" name="tgl_timbangan" id="tgl_timbangan"
                                                class="form-control datepicker-dropdown" placeholder="Tanggal Timbangan"
-                                               aria-describedby="helpId" readonly value="">
+                                               aria-describedby="helpId" readonly value="" required>
                                         <small id="helpId" class="text-muted">Tanggal Masuk Timbangan (Otomatis)</small>
                                     </div>
                                 </div>
@@ -95,7 +95,7 @@
                                         <input type="text" name="no_kendaraan" id="no_kendaraan"
                                                class="form-control"
                                                placeholder="Nomor Kendaraan"
-                                               aria-describedby="helpId" readonly>
+                                               aria-describedby="helpId" readonly required>
                                         <small id="helpId" class="text-muted">Otomatis</small>
                                     </div>
                                 </div>
@@ -114,14 +114,14 @@
                                         <input type="text" name="pemilik_spb" id="pemilik_spb"
                                                class="form-control"
                                                placeholder="Pemilik SPB" readonly
-                                               aria-describedby="helpId">
+                                               aria-describedby="helpId" required>
                                         <small id="helpId" class="text-muted">Otomatis</small>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12 text-right">
-                                    <button formtarget="_blank" type="submit" id="btn-cetak-kwitansi"
+                                    <button type="submit" id="btn-cetak-kwitansi"
                                             class="btn btn-primary">Cetak
                                         Kwitansi
                                     </button>
@@ -156,7 +156,7 @@
                                         <input type="number" name="second_weight" id="second_weight"
                                                class="form-control"
                                                placeholder="Second Weight"
-                                               aria-describedby="helpId" readonly>
+                                               aria-describedby="helpId" readonly required>
                                         <small id="helpId" class="text-muted">Otomatis</small>
                                     </div>
                                 </div>
@@ -166,7 +166,7 @@
                                         <input type="text" name="netto_weight" id="netto_weight"
                                                class="form-control"
                                                placeholder="Netto Weight"
-                                               aria-describedby="helpId" readonly>
+                                               aria-describedby="helpId" readonly required>
                                         <small id="helpId" class="text-muted">Otomatis</small>
                                     </div>
                                 </div>
@@ -179,7 +179,7 @@
                                         <input type="number" name="potongan_grading" id="potongan_grading"
                                                class="form-control"
                                                placeholder="Potongan Grading"
-                                               aria-describedby="helpId" readonly>
+                                               aria-describedby="helpId" readonly required>
                                         <small id="helpId" class="text-muted">Otomatis</small>
                                     </div>
                                 </div>
@@ -257,11 +257,11 @@
                 ids.push(item.id);
             }
         });
-        $('#btn-cetak-kwitansi').on('click', function () {
-            setTimeout(function () {
-                window.location.reload();
-            }, 1000)
-        })
+        // $('#btn-cetak-kwitansi').on('click', function () {
+        //     setTimeout(function () {
+        //         window.location.reload();
+        //     }, 1000)
+        // })
         $(document).ready(function () {
             console.log(ids)
             $('.datepicker-dropdown').datepicker({
@@ -356,7 +356,9 @@
                 let isManual = $(this).data('manual');
                 toggleInput(isManual);
             })
-
+            $('#' + ids[7] + ",#" + ids[8]).on('blur', function () {
+                $('#btn-cetak-kwitansi').prop('disabled', false);
+            })
             $(document).on('blur', 'input#' + ids[4], function () {
                 let nik = $(this).val();
                 if (!$('#' + ids[7]).prop('readonly')) {
@@ -388,6 +390,7 @@
                                 }).then(val => {
                                     if (val === 'update') {
                                         $('#' + ids[7]).prop('readonly', false).val('');
+                                        $('#btn-cetak-kwitansi').prop('disabled', false);
                                     }
                                 })
                             }
@@ -431,6 +434,7 @@
                                 }).then(val => {
                                     if (val === 'manual') {
                                         $('#pemilik_spb').prop('readonly', false);
+                                        $('#btn-cetak-kwitansi').prop('disabled', false);
                                     }
                                 })
                             } else {
@@ -511,6 +515,7 @@
                                 }).then(function (val) {
                                     if (val === 'manual') {
                                         toggleInput(false);
+                                        $('#btn-cetak-kwitansi').prop('disabled', false);
                                     }
                                 })
                             } else if (tickets[0].status_pembayaran === "belum") {

@@ -64,7 +64,7 @@
                                         <td>{{$kwitansi->tanggal_pembayaran}}</td>
                                         <td>{{$kwitansi->timbangan->tanggal_masuk}}</td>
                                         <td>{{$kwitansi->no_pembayaran}}</td>
-                                        <td>{{$kwitansi->nama_supir}}</td>
+                                        <td>{{$kwitansi->petani->nama_petani}}</td>
                                         <td>{{$kwitansi->timbangan->no_kendaraan}}</td>
                                         <td>{{$kwitansi->timbangan->setelah_gradding}}</td>
                                         <td>{{$kwitansi->harga->harga}}</td>

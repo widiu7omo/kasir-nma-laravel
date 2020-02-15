@@ -17,7 +17,8 @@ class DataTimbangan extends Model
         'second_weight',
         'netto_weight',
         'potongan_gradding',
-        'setelah_gradding'
+        'setelah_gradding',
+        'status_pembayaran'
     ];
     public $timestamps = true;
 

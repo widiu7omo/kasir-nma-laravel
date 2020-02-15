@@ -67,6 +67,11 @@ class DataTimbanganController extends Controller
         //
     }
 
+    public function currentData(Request $request,DataTimbangan $dataTimbangan){
+        $timbangans = $dataTimbangan->select('no_ticket')->where(['tanggal_masuk'=>$request->date])->get();
+        return response()->json(['status'=>'success','timbangans'=>$timbangans]);
+    }
+
     /**
      * Update the specified resource in storage.
      *
