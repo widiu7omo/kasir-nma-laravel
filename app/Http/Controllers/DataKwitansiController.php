@@ -73,7 +73,11 @@ class DataKwitansiController extends Controller
 
     public function detailPetani(Request $request, DataPetani $dataPetani)
     {
-        $petanis = $dataPetani->select('nama_petani')->where(['nik' => $request->nik])->get();
+        if ($request->nik) {
+            $petanis = $dataPetani->selectRaw('nik')->where('id', '=', $request->id)->get();
+            return response()->json(['status' => 'success', 'petani' => $petanis]);
+        }
+        $petanis = $dataPetani->selectRaw('id,nama_petani text')->where('nama_petani', 'like', "%" . $request->petani . '%')->get();
         return response()->json(['status' => 'success', 'petani' => $petanis]);
     }
 
@@ -143,87 +147,99 @@ class DataKwitansiController extends Controller
                 'after_gradding' => $request->setelah_grading,
                 'tgl_timbangan' => Carbon::parse($request->tgl_timbangan)->locale('id')
             ];
-            $inv = new Invoice();
-            $inv->make("Kwitansi")
-                ->addItem($data_pemilik, $harga_satuan, $total_berat, $request->no_spb)
-                ->number($request->no_berkas)
-                ->with_pagination(true)
-                ->duplicate_header(true)
-                ->date(Carbon::parse($request->tgl_pembayaran)->locale('id'))
-                ->notes('Mohon periksa kembali sebelum meninggalkan kasir')
-                ->customer([
-                    'name' => $request->supir,
-                    'nik' => $request->nik,
-                    'id' => $request->no_kendaraan,
-                    'no_ticket' => $request->no_tiket,
-                ])
-                ->template('print')
-                ->download("no_berkas-$request->no_berkas");
+//            $inv = new Invoice();
+//            $inv->make("Kwitansi")
+//                ->addItem($data_pemilik, $harga_satuan, $total_berat, $request->no_spb)
+//                ->number($request->no_berkas)
+//                ->with_pagination(true)
+//                ->duplicate_header(true)
+//                ->date(Carbon::parse($request->tgl_pembayaran)->locale('id'))
+//                ->notes('Mohon periksa kembali sebelum meninggalkan kasir')
+//                ->customer([
+//                    'name' => $request->supir,
+//                    'nik' => $request->nik,
+//                    'id' => $request->no_kendaraan,
+//                    'no_ticket' => $request->no_tiket,
+//                ])
+//                ->template('print')
+//                ->download("no_berkas-$request->no_berkas");
             DB::beginTransaction();
             try {
-                $no_ticket = $dataTimbangan->select('no_ticket')->where(['no_ticket' => $request->no_tiket])->get();
-                if (count($no_ticket) == 0) {
-                    $data_timbangan = [
-                        "no_ticket" => $request->no_tiket,
-                        "tanggal_masuk" => $request->tgl_timbangan,
-                        "no_kendaraan" => $request->no_kendaraan,
-                        "pelanggan" => "PT. Nabati Mas Asri",
-                        "tandan" => "0",
-                        "first_weight" => $request->first_weight,
-                        "second_weight" => $request->second_weight,
-                        "netto_weight" => $request->netto_weight,
-                        "potongan_gradding" => $request->potongan_grading,
-                        "setelah_gradding" => $request->setelah_grading,
-                        "status_pembayaran" => "sudah"
-                    ];
-                    $dataTimbangan->create($data_timbangan);
+//                $no_ticket = $dataTimbangan->select('no_ticket')->where(['no_ticket' => $request->no_tiket])->get();
+//                if (count($no_ticket) == 0) {
+//                    $data_timbangan = [
+//                        "no_ticket" => $request->no_tiket,
+//                        "tanggal_masuk" => $request->tgl_timbangan,
+//                        "no_kendaraan" => $request->no_kendaraan,
+//                        "pelanggan" => "PT. Nabati Mas Asri",
+//                        "tandan" => "0",
+//                        "first_weight" => $request->first_weight,
+//                        "second_weight" => $request->second_weight,
+//                        "netto_weight" => $request->netto_weight,
+//                        "potongan_gradding" => $request->potongan_grading,
+//                        "setelah_gradding" => $request->setelah_grading,
+//                        "status_pembayaran" => "sudah"
+//                    ];
+//                    $dataTimbangan->create($data_timbangan);
+//                }
+                $nama_petani = "";
+                $petani = [];
+                if (is_numeric($request->supir)) {
+                    $petani = $dataPetani->select('nama_petani,nik')->where(["id" => $request->supir])->get();
+                    $nama_petani = $petani[0]->nama_petani;
+                } else {
+                    $nama_petani = $request->supir;
                 }
-                $nik = $dataPetani->select('nik')->where(['nik' => $request->nik])->get();
-                if (count($nik) == 0) {
-                    $data_petani = [
-                        'nik' => $request->nik,
-                        'nama_petani' => $request->supir
-                    ];
+                $data_petani = [
+                    'nik' => $request->nik,
+                    'nama_petani' => $nama_petani
+                ];
+                if (count($petani) > 0) {
+                    //@TODO: change logic here. validate, only create if nik not same, but nik with - allowed
+                    if ($petani[0]->nik != "-" or ($petani[0]->nik != $request->nik)) {
+                        $dataPetani->create($data_petani);
+                    }
+                } else {
                     $dataPetani->create($data_petani);
                 }
-                $nama_korlap = $masterKorlap->select('nama_korlap')->where(['nama_korlap' => $request->pemilik_spb])->get();
-                if (count($nama_korlap) == 0) {
-                    $data_korlap = [
-                        'nama_korlap' => $request->pemilik_spb
-                    ];
-                    $masterKorlap->create($data_korlap);
-                }
-                $spb = $dataSpb->select('range_spb')->where(['range_spb' => $request->no_spb . "-" . $request->no_spb])->get();
-                if (count($spb) == 0) {
-                    $korlap = $masterKorlap->select('id')->where(['nama_korlap' => $request->pemilik_spb])->first();
-                    $data_spb = [
-                        'range_spb' => $request->no_spb . "-" . $request->no_spb,
-                        'tanggal_pengambilan' => date('Y-m-d'),
-                        'master_korlap_id' => $korlap->id
-                    ];
-                    $dataSpb->create($data_spb);
-                }
-                $no_berkas = $dataKwitansi->select('no_berkas')->where(['no_berkas' => $request->no_berkas])->get();
-                if (count($no_berkas) == 0) {
-                    $petani = $dataPetani->select('id')->where(['nik' => $request->nik])->first();
-                    $timbangan = $dataTimbangan->select('id')->where(['no_ticket' => $request->no_tiket])->first();
-                    $spb = $dataSpb->select('id')->where(['range_spb' => $request->no_spb . "-" . $request->no_spb])->first();
-                    $data_to_store = [
-                        'no_berkas' => $request->no_berkas,
-                        'tanggal_pembayaran' => $request->tgl_pembayaran,
-                        'no_pembayaran' => $request->no_tiket,
-                        'no_spb' => $request->no_spb,
-                        'data_petani_id' => $petani->id,
-                        'total_harga' => $request->total_pembayaran,
-                        'user_id' => Auth::id(),
-                        'data_timbangan_id' => $request->timbangan_id ?? $timbangan->id,
-                        'master_harga_id' => $request->harga_id,
-                        'data_spb_id' => $request->spb_id ?? $spb->id
-                    ];
-
-                    $dataKwitansi->create($data_to_store);
-                    $dataTimbangan->where(['id' => $request->timbangan_id ?? $timbangan->id])->update(['status_pembayaran' => "sudah"]);
-                }
+//                $nama_korlap = $masterKorlap->select('nama_korlap')->where(['nama_korlap' => $request->pemilik_spb])->get();
+//                if (count($nama_korlap) == 0) {
+//                    $data_korlap = [
+//                        'nama_korlap' => $request->pemilik_spb
+//                    ];
+//                    $masterKorlap->create($data_korlap);
+//                }
+//                $spb = $dataSpb->select('range_spb')->where(['range_spb' => $request->no_spb . "-" . $request->no_spb])->get();
+//                if (count($spb) == 0) {
+//                    $korlap = $masterKorlap->select('id')->where(['nama_korlap' => $request->pemilik_spb])->first();
+//                    $data_spb = [
+//                        'range_spb' => $request->no_spb . "-" . $request->no_spb,
+//                        'tanggal_pengambilan' => date('Y-m-d'),
+//                        'master_korlap_id' => $korlap->id
+//                    ];
+//                    $dataSpb->create($data_spb);
+//                }
+//                $no_berkas = $dataKwitansi->select('no_berkas')->where(['no_berkas' => $request->no_berkas])->get();
+//                if (count($no_berkas) == 0) {
+//                    $petani = $dataPetani->select('id')->where(['nik' => $request->nik])->first();
+//                    $timbangan = $dataTimbangan->select('id')->where(['no_ticket' => $request->no_tiket])->first();
+//                    $spb = $dataSpb->select('id')->where(['range_spb' => $request->no_spb . "-" . $request->no_spb])->first();
+//                    $data_to_store = [
+//                        'no_berkas' => $request->no_berkas,
+//                        'tanggal_pembayaran' => $request->tgl_pembayaran,
+//                        'no_pembayaran' => $request->no_tiket,
+//                        'no_spb' => $request->no_spb,
+//                        'data_petani_id' => $petani->id,
+//                        'total_harga' => $request->total_pembayaran,
+//                        'user_id' => Auth::id(),
+//                        'data_timbangan_id' => $request->timbangan_id ?? $timbangan->id,
+//                        'master_harga_id' => $request->harga_id,
+//                        'data_spb_id' => $request->spb_id ?? $spb->id
+//                    ];
+//
+//                    $dataKwitansi->create($data_to_store);
+//                    $dataTimbangan->where(['id' => $request->timbangan_id ?? $timbangan->id])->update(['status_pembayaran' => "sudah"]);
+//                }
                 DB::commit();
             } catch (\Exception $exception) {
                 DB::rollBack();

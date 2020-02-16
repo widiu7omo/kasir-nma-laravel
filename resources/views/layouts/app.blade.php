@@ -37,6 +37,8 @@ The above copyright notice and this permission notice shall be included in all c
     <link href="{{asset('paper')}}/vendors/DataTables/datatables.min.css" rel="stylesheet">
     <link href="{{asset('paper')}}/vendors/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
     <link href="{{asset('paper')}}/vendors/filepond/filepond.min.css" rel="stylesheet">
+    <link href="{{asset('paper')}}/vendors/select2/select2.min.css" rel="stylesheet">
+    <link href="{{asset('paper')}}/vendors/select2/select2-bootstrap4.css" rel="stylesheet">
 
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="{{ asset('paper') }}/demo/demo.css" rel="stylesheet"/>
@@ -67,12 +69,13 @@ The above copyright notice and this permission notice shall be included in all c
 <script src="{{ asset('paper') }}/js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
 <script src="{{ asset('paper') }}/vendors/DataTables/datatables.min.js" type="text/javascript"></script>
 <script src="{{ asset('paper') }}/vendors/momentjs/moment.min.js" type="text/javascript"></script>
-<script src="{{asset('paper')}}/vendors/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+<script src="{{ asset('paper') }}/vendors/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
 <script src="{{asset('paper')}}/vendors/bootstrap-datepicker/locales/bootstrap-datepicker.id.min.js"></script>
 <script src="{{asset('paper')}}/vendors/sweetalert/sweetalert.min.js"></script>
 <script src="{{asset('paper')}}/vendors/filepond/filepond-plugin-file-validate-type.js"></script>
 <script src="{{asset('paper')}}/vendors/filepond/filepond.min.js"></script>
 <script src="{{asset('paper')}}/vendors/filepond/filepond.jquery.js"></script>
+<script src="{{asset('paper')}}/vendors/select2/select2.min.js"></script>
 
 <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
 <script src="{{ asset('paper') }}/demo/demo.js"></script>

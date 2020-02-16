@@ -74,7 +74,7 @@
                                 <div class="col-md-4 col-xs-12">
                                     <div class="form-group">
                                         <label for="nik"></label>
-                                        <input type="number" name="nik" id="nik" class="form-control"
+                                        <input type="text" name="nik" id="nik" class="form-control"
                                                placeholder="NIK Pengambil"
                                                aria-describedby="helpId" autocomplete="off" required>
                                         <small id="helpId" class="text-muted">Masukkan NIK Pengambil</small>
@@ -102,9 +102,8 @@
                                 <div class="col-md-4 col-xs-12">
                                     <div class="form-group">
                                         <label for="supir"></label>
-                                        <input type="text" name="supir" id="supir" class="form-control"
-                                               placeholder="Nama Pengambil"
-                                               aria-describedby="helpId" autocomplete="off" required readonly>
+                                        <select class="custom-select" name="supir" id="supir">
+                                        </select>
                                         <small id="helpId" class="text-muted">Masukkan nama pengambil</small>
                                     </div>
                                 </div>
@@ -252,7 +251,7 @@
 @push('scripts')
     <script>
         let ids = [];
-        $('input').map(function (i, item) {
+        $('input,select').map(function (i, item) {
             if (item.id !== "") {
                 ids.push(item.id);
             }
@@ -355,53 +354,80 @@
             $('#input-manual-button').on('click', function () {
                 let isManual = $(this).data('manual');
                 toggleInput(isManual);
-            })
-            $('#' + ids[7] + ",#" + ids[8]).on('blur', function () {
-                $('#btn-cetak-kwitansi').prop('disabled', false);
-            })
-            $(document).on('blur', 'input#' + ids[4], function () {
-                let nik = $(this).val();
-                if (!$('#' + ids[7]).prop('readonly')) {
-                    return;
-                }
-                if (nik.length > 6) {
-                    $.ajax({
-                        url: "{{route('kwitansi.petani')}}",
-                        method: "POST",
-                        dataType: "json",
-                        data: {
-                            nik: $(this).val()
-                        },
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        },
-                        success: function ({status, petani}) {
-                            if (petani.length > 0) {
-                                $('#' + ids[7]).val(petani[0].nama_petani);
-                            } else {
-                                swal({
-                                    title: "Pengambil tidak ditemukan",
-                                    text: "Periksa kembali NIK yang dimasukkan",
-                                    icon: "error",
-                                    buttons: {
-                                        close: "Tutup",
-                                        update: "Input Manual"
-                                    }
-                                }).then(val => {
-                                    if (val === 'update') {
-                                        $('#' + ids[7]).prop('readonly', false).val('');
-                                        $('#btn-cetak-kwitansi').prop('disabled', false);
-                                    }
-                                })
-                            }
-                        },
-                        error: function (err) {
-                            console.log(err)
+            });
+            $("#supir").on('change', function (e) {
+                let id = e.target.value;
+                $.ajax({
+                    url: "{{route('kwitansi.petani')}}",
+                    method: "POST",
+                    dataType: "json",
+                    data: {
+                        nik: true,
+                        id: id
+                    },
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function ({status, petani}) {
+                        if (petani.length > 0) {
+                            $('input#' + ids[4]).val(petani[0].nik)
+                        } else {
+                            $('input#' + ids[4]).val("-")
                         }
-                    })
-                }
-
+                    },
+                })
             })
+            $("#supir").select2({
+                theme: 'bootstrap4',
+                width: 'style',
+                placeholder: 'Pilih Pengambil',
+                minimumInputLength: 1,
+                tags: true,
+                ajax: {
+                    url: "{{route('kwitansi.petani')}}",
+                    method: "POST",
+                    dataType: "json",
+                    data: function (params) {
+                        return {
+                            petani: params.term
+                        }
+                    },
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    processResults: function (data, params) {
+                        return {
+                            results: data.petani
+                        }
+                    },
+                    cache: true
+                }
+            });
+            {{--$(document).on('keydown', 'input.select2-search__field', function () {--}}
+            {{--    let petani = $(this).val();--}}
+            {{--    $.ajax({--}}
+            {{--        url: "{{route('kwitansi.petani')}}",--}}
+            {{--        method: "POST",--}}
+            {{--        dataType: "json",--}}
+            {{--        data: {--}}
+            {{--            petani: petani--}}
+            {{--        },--}}
+            {{--        headers: {--}}
+            {{--            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
+            {{--        },--}}
+            {{--        success: function ({status, petani}) {--}}
+            {{--            if (petani.length > 0) {--}}
+            {{--                let htmlOption = petani.map(function (item) {--}}
+            {{--                    return "<li class='select2-results__option' id='select2-supir-result-rou5-"+item.nama_petani+"' role='treeitem' aria-selected='true' data-select2-id='select2-supir-result-rou5-"+item.nama_petani+"'>" + item.nama_petani + "</li>";--}}
+            {{--                });--}}
+            {{--                $('ul#select2-supir-results').html(htmlOption.join(""));--}}
+            {{--            }--}}
+            {{--        },--}}
+            {{--        error: function (err) {--}}
+            {{--            console.log(err)--}}
+            {{--        }--}}
+            {{--    })--}}
+            {{--})--}}
 
             $(document).on('blur', 'input#' + ids[5], function () {
                 let spb = $(this).val();
