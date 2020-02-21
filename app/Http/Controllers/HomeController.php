@@ -31,8 +31,8 @@ class HomeController extends Controller
         $rangkuman_timbangan = (object)[
             'belum_dibayar' => $dataTimbangan->where(['status_pembayaran' => 'belum', 'tanggal_masuk' => date('Y-m-d')])->sum('setelah_gradding'),
             'sudah_dibayar' => $dataTimbangan->where(['status_pembayaran' => 'sudah', 'tanggal_masuk' => date('Y-m-d')])->sum('setelah_gradding'),
-            'spb_lunas' => $dataTimbangan->where(['status_pembayaran' => 'sudah', 'tanggal_masuk' => date('Y-m-d')])->sum('no_ticket'),
-            'spb_pending' => $dataTimbangan->where(['status_pembayaran' => 'sudah', 'tanggal_masuk' => date('Y-m-d')])->sum('no_ticket'),
+            'spb_lunas' => DB::table('data_kwitansis')->join('data_timbangans','data_timbangan_id','=','data_timbangans.id')->where(['tanggal_pembayaran'=>date('Y-m-d'),'status_pembayaran'=>'sudah'])->count('*'),
+            'spb_pending' => DB::table('data_timbangans')->where(['status_pembayaran'=>'belum'])->count('*'),
             'total_timbangan' => DB::table('data_kwitansis')->join('data_timbangans','data_timbangan_id','=','data_timbangans.id')->where(['tanggal_pembayaran'=>date('Y-m-d')])->sum('setelah_gradding')
         ];
         $rangkuman_kwitansi = (object)[

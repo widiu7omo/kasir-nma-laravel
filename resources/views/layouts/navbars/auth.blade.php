@@ -39,20 +39,20 @@
                 </a>
                 <div class="collapse" id="laravelExamples">
                     <ul class="nav">
-                        <li class="{{ $elementActive == 'hari' ? 'active' : '' }}">
-                            <a href="{{ route('page.index','hari') }}">
+                        <li class="{{ $elementActive == 'harian' ? 'active' : '' }}">
+                            <a href="{{ route('laporan.index','harian') }}">
                                 <span class="sidebar-mini-icon">{{ __('UP') }}</span>
                                 <span class="sidebar-normal">{{ __(' Harian ') }}</span>
                             </a>
                         </li>
-                        <li class="{{ $elementActive == 'minggu' ? 'active' : '' }}">
-                            <a href="{{ route('page.index', 'minggu') }}">
+                        <li class="{{ $elementActive == 'mingguan' ? 'active' : '' }}">
+                            <a href="{{ route('laporan.index', 'mingguan') }}">
                                 <span class="sidebar-mini-icon">{{ __('U') }}</span>
                                 <span class="sidebar-normal">{{ __(' Mingguan ') }}</span>
                             </a>
                         </li>
-                        <li class="{{ $elementActive == 'bulan' ? 'active' : '' }}">
-                            <a href="{{ route('page.index', 'bulan') }}">
+                        <li class="{{ $elementActive == 'bulanan' ? 'active' : '' }}">
+                            <a href="{{ route('laporan.index', 'bulanan') }}">
                                 <span class="sidebar-mini-icon">{{ __('U') }}</span>
                                 <span class="sidebar-normal">{{ __(' Bulanan ') }}</span>
                             </a>

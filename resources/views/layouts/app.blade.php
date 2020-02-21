@@ -29,8 +29,8 @@ The above copyright notice and this permission notice shall be included in all c
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
           name='viewport'/>
     <!--     Fonts and icons     -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet"/>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+{{--    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet"/>--}}
+{{--    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">--}}
     <!-- CSS Files -->
     <link href="{{ asset('paper') }}/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="{{ asset('paper') }}/css/paper-dashboard.css?v=2.0.0" rel="stylesheet"/>
@@ -39,6 +39,7 @@ The above copyright notice and this permission notice shall be included in all c
     <link href="{{asset('paper')}}/vendors/filepond/filepond.min.css" rel="stylesheet">
     <link href="{{asset('paper')}}/vendors/select2/select2.min.css" rel="stylesheet">
     <link href="{{asset('paper')}}/vendors/select2/select2-bootstrap4.css" rel="stylesheet">
+    <link href="{{asset('paper')}}/vendors/daterangepicker/daterangepicker.css" rel="stylesheet">
 
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="{{ asset('paper') }}/demo/demo.css" rel="stylesheet"/>
@@ -76,6 +77,7 @@ The above copyright notice and this permission notice shall be included in all c
 <script src="{{asset('paper')}}/vendors/filepond/filepond.min.js"></script>
 <script src="{{asset('paper')}}/vendors/filepond/filepond.jquery.js"></script>
 <script src="{{asset('paper')}}/vendors/select2/select2.min.js"></script>
+<script src="{{asset('paper')}}/vendors/daterangepicker/daterangepicker.min.js"></script>
 
 <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
 <script src="{{ asset('paper') }}/demo/demo.js"></script>

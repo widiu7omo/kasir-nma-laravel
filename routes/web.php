@@ -33,6 +33,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('spb', 'DataSpbController')->except(['create', 'show']);
 });
 Route::group(['middleware' => 'auth'], function () {
+    Route::get('laporan/{subpage}', ['as' => 'laporan.index', 'uses' => 'LaporanController@index']);
+    Route::get('laporan/mingguan?{param}', 'LaporanController@index');
+});
+Route::group(['middleware' => 'auth'], function () {
     Route::resource('petani', 'DataPetaniController')->except(['create', 'show']);
 });
 Route::group(['middleware' => 'auth'], function () {
