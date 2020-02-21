@@ -1,6 +1,6 @@
 @extends('layouts.app', [
     'class' => '',
-    'elementActive' => 'mingguan'
+    'elementActive' => 'laporan'
 ])
 
 @section('content')
@@ -124,7 +124,7 @@
                     },
 
                     tooltips: {
-                        enabled: false
+                        enabled: true
                     },
 
 

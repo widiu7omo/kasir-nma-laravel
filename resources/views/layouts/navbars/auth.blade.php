@@ -30,35 +30,10 @@
                 </a>
             </li>
             <li class="{{ $elementActive == 'laporan' ? 'active' : '' }}">
-                <a data-toggle="collapse" aria-expanded="false" href="#laravelExamples">
-                    <i class="nc-icon"><img src="{{ asset('paper/img/laravel.svg') }}"></i>
-                    <p>
-                        {{ __('Laporan') }}
-                        <b class="caret"></b>
-                    </p>
+                <a href="{{ route('laporan.index', 'mingguan') }}">
+                    <i class="nc-icon nc-chart-bar-32"></i>
+                    <p>{{ __('Rekapitulasi') }}</p>
                 </a>
-                <div class="collapse" id="laravelExamples">
-                    <ul class="nav">
-                        <li class="{{ $elementActive == 'harian' ? 'active' : '' }}">
-                            <a href="{{ route('laporan.index','harian') }}">
-                                <span class="sidebar-mini-icon">{{ __('UP') }}</span>
-                                <span class="sidebar-normal">{{ __(' Harian ') }}</span>
-                            </a>
-                        </li>
-                        <li class="{{ $elementActive == 'mingguan' ? 'active' : '' }}">
-                            <a href="{{ route('laporan.index', 'mingguan') }}">
-                                <span class="sidebar-mini-icon">{{ __('U') }}</span>
-                                <span class="sidebar-normal">{{ __(' Mingguan ') }}</span>
-                            </a>
-                        </li>
-                        <li class="{{ $elementActive == 'bulanan' ? 'active' : '' }}">
-                            <a href="{{ route('laporan.index', 'bulanan') }}">
-                                <span class="sidebar-mini-icon">{{ __('U') }}</span>
-                                <span class="sidebar-normal">{{ __(' Bulanan ') }}</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
             </li>
             <li class="{{ $elementActive == 'harga' ? 'active' : '' }}">
                 <a href="{{ route('harga.index') }}">

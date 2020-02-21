@@ -18,7 +18,8 @@
                             <div class="col-7 col-md-8">
                                 <div class="numbers">
                                     <p class="card-category">Timbangan</p>
-                                    <p class="card-title">{{strlen($timbangan->total_timbangan) > 2?substr($timbangan->total_timbangan,0,2)."K":$timbangan->total_timbangan}} KG
+                                    <p class="card-title">{{strlen($timbangan->total_timbangan) > 2?substr($timbangan->total_timbangan,0,2)."K":$timbangan->total_timbangan}}
+                                        KG
                                     <p>
                                 </div>
                             </div>
@@ -115,8 +116,8 @@
             <div class="col-md-12">
                 <div class="card ">
                     <div class="card-header ">
-                        <h5 class="card-title">Users Behavior</h5>
-                        <p class="card-category">24 Hours performance</p>
+                        <h5 class="card-title">Grafik Hari ini</h5>
+                        <p class="card-category">Per Hari ini</p>
                     </div>
                     <div class="card-body ">
                         <canvas id=chartHours width="400" height="100"></canvas>
@@ -130,52 +131,6 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card ">
-                    <div class="card-header ">
-                        <h5 class="card-title">Email Statistics</h5>
-                        <p class="card-category">Last Campaign Performance</p>
-                    </div>
-                    <div class="card-body ">
-                        <canvas id="chartEmail"></canvas>
-                    </div>
-                    <div class="card-footer ">
-                        <div class="legend">
-                            <i class="fa fa-circle text-primary"></i> Opened
-                            <i class="fa fa-circle text-warning"></i> Read
-                            <i class="fa fa-circle text-danger"></i> Deleted
-                            <i class="fa fa-circle text-gray"></i> Unopened
-                        </div>
-                        <hr>
-                        <div class="stats">
-                            <i class="fa fa-calendar"></i> Number of emails sent
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-8">
-                <div class="card card-chart">
-                    <div class="card-header">
-                        <h5 class="card-title">NASDAQ: AAPL</h5>
-                        <p class="card-category">Line Chart with Points</p>
-                    </div>
-                    <div class="card-body">
-                        <canvas id="speedChart" width="400" height="100"></canvas>
-                    </div>
-                    <div class="card-footer">
-                        <div class="chart-legend">
-                            <i class="fa fa-circle text-info"></i> Tesla Model S
-                            <i class="fa fa-circle text-warning"></i> BMW 5 Series
-                        </div>
-                        <hr/>
-                        <div class="card-stats">
-                            <i class="fa fa-check"></i> Data information certified
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 @endsection
 
@@ -183,7 +138,29 @@
     <script>
         $(document).ready(function () {
             // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
-            demo.initChartsPages();
+            new Chart(document.getElementById("chartHours"), {
+                "type": "horizontalBar",
+                "data": {
+                    "labels": {!! $chart->labels !!},
+                    "datasets": [{
+                        "data": {!! $chart->data !!},
+                        "fill": false,
+                        "backgroundColor": ["rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(54, 162, 235, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"],
+                        "borderColor": ["rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(75, 192, 192)", "rgb(54, 162, 235)", "rgb(153, 102, 255)", "rgb(201, 203, 207)"],
+                        "borderWidth": 1
+                    }]
+                },
+                "options": {
+                    "scales":
+                        {
+                            "yAxes":
+                                [{"ticks": {"beginAtZero": true}}]
+                        },
+                    legend: {
+                        display: false
+                    },
+                }
+            });
         });
     </script>
 @endpush
