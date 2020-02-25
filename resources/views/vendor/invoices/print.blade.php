@@ -170,7 +170,7 @@
                     <tr>
                         <td><b>TOTAL DIBAYAR</b></td>
                         <td><b>{{ $invoice->formatCurrency()->symbol }}
-                                . {{ number_format(bcsub($item->get('name')->sub_total,$item->get('name')->potongan,2),2) }}</b>
+                                . {{ number_format(bcsub($item->get('name')->sub_total,$item->get('name')->potongan,2),0) }}</b>
                         </td>
                     </tr>
                     </tbody>
@@ -312,7 +312,7 @@
                     <tr>
                         <td><b>TOTAL DIBAYAR</b></td>
                         <td><b>{{ $invoice->formatCurrency()->symbol }}
-                                . {{ number_format(bcsub($item->get('name')->sub_total,$item->get('name')->potongan,2),2) }}</b>
+                                . {{ number_format(bcsub($item->get('name')->sub_total,$item->get('name')->potongan,2),0) }}</b>
                         </td>
                     </tr>
                     </tbody>

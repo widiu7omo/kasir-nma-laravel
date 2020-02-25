@@ -6,7 +6,6 @@ use App\DataKwitansi;
 use App\DataPetani;
 use App\DataSpb;
 use App\DataTimbangan;
-use App\Http\Requests\KwitansiRequest;
 use App\MasterHarga;
 use App\MasterKorlap;
 use Carbon\Carbon;
@@ -14,9 +13,6 @@ use ConsoleTVs\Invoices\Classes\Invoice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Validation\Rules\In;
-use Symfony\Component\Routing\Matcher\RedirectableUrlMatcher;
-use Symfony\Component\VarDumper\Cloner\Data;
 
 class DataKwitansiController extends Controller
 {
@@ -97,7 +93,7 @@ class DataKwitansiController extends Controller
                 array_push($found_spb, $sp);
             }
         }
-        if (count($found_spb) == 1) {
+        if (count($found_spb) > 0) {
             $result_spb = $found_spb;
         }
         return response()->json(['status' => 'success', 'spb' => $result_spb]);
@@ -166,8 +162,8 @@ class DataKwitansiController extends Controller
                 'gradding' => $request->potongan_grading,
                 'after_gradding' => $request->setelah_grading,
                 'tgl_timbangan' => Carbon::parse($request->tgl_timbangan)->locale('id'),
-                'sub_total'=>$harga_satuan*$total_berat,
-                'potongan'=>($harga_satuan*$total_berat*0.25)/100
+                'sub_total' => $harga_satuan * $total_berat,
+                'potongan' => ($harga_satuan * $total_berat * 0.25) / 100
             ];
             $getPetani = $this->getDataPetani('nama', $request);
             $inv = new Invoice();
@@ -235,13 +231,26 @@ class DataKwitansiController extends Controller
                 }
                 $spb = $dataSpb->select('range_spb')->where(['range_spb' => $request->no_spb . "-" . $request->no_spb])->get();
                 if (count($spb) == 0) {
+                    $check_spb = $dataSpb->select('range_spb')->get();
+                    $request_spb = $request->no_spb;
+                    $found_spb = [];
+                    foreach ($check_spb as $check) {
+                        $exploded_range = explode('-', $check->range_spb);
+                        $first_range = (int)$exploded_range[0];
+                        $second_range = (int)$exploded_range[1];
+                        if ($request_spb >= $first_range && $request_spb <= $second_range) {
+                            array_push($found_spb, $check);
+                        }
+                    }
                     $korlap = $masterKorlap->select('id')->where(['nama_korlap' => $request->pemilik_spb])->first();
                     $data_spb = [
                         'range_spb' => $request->no_spb . "-" . $request->no_spb,
                         'tanggal_pengambilan' => date('Y-m-d'),
                         'master_korlap_id' => $korlap->id
                     ];
-                    $dataSpb->create($data_spb);
+                    if (count($found_spb) === 0) {
+                        $dataSpb->create($data_spb);
+                    }
                 }
                 $no_berkas = $dataKwitansi->select('no_berkas')->where(['no_berkas' => $request->no_berkas])->get();
                 if (count($no_berkas) == 0) {

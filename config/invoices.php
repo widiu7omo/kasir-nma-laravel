@@ -22,7 +22,7 @@ return [
     | to perform all the calculations.
     */
 
-   'decimals' => 2,
+   'decimals' => 0,
 
 
    /*
