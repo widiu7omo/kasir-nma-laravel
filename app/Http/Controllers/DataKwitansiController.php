@@ -165,7 +165,9 @@ class DataKwitansiController extends Controller
                 'netto_w' => $request->netto_weight,
                 'gradding' => $request->potongan_grading,
                 'after_gradding' => $request->setelah_grading,
-                'tgl_timbangan' => Carbon::parse($request->tgl_timbangan)->locale('id')
+                'tgl_timbangan' => Carbon::parse($request->tgl_timbangan)->locale('id'),
+                'sub_total'=>$harga_satuan*$total_berat,
+                'potongan'=>($harga_satuan*$total_berat*0.25)/100
             ];
             $getPetani = $this->getDataPetani('nama', $request);
             $inv = new Invoice();

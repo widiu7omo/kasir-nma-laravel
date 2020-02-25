@@ -616,7 +616,7 @@
                                             },
                                             success: function (res) {
                                                 swal({
-                                                    text: "Pembayaran dengan nomor tiket " + res.detail[0].no_ticket + " sudah dibayar pada tanggal sekian"
+                                                    text: "Pembayaran dengan nomor tiket " + res.detail[0].no_ticket + " sudah dibayar pada "+res.detail[0].updated_at
                                                 });
                                                 console.log(res)
                                             }
