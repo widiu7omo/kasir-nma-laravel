@@ -15,10 +15,15 @@ class DataSpbController extends Controller
      */
     public function index()
     {
-        //
         $dataspb = DataSpb::with('korlap')->get();
         $korlaps = MasterKorlap::all();
         return view('spb.index', ['dataspb' => $dataspb, 'korlaps' => $korlaps]);
+    }
+
+    public function check(Request $request, DataSpb $dataSpb)
+    {
+        $spb = DataSpb::where('range_spb', 'like', '%' . $request->spb . '%')->get();
+        return response()->json(['status' => 'success', 'spb' => $spb]);
     }
 
     /**

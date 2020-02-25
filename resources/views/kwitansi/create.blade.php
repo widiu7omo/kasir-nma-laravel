@@ -433,6 +433,27 @@
                 let spb = $(this).val();
                 let spb_id = $(this).val();
                 if (!$('#' + ids[8]).prop('readonly')) {
+                    $.ajax({
+                        url: "{{route('spb.check')}}",
+                        method: "POST",
+                        dataType: "json",
+                        data: {
+                            spb: spb
+                        },
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function ({status, spb}) {
+                            console.log(spb);
+                            if (spb.length > 0) {
+                                $('#btn-cetak-kwitansi').prop('disabled', true);
+                                $('#no_spb_desc').text("Nomor SPB sudah terdaftar, periksa kembali atau ganti nomor spb lain").addClass('text-danger');
+                                $('#no_spb').addClass('bg-danger');
+                            } else {
+                                $('#btn-cetak-kwitansi').prop('disabled', false);
+                            }
+                        }
+                    })
                     return;
                 }
                 if (spb.length !== 0) {
@@ -461,6 +482,7 @@
                                     if (val === 'manual') {
                                         $('#pemilik_spb').prop('readonly', false);
                                         $('#btn-cetak-kwitansi').prop('disabled', false);
+                                        $('#no_spb').focus();
                                     }
                                 })
                             } else {
@@ -616,7 +638,7 @@
                                             },
                                             success: function (res) {
                                                 swal({
-                                                    text: "Pembayaran dengan nomor tiket " + res.detail[0].no_ticket + " sudah dibayar pada "+res.detail[0].updated_at
+                                                    text: "Pembayaran dengan nomor tiket " + res.detail[0].no_ticket + " sudah dibayar pada " + res.detail[0].updated_at
                                                 });
                                                 console.log(res)
                                             }

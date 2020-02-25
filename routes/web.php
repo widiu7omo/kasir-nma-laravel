@@ -31,6 +31,7 @@ Route::group(['middleware' => 'auth'], function () {
 });
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('spb', 'DataSpbController')->except(['create', 'show']);
+    Route::post('spb/check',['as'=>'spb.check','uses'=>'DataSpbController@check']);
 });
 Route::group(['middleware' => 'auth'], function () {
     Route::get('laporan/{subpage}', ['as' => 'laporan.index', 'uses' => 'LaporanController@index']);
