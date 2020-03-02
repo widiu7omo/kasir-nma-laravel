@@ -82,15 +82,24 @@
                                         </div>
                                     </div>
                                 </div>
+{{--                                NIK--}}
                                 <div class="col-md-4 col-xs-12">
                                     <div class="form-group">
-                                        <label for="nik">Masukkan NIK Pengambil</label>
-                                        <input type="text" name="nik" id="nik" class="form-control"
-                                               placeholder="NIK Pengambil"
-                                               aria-describedby="helpId" autocomplete="off" required>
+                                        <label for="supir">Masukkan nama pengambil</label>
+                                        <select class="custom-select" name="supir" id="supir">
+                                        </select>
                                         <small id="helpId" class="text-muted"></small>
                                     </div>
                                 </div>
+{{--                                <div class="col-md-4 col-xs-12">--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <label for="nik">Masukkan NIK Pengambil</label>--}}
+{{--                                        <input type="text" name="nik" id="nik" class="form-control"--}}
+{{--                                               placeholder="NIK Pengambil"--}}
+{{--                                               aria-describedby="helpId" autocomplete="off" required>--}}
+{{--                                        <small id="helpId" class="text-muted"></small>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                                 <div class="col-md-4 col-xs-12">
                                     <div class="form-group">
                                         <label for="no_spb">Masukkan Nomor SPB</label>
@@ -110,14 +119,24 @@
                                         <small id="helpId" class="text-muted">Otomatis</small>
                                     </div>
                                 </div>
+{{--                                Supir--}}
                                 <div class="col-md-4 col-xs-12">
                                     <div class="form-group">
-                                        <label for="supir"></label>
-                                        <select class="custom-select" name="supir" id="supir">
-                                        </select>
-                                        <small id="helpId" class="text-muted">Masukkan nama pengambil</small>
+                                        <label for="nik"></label>
+                                        <input type="text" name="nik" id="nik" class="form-control"
+                                               placeholder="NIK Pengambil"
+                                               aria-describedby="helpId" autocomplete="off" required>
+                                        <small id="helpId" class="text-muted">Masukkan NIK Pengambil</small>
                                     </div>
                                 </div>
+{{--                                <div class="col-md-4 col-xs-12">--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <label for="supir"></label>--}}
+{{--                                        <select class="custom-select" name="supir" id="supir">--}}
+{{--                                        </select>--}}
+{{--                                        <small id="helpId" class="text-muted">Masukkan nama pengambil</small>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                                 <div class="col-md-4 col-xs-12">
                                     <div class="form-group">
                                         <label for="pemilik_spb"></label>
@@ -267,6 +286,7 @@
                 ids.push(item.id);
             }
         });
+        console.log(ids)
         // $('#btn-cetak-kwitansi').on('click', function () {
         //     setTimeout(function () {
         //         window.location.reload();
@@ -275,7 +295,8 @@
         $(document).ready(function () {
             $('.datepicker-dropdown').datepicker({
                 format: "yyyy-mm-dd",
-                language: "id"
+                language: "id",
+                autoclose:true,
             });
 
             function toggleInput(isManual) {
@@ -418,9 +439,9 @@
                     },
                     success: function ({status, petani}) {
                         if (petani.length > 0) {
-                            $('input#' + ids[4]).val(petani[0].nik)
+                            $('input#' + ids[7]).val(petani[0].nik)
                         } else {
-                            $('input#' + ids[4]).val("-")
+                            $('input#' + ids[7]).val("-")
                         }
                     },
                 })
