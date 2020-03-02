@@ -120,7 +120,11 @@
         let dataWeWant = [];
 
         function getKeyByValue(object, value) {
-            return Object.keys(object).filter(item => object[item] === value);
+            return Object.keys(object).filter(item => {
+                let itemLowerCase = item.toLocaleLowerCase();
+                let filterWhiteSpace = itemLowerCase.replace(/\s/g, '');
+                return filterWhiteSpace === value
+            });
         }
 
         function handleExcel(file) {
@@ -131,16 +135,13 @@
                 let sheetFirst = workbook.SheetNames[0];
                 let dataSheet = workbook.Sheets[sheetFirst];
                 let sheetToJson = XLSX.utils.sheet_to_json(dataSheet, {raw: true});
-                //delete title
-                sheetToJson.splice(0, 2);
-                const pattern = ["No.", "Date/TIme  ", "Vehicles", "Customers", "Tandan", "1st ", "2nd ", "Netto ", "Pot.", "Setelah"];
-                let keyHeader = pattern.map(item => getKeyByValue(sheetToJson[0], item));
                 //delete header
-                sheetToJson.splice(0, 2);
+                sheetToJson.splice(0, 1);
+                const pattern = ["no.", "date/time", "vehicles", "customers", "tandan", "1st", "2nd", "netto", "pot.", "setelah"];
+                let keyHeader = pattern.map(item => getKeyByValue(sheetToJson[0], item));
                 //convert date
                 let newJsonSheet = sheetToJson.map(item => {
-                    item.__EMPTY = convertDateExcel(item.__EMPTY);
-
+                    item[keyHeader[1]] = convertDateExcel(item[keyHeader[1]]);
                     return item;
                 });
                 //delete footer total
@@ -176,9 +177,9 @@
         }
 
         function convertDateExcel(dateNumber) {
-            var utc_value = Math.floor(dateNumber - 25569) * 86400;
-            var date_info = new Date(utc_value * 1000);
-            var month = parseInt(date_info.getMonth()) + 1;
+            let utc_value = Math.floor(dateNumber - 25569) * 86400;
+            let date_info = new Date(utc_value * 1000);
+            let month = parseInt(date_info.getMonth()) + 1;
             return date_info.getFullYear() + "-" + month + "-" + date_info.getDate();
         }
 

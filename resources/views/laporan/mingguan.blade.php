@@ -74,6 +74,8 @@
                                         <td>{{$spb->total_harga}}</td>
                                     </tr>
                                 @endforeach
+                                @if(count($data->rekap_sbps)>0)
+                                @endif
                                 </tbody>
                             </table>
                         </div>
@@ -94,7 +96,31 @@
                 responsive: true,
                 dom: 'Bfrtip',
                 buttons: [
-                    'excel', 'pdf'
+                    {
+                        extend: 'excel',
+                        action: function (e, dt, button, config) {
+                            let rows = dt.rows({ filter : 'applied'});
+                            let total_kg = 0;
+                            let total_bayar = 0;
+                            let total_splited;
+                            rows.data().each(function (item, index) {
+                                total_kg = total_kg + parseInt(item[9]);
+                                total_splited = item[10].split(' ');
+                                total_bayar = total_bayar + parseInt(total_splited[1]);
+                            });
+                            dt.row.add(["TOTAL", "", "", "", "", "", "", "", "", total_kg, "Rp. " + total_bayar]).draw(false);
+                            // console.log(cols);
+                            // dt.rows().data().each(function (text, rowNum, stack) {
+                            //     console.log(text)
+                            //     console.log(rowNum)
+                            //     console.log(stack)
+                            //     if (rowNum === stack.length - 1) {
+                            //         dt.row.add([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]).draw(false);
+                            //     }
+                            // });
+                            $.fn.dataTable.ext.buttons.excelHtml5.action.call(this, e, dt, button, config)
+                        }
+                    }, 'pdf'
                 ]
             })
             let dateInput = $('input[name="dates"]');
