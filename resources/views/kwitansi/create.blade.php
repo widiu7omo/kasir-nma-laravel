@@ -64,29 +64,40 @@
                                 </div>
                                 <div class="col-md-4 col-xs-12">
                                     <div class="form-group">
-                                        <label for="no_tiket"></label>
-                                        <input type="text" name="no_tiket" id="no_tiket" class="form-control"
-                                               placeholder="Nomor Tiket"
-                                               aria-describedby="helpId" autocomplete="off" required>
-                                        <small id="no_tiket_desc" class="text-muted">Masukkan Nomor Tiket</small>
+                                        <label for="no_tiket">Masukkan Nomor Tiket</label>
+                                        <input required type="text" class="form-control" name="no_tiket" id="no_tiket"
+                                               placeholder="Nomor Tiket" aria-label="Nomor Tiket"
+                                               aria-describedby="ticketEmpty" autocomplete="off">
+                                        <small id="no_tiket_desc" class="text-muted">(Centang kosong jika nomor tiket
+                                            tidak ada)</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input tiketEmpty" type="checkbox">
+                                                KOSONG
+                                                <span class="form-check-sign">
+                                                </span>
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-xs-12">
                                     <div class="form-group">
-                                        <label for="nik"></label>
+                                        <label for="nik">Masukkan NIK Pengambil</label>
                                         <input type="text" name="nik" id="nik" class="form-control"
                                                placeholder="NIK Pengambil"
                                                aria-describedby="helpId" autocomplete="off" required>
-                                        <small id="helpId" class="text-muted">Masukkan NIK Pengambil</small>
+                                        <small id="helpId" class="text-muted"></small>
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-xs-12">
                                     <div class="form-group">
-                                        <label for="no_spb"></label>
+                                        <label for="no_spb">Masukkan Nomor SPB</label>
                                         <input type="number" name="no_spb" id="no_spb" class="form-control"
                                                placeholder="No. SPB"
                                                aria-describedby="helpId" autocomplete="off" required>
-                                        <small id="no_spb_desc" class="text-muted">Masukkan Nomor SPB</small>
+                                        <small id="no_spb_desc" class="text-muted"></small>
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-xs-12">
@@ -262,7 +273,6 @@
         //     }, 1000)
         // })
         $(document).ready(function () {
-            console.log(ids)
             $('.datepicker-dropdown').datepicker({
                 format: "yyyy-mm-dd",
                 language: "id"
@@ -335,10 +345,48 @@
                 }
                 $('#' + ids[13]).val(resultVal)
                 $('#' + ids[14]).val(resultVal)
-                getHarga("{{date('Y-m-d')}}")
+                let tanggal = $('#tgl_timbangan').val();
+                if (tanggal === '') {
+                    swal({
+                        title: "Tanggal Timbangan Kosong",
+                        text: "Kosong, periksa kembali tanggal timbangan",
+                        icon: "error",
+                        buttons: {
+                            close: "Tutup",
+                        }
+                    })
+                    return
+                }
+                getHarga(tanggal)
 
             }
 
+            $('.tiketEmpty').on('change', function () {
+                if ($(this).is(':checked')) {
+                    $.ajax({
+                        url: "{{route('kwitansi.kosong')}}",
+                        method: "POST",
+                        dataType: 'json',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function ({status, kosong}) {
+                            if (kosong.length === 0) {
+                                $("#no_tiket").val("NULL-1");
+                            } else {
+                                let nullIncrement = kosong[0].no_ticket;
+                                let sliceNull = nullIncrement.split('-');
+                                let nextIncrementNull = parseInt(sliceNull[1]);
+                                nextIncrementNull++;
+                                $('#no_tiket').val("NULL-" + nextIncrementNull);
+                            }
+                        }
+                    })
+                    $('#no_tiket').prop('readonly', true);
+                } else {
+                    $('#no_tiket').prop('readonly', false).val("");
+                }
+            })
             //first weight
             $('#' + ids[9]).on('change', function () {
                 countTotalWeight($(this).val(), $('#' + ids[10]).val());
@@ -403,32 +451,10 @@
                     cache: true
                 }
             });
-            {{--$(document).on('keydown', 'input.select2-search__field', function () {--}}
-            {{--    let petani = $(this).val();--}}
-            {{--    $.ajax({--}}
-            {{--        url: "{{route('kwitansi.petani')}}",--}}
-            {{--        method: "POST",--}}
-            {{--        dataType: "json",--}}
-            {{--        data: {--}}
-            {{--            petani: petani--}}
-            {{--        },--}}
-            {{--        headers: {--}}
-            {{--            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
-            {{--        },--}}
-            {{--        success: function ({status, petani}) {--}}
-            {{--            if (petani.length > 0) {--}}
-            {{--                let htmlOption = petani.map(function (item) {--}}
-            {{--                    return "<li class='select2-results__option' id='select2-supir-result-rou5-"+item.nama_petani+"' role='treeitem' aria-selected='true' data-select2-id='select2-supir-result-rou5-"+item.nama_petani+"'>" + item.nama_petani + "</li>";--}}
-            {{--                });--}}
-            {{--                $('ul#select2-supir-results').html(htmlOption.join(""));--}}
-            {{--            }--}}
-            {{--        },--}}
-            {{--        error: function (err) {--}}
-            {{--            console.log(err)--}}
-            {{--        }--}}
-            {{--    })--}}
-            {{--})--}}
+            $('#manualSelectHarga').on('change', function (e) {
 
+                $('#hargaManual').val(this.value);
+            })
             $(document).on('blur', 'input#' + ids[5], function () {
                 let spb = $(this).val();
                 let spb_id = $(this).val();
@@ -444,7 +470,6 @@
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
                         success: function ({status, spb}) {
-                            console.log(spb);
                             if (spb.length > 0) {
                                 $('#btn-cetak-kwitansi').prop('disabled', true);
                                 $('#no_spb_desc').text("Nomor SPB sudah terdaftar, periksa kembali atau ganti nomor spb lain").addClass('text-danger');
@@ -640,7 +665,6 @@
                                                 swal({
                                                     text: "Pembayaran dengan nomor tiket " + res.detail[0].no_ticket + " sudah dibayar pada " + res.detail[0].updated_at
                                                 });
-                                                console.log(res)
                                             }
                                         })
 

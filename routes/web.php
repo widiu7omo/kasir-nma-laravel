@@ -53,6 +53,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('kwitansi/detail', ['as' => 'kwitansi.detail', 'uses' => 'DataKwitansiController@detail']);
     Route::post('kwitansi/harga', ['as' => 'kwitansi.harga', 'uses' => 'DataKwitansiController@harga']);
     Route::post('kwitansi/spb', ['as' => 'kwitansi.spb', 'uses' => 'DataKwitansiController@spb']);
+    Route::post('kwitansi/kosong', ['as' => 'kwitansi.kosong', 'uses' => 'DataKwitansiController@kosong']);
     Route::post('kwitansi/timbangan', ['as' => 'kwitansi.timbangan', 'uses' => 'DataKwitansiController@detailTimbangan']);
     Route::post('kwitansi/petani', ['as' => 'kwitansi.petani', 'uses' => 'DataKwitansiController@detailPetani']);
     Route::post('kwitansi/generate', ['as' => 'kwitansi.generate', 'uses' => 'DataKwitansiController@generate']);
