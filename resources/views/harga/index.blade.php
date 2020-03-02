@@ -65,7 +65,8 @@
                                                     <i class="nc-icon nc-ruler-pencil"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                    <form class="form-action" action="{{ route('harga.destroy', $hg) }}" method="post">
+                                                    <form class="form-action" action="{{ route('harga.destroy', $hg) }}"
+                                                          method="post">
                                                         @csrf
                                                         @method('delete')
                                                         <a class="dropdown-item" id="btn-edit-harga"
@@ -97,7 +98,8 @@
         $('#harga-table').dataTable();
         $('.datepicker-dropdown').datepicker({
             format: "yyyy-mm-dd",
-            language: "id"
+            language: "id",
+            autoclose: true
         });
         let formUri = "";
         $(document).on('click', '#btn-edit-harga', function () {
