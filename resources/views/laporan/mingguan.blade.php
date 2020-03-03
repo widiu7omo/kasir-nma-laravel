@@ -77,6 +77,21 @@
                                 @if(count($data->rekap_sbps)>0)
                                 @endif
                                 </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                </tfoot>
                             </table>
                         </div>
                     </div>
@@ -90,44 +105,111 @@
 
 @push('scripts')
     <script>
-
+        function convertToRupiah(angka) {
+            var rupiah = '';
+            var angkarev = angka.toString().split('').reverse().join('');
+            for (var i = 0; i < angkarev.length; i++) if (i % 3 == 0) rupiah += angkarev.substr(i, 3) + '.';
+            return 'Rp. ' + rupiah.split('', rupiah.length - 1).reverse().join('');
+        }
         $(document).ready(function () {
             let table = $('#rekap-table').dataTable({
                 responsive: true,
+                "pageLength": 100,
                 dom: 'Bfrtip',
+                "footerCallback": function (row, data, start, end, display) {
+                    var api = this.api(), data;
+
+                    // Remove the formatting to get integer data for summation
+                    var intVal = function (i) {
+                        return typeof i === 'string' ?
+                            i.replace(/[\Rp.,]/g, '') * 1 :
+                            typeof i === 'number' ?
+                                i : 0;
+                    };
+
+                    totalKG = api.column(9).data().reduce(function (a, b) {
+                        return intVal(a) + intVal(b)
+                    }, 0)
+                    totalKGbyPage = api.column(9, {page: 'current'}).data().reduce(function (a, b) {
+                        return intVal(a) + intVal(b)
+                    }, 0)
+                    // Total over all pages
+                    total = api
+                        .column(10)
+                        .data()
+                        .reduce(function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0);
+
+                    // Total over this page
+                    pageTotal = api
+                        .column(10, {page: 'current'})
+                        .data()
+                        .reduce(function (a, b) {
+                            return intVal(a) + intVal(b);
+                        }, 0);
+                    $(api.column(10).footer()).html(
+                        "Total Rupiah : "+convertToRupiah(pageTotal)
+                    );
+                    $(api.column(9).footer()).html(
+                        "Total KG : "+totalKGbyPage
+                    );
+                },
                 buttons: [
                     {
                         extend: 'excel',
-                        action: function (e, dt, button, config) {
-                            let rows = dt.rows({ filter : 'applied'});
-                            let total_kg = 0;
-                            let total_bayar = 0;
-                            let total_splited;
-                            rows.data().each(function (item, index) {
-                                total_kg = total_kg + parseInt(item[9]);
-                                total_splited = item[10].split(' ');
-                                total_bayar = total_bayar + parseInt(total_splited[1]);
-                            });
-                            dt.row.add(["TOTAL", "", "", "", "", "", "", "", "", total_kg, "Rp. " + total_bayar]).draw(false);
-                            // console.log(cols);
-                            // dt.rows().data().each(function (text, rowNum, stack) {
-                            //     console.log(text)
-                            //     console.log(rowNum)
-                            //     console.log(stack)
-                            //     if (rowNum === stack.length - 1) {
-                            //         dt.row.add([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]).draw(false);
-                            //     }
-                            // });
-                            $.fn.dataTable.ext.buttons.excelHtml5.action.call(this, e, dt, button, config)
-                        }
-                    }, 'pdf'
+                        autoFilter: true,
+                        footer: true,
+                        title: "Rekapitulasi Harian tanggal {{isset($_GET['start'])?$_GET['start'].' sampai '.$_GET['end']:date('d-m-Y')}}",
+                        exportOptions: {
+                            format: {
+                                body: function (data, row, column, node) {
+                                    // Strip $ from salary column to make it numeric
+                                    let newData = data;
+                                    let splitData = [];
+                                    switch (column) {
+                                        case 8 :
+                                            if(data !== ""){
+                                                newData = convertToRupiah(data);
+                                            }
+                                            break;
+                                        case 10:
+                                            splitData = data.split(" ");
+                                            newData = convertToRupiah(splitData[1]);
+                                            break;
+                                    }
+                                    return newData;
+                                }
+                            }
+                        },
+                        customize: function (xlsx) {
+                            let sheet = xlsx.xl.worksheets['sheet1.xml'];
+                            // jQuery selector to add a border
+                            $('row c[r*="2"]', sheet).attr({'s': '42'});
+                            $('row:last', sheet).attr({'s': '25'});
+                            $('row c[r*="10"]', sheet).attr('s', "63");
+                            $('row c[r*="11"]', sheet).attr('s', "63");
+                        },
+                        // action: function (e, dt, button, config) {
+                        //     let rows = dt.rows({ filter : 'applied'});
+                        //     let total_kg = 0;
+                        //     let total_bayar = 0;
+                        //     let total_splited;
+                        //     rows.data().each(function (item, index) {
+                        //         total_kg = total_kg + parseInt(item[9]);
+                        //         total_splited = item[10].split(' ');
+                        //         total_bayar = total_bayar + parseInt(total_splited[1]);
+                        //     });
+                        //     dt.row.add(["TOTAL", "", "", "", "", "", "", "", "", total_kg, "Rp. " + total_bayar]).draw(false);
+                        //     $.fn.dataTable.ext.buttons.excelHtml5.action.call(this, e, dt, button, config);
+                        //     dt.rows(':last').remove().draw();
+                        // }
+                    }
                 ]
             })
             let dateInput = $('input[name="dates"]');
             dateInput.daterangepicker();
             dateInput.on('apply.daterangepicker', function (ev, picker) {
-                console.log(picker.startDate.format('YYYY-MM-DD'));
-                console.log(picker.endDate.format('YYYY-MM-DD'));
                 let start = picker.startDate.format('YYYY-MM-DD');
                 let end = picker.endDate.format('YYYY-MM-DD');
                 window.location.href = "{{route('laporan.index','mingguan')}}?start=" + start + "&end=" + end

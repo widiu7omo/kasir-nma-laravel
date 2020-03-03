@@ -24,7 +24,12 @@ class DataKwitansiController extends Controller
      */
     public function index(Request $request)
     {
-        //
+        $start = "";
+        $end = "";
+        $assignEnd = "";
+        $assignStart = "";
+        $where = "";
+
         $kwitansis = DataKwitansi::
         with(
             ['user' => function ($query) {
@@ -43,8 +48,33 @@ class DataKwitansiController extends Controller
             }])
             ->with(['petani' => function ($query) {
                 return $query->select('id', 'nama_petani');
+            }])->get();
+        if (isset($request->start) && isset($request->end)) {
+            $where = 'tanggal_pembayaran';
+            $start = $request->start;
+            $end = $request->end;
+            $assignStart = ">=";
+            $assignEnd = "<=";
+            $kwitansis = DataKwitansi::
+            with(['user' => function ($query) {
+                return $query->select('id', 'name');
             }])
-            ->get();
+                ->with(['timbangan' => function ($query) {
+                    return $query->select('id', 'setelah_gradding', 'no_kendaraan', 'tanggal_masuk');
+                }])
+                ->with(['harga' => function ($query) {
+                    return $query->select('id', 'harga');
+                }])
+                ->with(['spb' => function ($query) {
+                    return $query->with(['korlap' => function ($query) {
+                        return $query->select('id', 'nama_korlap');
+                    }]);
+                }])
+                ->with(['petani' => function ($query) {
+                    return $query->select('id', 'nama_petani');
+                }])
+                ->where($where, $assignStart, $start)->where($where, $assignEnd, $end)->get();
+        }
 //        return response()->json($kwitansis);
         return view('kwitansi.index', ['kwitansis' => $kwitansis]);
     }

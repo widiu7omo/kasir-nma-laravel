@@ -28,7 +28,7 @@ class LaporanController extends Controller
                     $days = Carbon::getDays();
                     array_shift($days);
                     array_push($days, 'Sunday');
-                    $dataBySPB = MasterKorlap::all();
+                    $dataBySPB = MasterKorlap::where('nama_korlap','like','%eny%')->orWhere('nama_korlap','like','%ginting%')->orWhere('nama_korlap','like','%poniman%')->get();
                     $dataChartSpbByKorlap = [];
                     $colorKorlap = ['#6bd098', '#f17e5d', '#fcc468', '#51CACF'];
                     $start = Carbon::now()->locale('id');
