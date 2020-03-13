@@ -59,6 +59,7 @@
                                     <th>Harga</th>
                                     <th>Jumlah (Kg)</th>
                                     <th>Jumlah</th>
+                                    <th>Potongan</th>
                                     <th>Diterima</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -79,7 +80,13 @@
                                         <td>{{$kwitansi->harga->harga}}</td>
                                         <td>{{$kwitansi->timbangan->setelah_gradding}}</td>
                                         <td>{{$kwitansi->total_harga}}</td>
-                                        <td>{{$kwitansi->total_harga}}</td>
+                                        @if(strtolower(substr($kwitansi->petani->nama_petani,0,3)) == 'cv.' || strtolower(substr($kwitansi->petani->nama_petani,0,3)) == 'pt.')
+                                            <td>(Rp. {{round(get_potongan($kwitansi->total_harga,0.25),0,PHP_ROUND_HALF_DOWN)}}) 0.25 %</td>
+                                            <td>Rp. {{round(get_total_with_potongan($kwitansi->total_harga,get_potongan($kwitansi->total_harga,0.25)))}}</td>
+                                        @else
+                                            <td>0 %</td>
+                                            <td>{{$kwitansi->total_harga}}</td>
+                                        @endif
                                         <td>
                                             <form class="form-action"
                                                   action="{{ route('kwitansi.destroy', $kwitansi) }}"
@@ -101,6 +108,7 @@
                                     <th style="width:10%"></th>
                                     <th style="width:8%"></th>
                                     <th style="width:8%"></th>
+                                    <th></th>
                                     <th></th>
                                     <th></th>
                                     <th></th>
@@ -164,6 +172,12 @@
                     .reduce(function (a, b) {
                         return intVal(a) + intVal(b);
                     }, 0);
+                totalAll = api
+                    .column(12)
+                    .data()
+                    .reduce(function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0);
 
                 // Total over this page
                 pageTotal = api
@@ -172,14 +186,20 @@
                     .reduce(function (a, b) {
                         return intVal(a) + intVal(b);
                     }, 0);
+                pageTotalAll = api
+                    .column(12, {page: 'current'})
+                    .data()
+                    .reduce(function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0);
                 $(api.column(10).footer()).html(
-                    "Total Rupiah : "+convertToRupiah(pageTotal)
+                    "Total Rupiah : " + convertToRupiah(pageTotal)
                 );
-                $(api.column(11).footer()).html(
-                    "Total Rupiah : "+convertToRupiah(pageTotal)
+                $(api.column(12).footer()).html(
+                    "Total Rupiah : " + convertToRupiah(pageTotalAll)
                 );
                 $(api.column(9).footer()).html(
-                    "Total KG : "+totalKGbyPage
+                    "Total KG : " + totalKGbyPage
                 );
             },
             buttons: [
@@ -206,7 +226,7 @@
                                         splitData = data.split(" ");
                                         newData = convertToRupiah(splitData[1]);
                                         break;
-                                    case 11:
+                                    case 12:
                                         splitData = data.split(" ");
                                         newData = convertToRupiah(splitData[1]);
                                         break;

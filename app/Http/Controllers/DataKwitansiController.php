@@ -215,7 +215,7 @@ class DataKwitansiController extends Controller
                     'nik' => $request->nik,
                     'id' => $request->no_kendaraan,
                     'no_ticket' => $request->no_tiket,
-                ])
+                    'prefix_name' => substr($getPetani->data_petani, 0, 3)])
                 ->template('print')
                 ->download("no_berkas-$request->no_berkas");
             DB::beginTransaction();

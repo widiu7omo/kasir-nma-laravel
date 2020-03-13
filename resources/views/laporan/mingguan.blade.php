@@ -55,6 +55,7 @@
                                     <th>Penerima</th>
                                     <th>Harga</th>
                                     <th>Sum of KG</th>
+                                    <th>Potongan</th>
                                     <th>Diterima (Rp)</th>
                                 </tr>
                                 </thead>
@@ -71,7 +72,13 @@
                                         <td>{{$spb->penerima}}</td>
                                         <td>{{$spb->harga}}</td>
                                         <td>{{$spb->setelah_gradding}}</td>
-                                        <td>{{$spb->total_harga}}</td>
+                                        @if(strtolower(substr($spb->penerima,0,3)) == 'cv.' || strtolower(substr($spb->penerima,0,3)) == 'pt.')
+                                            <td>(Rp. {{round(get_potongan($spb->total_harga,0.25),0,PHP_ROUND_HALF_DOWN)}}) 0.25 %</td>
+                                            <td>Rp. {{round(get_total_with_potongan($spb->total_harga,get_potongan($spb->total_harga,0.25)))}}</td>
+                                        @else
+                                            <td>0 %</td>
+                                            <td>{{$spb->total_harga}}</td>
+                                        @endif
                                     </tr>
                                 @endforeach
                                 @if(count($data->rekap_sbps)>0)
@@ -79,6 +86,7 @@
                                 </tbody>
                                 <tfoot>
                                 <tr>
+                                    <th></th>
                                     <th></th>
                                     <th></th>
                                     <th></th>
@@ -135,7 +143,7 @@
                     }, 0)
                     // Total over all pages
                     total = api
-                        .column(10)
+                        .column(11)
                         .data()
                         .reduce(function (a, b) {
                             return intVal(a) + intVal(b);
@@ -143,12 +151,12 @@
 
                     // Total over this page
                     pageTotal = api
-                        .column(10, {page: 'current'})
+                        .column(11, {page: 'current'})
                         .data()
                         .reduce(function (a, b) {
                             return intVal(a) + intVal(b);
                         }, 0);
-                    $(api.column(10).footer()).html(
+                    $(api.column(11).footer()).html(
                         "Total Rupiah : "+convertToRupiah(pageTotal)
                     );
                     $(api.column(9).footer()).html(
@@ -173,7 +181,7 @@
                                                 newData = convertToRupiah(data);
                                             }
                                             break;
-                                        case 10:
+                                        case 11:
                                             splitData = data.split(" ");
                                             newData = convertToRupiah(splitData[1]);
                                             break;

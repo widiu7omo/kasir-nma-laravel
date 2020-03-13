@@ -34,3 +34,19 @@ function convert_to_number($rupiah)
 {
     return intval(preg_replace('/,.*|[^0 - 9]/', '', $rupiah));
 }
+
+function get_potongan($total, $percent)
+{
+    if (gettype($total) === 'string') {
+        $total = (int)substr($total, 3, strlen($total) - 1);
+    }
+    return ($total * $percent) / 100;
+}
+
+function get_total_with_potongan($total, $potongan)
+{
+    if (gettype($total) === 'string') {
+        $total = (int)substr($total, 3, strlen($total) - 1);
+    }
+    return $total - $potongan;
+}

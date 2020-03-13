@@ -115,7 +115,7 @@
             <th>No Kendaraan</th>
             <th>Pemilik SPB</th>
             <th>Total Berat</th>
-            @if(strtolower($invoice->customer_details->get('name')) == 'cv. borneo pasific')
+            @if(strtolower($invoice->customer_details->get('prefix_name')) == 'cv.' || strtolower($invoice->customer_details->get('prefix_name')) == 'pt.')
                 <th>Pot. PPH</th>
             @endif
             <th>Harga Satuan</th>
@@ -139,7 +139,7 @@
                 </td>
                 <td>{{ $item->get('name')->pemilik }}</td>
                 <td>{{ $item->get('ammount') }} KG</td>
-                @if(strtolower($invoice->customer_details->get('name')) == 'cv. borneo pasific')
+                @if(strtolower($invoice->customer_details->get('prefix_name')) == 'cv.' || strtolower($invoice->customer_details->get('prefix_name')) == 'pt.')
                     <td>0.25%</td>
                 @endif
                 <td>{{ $invoice->formatCurrency()->symbol }}. {{ $item->get('price') }}
@@ -156,7 +156,7 @@
 
             </div>
         @endif
-        @if(strtolower($invoice->customer_details->get('name')) == 'cv. borneo pasific')
+        @if(strtolower($invoice->customer_details->get('prefix_name')) == 'cv.' || strtolower($invoice->customer_details->get('prefix_name')) == 'pt.')
             <div style="margin-left: 250pt;margin-top: 20px">
                 {{--            <h4>Total:</h4>--}}
                 <table class="table table-bordered">
@@ -257,7 +257,7 @@
             <th>No Kendaraan</th>
             <th>Pemilik SPB</th>
             <th>Total Berat</th>
-            @if(strtolower($invoice->customer_details->get('name')) == 'cv. borneo pasific')
+            @if(strtolower($invoice->customer_details->get('prefix_name')) == 'cv.' || strtolower($invoice->customer_details->get('prefix_name')) == 'pt.')
                 <th>Pot. PPH</th>
             @endif
             <th>Harga Satuan</th>
@@ -281,7 +281,7 @@
                 </td>
                 <td>{{ $item->get('name')->pemilik }}</td>
                 <td>{{ $item->get('ammount') }} KG</td>
-                @if(strtolower($invoice->customer_details->get('name')) == 'cv. borneo pasific')
+                @if(strtolower($invoice->customer_details->get('prefix_name')) == 'cv.' || strtolower($invoice->customer_details->get('prefix_name')) == 'pt.')
                     <td>0.25%</td>
                 @endif
                 <td>{{ $invoice->formatCurrency()->symbol }}. {{ $item->get('price') }}
@@ -298,7 +298,7 @@
 
             </div>
         @endif
-        @if(strtolower($invoice->customer_details->get('name')) == 'cv. borneo pasific')
+            @if(strtolower($invoice->customer_details->get('prefix_name')) == 'cv.' || strtolower($invoice->customer_details->get('prefix_name')) == 'pt.')
             <div style="margin-left: 250pt;margin-top: 20px">
                 {{--            <h4>Total:</h4>--}}
                 <table class="table table-bordered">
