@@ -65,42 +65,42 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($kwitansis ?? [] as $key => $kwitansi)
-                                    <tr>
-                                        <td class="text-center">
-                                            {{$key+1}}
-                                        </td>
-                                        <td>{{$kwitansi->no_berkas}}</td>
-                                        <td class="{{$kwitansi->tanggal_pembayaran == date('Y')}}">{{$kwitansi->tanggal_pembayaran}}</td>
-                                        <td>{{$kwitansi->timbangan->tanggal_masuk}}</td>
-                                        <td>{{$kwitansi->no_pembayaran}}</td>
-                                        <td>{{$kwitansi->petani->nama_petani}}</td>
-                                        <td>{{$kwitansi->timbangan->no_kendaraan}}</td>
-                                        <td>{{$kwitansi->spb->korlap->nama_korlap}}</td>
-                                        <td>{{$kwitansi->harga->harga}}</td>
-                                        <td>{{$kwitansi->timbangan->setelah_gradding}}</td>
-                                        <td>{{$kwitansi->total_harga}}</td>
-                                        @if(strtolower(substr($kwitansi->petani->nama_petani,0,3)) == 'cv.' || strtolower(substr($kwitansi->petani->nama_petani,0,3)) == 'pt.')
-                                            <td>(Rp. {{round(get_potongan($kwitansi->total_harga,0.25),0,PHP_ROUND_HALF_DOWN)}}) 0.25 %</td>
-                                            <td>Rp. {{round(get_total_with_potongan($kwitansi->total_harga,get_potongan($kwitansi->total_harga,0.25)))}}</td>
-                                        @else
-                                            <td>0 %</td>
-                                            <td>{{$kwitansi->total_harga}}</td>
-                                        @endif
-                                        <td>
-                                            <form class="form-action"
-                                                  action="{{ route('kwitansi.destroy', $kwitansi) }}"
-                                                  method="post">
-                                                @csrf
-                                                @method('delete')
-                                                <button type="button" class="btn btn-sm btn-danger"
-                                                        onclick="confirm('{{ __("Apakah anda yakin menghapus Kwitansi ini?") }}') ? this.parentElement.submit() : ''">
-                                                    {{ __('Delete') }}
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                {{--                                @foreach($kwitansis ?? [] as $key => $kwitansi)--}}
+                                {{--                                    <tr>--}}
+                                {{--                                        <td class="text-center">--}}
+                                {{--                                            {{$key+1}}--}}
+                                {{--                                        </td>--}}
+                                {{--                                        <td>{{$kwitansi->no_berkas}}</td>--}}
+                                {{--                                        <td class="{{$kwitansi->tanggal_pembayaran == date('Y')}}">{{$kwitansi->tanggal_pembayaran}}</td>--}}
+                                {{--                                        <td>{{$kwitansi->timbangan->tanggal_masuk}}</td>--}}
+                                {{--                                        <td>{{$kwitansi->no_pembayaran}}</td>--}}
+                                {{--                                        <td>{{$kwitansi->petani->nama_petani}}</td>--}}
+                                {{--                                        <td>{{$kwitansi->timbangan->no_kendaraan}}</td>--}}
+                                {{--                                        <td>{{$kwitansi->spb->korlap->nama_korlap}}</td>--}}
+                                {{--                                        <td>{{$kwitansi->harga->harga}}</td>--}}
+                                {{--                                        <td>{{$kwitansi->timbangan->setelah_gradding}}</td>--}}
+                                {{--                                        <td>{{$kwitansi->total_harga}}</td>--}}
+                                {{--                                        @if(strtolower(substr($kwitansi->petani->nama_petani,0,3)) == 'cv.' || strtolower(substr($kwitansi->petani->nama_petani,0,3)) == 'pt.')--}}
+                                {{--                                            <td>(Rp. {{round(get_potongan($kwitansi->total_harga,0.25),0,PHP_ROUND_HALF_DOWN)}}) 0.25 %</td>--}}
+                                {{--                                            <td>Rp. {{round(get_total_with_potongan($kwitansi->total_harga,get_potongan($kwitansi->total_harga,0.25)))}}</td>--}}
+                                {{--                                        @else--}}
+                                {{--                                            <td>0 %</td>--}}
+                                {{--                                            <td>{{$kwitansi->total_harga}}</td>--}}
+                                {{--                                        @endif--}}
+                                {{--                                        <td>--}}
+                                {{--                                            <form class="form-action"--}}
+                                {{--                                                  action="{{ route('kwitansi.destroy', $kwitansi) }}"--}}
+                                {{--                                                  method="post">--}}
+                                {{--                                                @csrf--}}
+                                {{--                                                @method('delete')--}}
+                                {{--                                                <button type="button" class="btn btn-sm btn-danger"--}}
+                                {{--                                                        onclick="confirm('{{ __("Apakah anda yakin menghapus Kwitansi ini?") }}') ? this.parentElement.submit() : ''">--}}
+                                {{--                                                    {{ __('Delete') }}--}}
+                                {{--                                                </button>--}}
+                                {{--                                            </form>--}}
+                                {{--                                        </td>--}}
+                                {{--                                    </tr>--}}
+                                {{--                                @endforeach--}}
                                 </tbody>
                                 <tfoot>
                                 <tr>
@@ -145,12 +145,94 @@
             window.location.href = "{{route('kwitansi.index')}}?start=" + start + "&end=" + end
         });
         let table = $('#kwitansi-table').dataTable({
+            ajax: '{{route('kwitansi.fetch_kwitansis')}}',
+            "columns": [
+                {"data": "id"},
+                {"data": "no_berkas"},
+                {"data": "tanggal_pembayaran"},
+                {
+                    "data": "timbangan",
+                    "render": function (timbangan) {
+                        return timbangan.tanggal_masuk
+                    }
+                },
+                {"data": "no_pembayaran"},
+                {
+                    "data": "petani",
+                    "render": function (petani) {
+                        return petani.nama_petani
+                    }
+                },
+                {
+                    "data": "timbangan",
+                    "render": function (timbangan) {
+                        return timbangan.no_kendaraan
+                    }
+                },
+                {
+                    "data": "spb",
+                    "render": function (spb) {
+                        return spb.korlap.nama_korlap
+                    }
+                },
+                {
+                    "data": "harga",
+                    "render": function (harga) {
+                        return harga.harga
+                    }
+                },
+                {
+                    "data": "timbangan",
+                    "render": function (timbangan) {
+                        return timbangan.setelah_gradding
+                    }
+                },
+                {
+                    "data": "total_harga",
+                    "render": function (total_harga) {
+                        let total_harga_number = total_harga.substr(3, total_harga.length - 1);
+                        return convertToRupiah(total_harga_number);
+                    }
+                },
+                {
+                    "data": "no_berkas",
+                    "render": function (total_harga, type, data) {
+                        //total potongan
+                        let potongan = 0;
+                        if (data.petani.nama_petani.toLowerCase().includes('cv') || data.petani.nama_petani.toLowerCase().includes('PT')) {
+                            let removeRp = data.total_harga.substr(3, data.total_harga.length - 1)
+                            potongan = (parseInt(removeRp) * 0.25) / 100;
+                        }
+                        return '(' + convertToRupiah(potongan.toFixed(0)) + ') 0.25%';
+                    }
+                },
+                {
+                    "data": "total_harga",
+                    "render": function (total_harga, type, data) {
+                        //total keseluruhan
+                        let potongan = 0;
+                        let keseluruhan_harga = total_harga.substr(3, data.total_harga.length - 1);
+                        if (data.petani.nama_petani.toLowerCase().includes('cv') || data.petani.nama_petani.toLowerCase().includes('PT')) {
+                            let removeRp = data.total_harga.substr(3, data.total_harga.length - 1)
+                            potongan = (parseInt(removeRp) * 0.25) / 100;
+                            keseluruhan_harga = parseInt(keseluruhan_harga) - potongan.toFixed(0);
+                        }
+                        return convertToRupiah(keseluruhan_harga)
+                    }
+                },
+                {"data": "no_berkas"},
+            ],
+            scrollY: 600,
+            deferRender: true,
+            scroller: {
+                loadingIndicator: true
+            },
             responsive: true,
             "pageLength": 100,
             dom: 'Bfrtip',
             "footerCallback": function (row, data, start, end, display) {
                 var api = this.api(), data;
-
+                console.log(data)
                 // Remove the formatting to get integer data for summation
                 var intVal = function (i) {
                     return typeof i === 'string' ?
@@ -159,12 +241,13 @@
                             i : 0;
                 };
 
-                totalKG = api.column(9).data().reduce(function (a, b) {
+                totalKG = data.reduce(function (a, b) {
                     return intVal(a) + intVal(b)
                 }, 0)
                 totalKGbyPage = api.column(9, {page: 'current'}).data().reduce(function (a, b) {
                     return intVal(a) + intVal(b)
                 }, 0)
+                console.log(totalKG);
                 // Total over all pages
                 total = api
                     .column(10)
@@ -192,6 +275,8 @@
                     .reduce(function (a, b) {
                         return intVal(a) + intVal(b);
                     }, 0);
+                console.log(pageTotal)
+                console.log(pageTotalAll)
                 $(api.column(10).footer()).html(
                     "Total Rupiah : " + convertToRupiah(pageTotal)
                 );
@@ -223,12 +308,10 @@
                                         }
                                         break;
                                     case 10:
-                                        splitData = data.split(" ");
-                                        newData = convertToRupiah(splitData[1]);
                                         break;
                                     case 12:
-                                        splitData = data.split(" ");
-                                        newData = convertToRupiah(splitData[1]);
+                                        // splitData = data.split(" ");
+                                        // newData = convertToRupiah(splitData[1]);
                                         break;
                                 }
                                 return newData;

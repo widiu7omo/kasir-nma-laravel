@@ -30,6 +30,11 @@ class DataKwitansiController extends Controller
         $assignStart = "";
         $where = "";
 
+        return view('kwitansi.index' /*,['kwitansis' => $kwitansis]*/);
+    }
+
+    public function fetch_kwitansis()
+    {
         $kwitansis = DataKwitansi::
         with(
             ['user' => function ($query) {
@@ -75,8 +80,8 @@ class DataKwitansiController extends Controller
                 }])
                 ->where($where, $assignStart, $start)->where($where, $assignEnd, $end)->get();
         }
-//        return response()->json($kwitansis);
-        return view('kwitansi.index', ['kwitansis' => $kwitansis]);
+        $response['data'] = $kwitansis;
+        return response()->json($response);
     }
 
     public function kosong(DataTimbangan $dataTimbangan)

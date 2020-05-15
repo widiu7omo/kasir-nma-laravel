@@ -57,6 +57,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('kwitansi/timbangan', ['as' => 'kwitansi.timbangan', 'uses' => 'DataKwitansiController@detailTimbangan']);
     Route::post('kwitansi/petani', ['as' => 'kwitansi.petani', 'uses' => 'DataKwitansiController@detailPetani']);
     Route::post('kwitansi/generate', ['as' => 'kwitansi.generate', 'uses' => 'DataKwitansiController@generate']);
+    Route::get('kwitansi/fetch_kwitansis', ['as' => 'kwitansi.fetch_kwitansis', 'uses' => 'DataKwitansiController@fetch_kwitansis']);
 });
 Route::group(['middleware' => 'auth'], function () {
     Route::get('{page}', ['as' => 'page.index', 'uses' => 'PageController@index']);
