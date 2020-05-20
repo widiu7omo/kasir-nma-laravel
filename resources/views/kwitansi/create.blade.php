@@ -4,7 +4,7 @@
 ])
 @section('content')
     <div class="content">
-        <form action="{{route('kwitansi.generate')}}" method="POST">
+        <form action="{{route('kwitansi.generate')}}" method="POST" target="_blank">
             @csrf
             <input type="hidden" name="timbangan_id">
             <input type="hidden" name="harga_id">
@@ -82,7 +82,7 @@
                                         </div>
                                     </div>
                                 </div>
-{{--                                NIK--}}
+                                {{--                                NIK--}}
                                 <div class="col-md-4 col-xs-12">
                                     <div class="form-group">
                                         <label for="supir">Masukkan nama pengambil</label>
@@ -91,15 +91,15 @@
                                         <small id="helpId" class="text-muted"></small>
                                     </div>
                                 </div>
-{{--                                <div class="col-md-4 col-xs-12">--}}
-{{--                                    <div class="form-group">--}}
-{{--                                        <label for="nik">Masukkan NIK Pengambil</label>--}}
-{{--                                        <input type="text" name="nik" id="nik" class="form-control"--}}
-{{--                                               placeholder="NIK Pengambil"--}}
-{{--                                               aria-describedby="helpId" autocomplete="off" required>--}}
-{{--                                        <small id="helpId" class="text-muted"></small>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
+                                {{--                                <div class="col-md-4 col-xs-12">--}}
+                                {{--                                    <div class="form-group">--}}
+                                {{--                                        <label for="nik">Masukkan NIK Pengambil</label>--}}
+                                {{--                                        <input type="text" name="nik" id="nik" class="form-control"--}}
+                                {{--                                               placeholder="NIK Pengambil"--}}
+                                {{--                                               aria-describedby="helpId" autocomplete="off" required>--}}
+                                {{--                                        <small id="helpId" class="text-muted"></small>--}}
+                                {{--                                    </div>--}}
+                                {{--                                </div>--}}
                                 <div class="col-md-4 col-xs-12">
                                     <div class="form-group">
                                         <label for="no_spb">Masukkan Nomor SPB</label>
@@ -119,7 +119,7 @@
                                         <small id="helpId" class="text-muted">Otomatis</small>
                                     </div>
                                 </div>
-{{--                                Supir--}}
+                                {{--                                Supir--}}
                                 <div class="col-md-4 col-xs-12">
                                     <div class="form-group">
                                         <label for="nik"></label>
@@ -129,14 +129,14 @@
                                         <small id="helpId" class="text-muted">Masukkan NIK Pengambil</small>
                                     </div>
                                 </div>
-{{--                                <div class="col-md-4 col-xs-12">--}}
-{{--                                    <div class="form-group">--}}
-{{--                                        <label for="supir"></label>--}}
-{{--                                        <select class="custom-select" name="supir" id="supir">--}}
-{{--                                        </select>--}}
-{{--                                        <small id="helpId" class="text-muted">Masukkan nama pengambil</small>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
+                                {{--                                <div class="col-md-4 col-xs-12">--}}
+                                {{--                                    <div class="form-group">--}}
+                                {{--                                        <label for="supir"></label>--}}
+                                {{--                                        <select class="custom-select" name="supir" id="supir">--}}
+                                {{--                                        </select>--}}
+                                {{--                                        <small id="helpId" class="text-muted">Masukkan nama pengambil</small>--}}
+                                {{--                                    </div>--}}
+                                {{--                                </div>--}}
                                 <div class="col-md-4 col-xs-12">
                                     <div class="form-group">
                                         <label for="pemilik_spb"></label>
@@ -287,16 +287,16 @@
             }
         });
         console.log(ids)
-        // $('#btn-cetak-kwitansi').on('click', function () {
-        //     setTimeout(function () {
-        //         window.location.reload();
-        //     }, 1000)
-        // })
+        $('#btn-cetak-kwitansi').on('click', function () {
+            setTimeout(function () {
+                window.location.reload();
+            }, 500)
+        })
         $(document).ready(function () {
             $('.datepicker-dropdown').datepicker({
                 format: "yyyy-mm-dd",
                 language: "id",
-                autoclose:true,
+                autoclose: true,
             });
 
             function toggleInput(isManual) {

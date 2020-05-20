@@ -51,11 +51,13 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-12">
-                                <button class="btn btn-sm btn-success"></button>
-                                <span>Telah dibayar</span>
-                                <button class="btn btn-sm btn-warning"></button>
-                                <span>Belum dibayar</span>
+                            <div class="col-md-12 d-flex justify-content-between">
+                                <div class="form-group">
+                                    <label for="">Pilih Tanggal Timbangan</label>
+                                    <input type="text" name="dates" id="dates" class="form-control"
+                                           placeholder="Range Tanggal"
+                                           aria-describedby="helpId">
+                                </div>
                             </div>
                         </div>
                         <div class="table-responsive">
@@ -117,6 +119,13 @@
 @push('scripts')
     <script src="{{asset('paper')}}/vendors/xlsx/xlsx.full.min.js"></script>
     <script>
+        let dateInput = $('input[name="dates"]');
+        dateInput.daterangepicker();
+        dateInput.on('apply.daterangepicker', function (ev, picker) {
+            let start = picker.startDate.format('YYYY-MM-DD');
+            let end = picker.endDate.format('YYYY-MM-DD');
+            window.location.href = "{{route('timbangan.index')}}?start=" + start + "&end=" + end
+        });
         let dataWeWant = [];
 
         function getKeyByValue(object, value) {

@@ -48,7 +48,7 @@ class DataKwitansiController extends Controller
             }])
             ->with(['petani' => function ($query) {
                 return $query->select('id', 'nama_petani');
-            }])->get();
+            }])->where('tanggal_pembayaran', '>=', Carbon::now()->format('Y-m-d'))->where('tanggal_pembayaran', '<=', Carbon::now()->format('Y-m-d'))->get();
         if (isset($request->start) && isset($request->end)) {
             $where = 'tanggal_pembayaran';
             $start = $request->start;
@@ -201,23 +201,6 @@ class DataKwitansiController extends Controller
                 'sub_total' => $harga_satuan * $total_berat,
                 'potongan' => ($harga_satuan * $total_berat * 0.25) / 100
             ];
-            $getPetani = $this->getDataPetani('nama', $request);
-            $inv = new Invoice();
-            $inv->make("Kwitansi")
-                ->addItem($data_pemilik, $harga_satuan, $total_berat, $request->no_spb)
-                ->number($request->no_berkas)
-                ->with_pagination(true)
-                ->duplicate_header(true)
-                ->date(Carbon::parse($request->tgl_pembayaran)->locale('id'))
-                ->notes('Mohon periksa kembali sebelum meninggalkan kasir')
-                ->customer([
-                    'name' => $getPetani->data_petani,
-                    'nik' => $request->nik,
-                    'id' => $request->no_kendaraan,
-                    'no_ticket' => $request->no_tiket,
-                    'prefix_name' => substr($getPetani->data_petani, 0, 3)])
-                ->template('print')
-                ->download("no_berkas-$request->no_berkas");
             DB::beginTransaction();
             try {
                 $no_ticket = $dataTimbangan->select('no_ticket')->where(['no_ticket' => $request->no_tiket])->get();
@@ -305,11 +288,30 @@ class DataKwitansiController extends Controller
                         'master_harga_id' => $request->harga_id,
                         'data_spb_id' => $request->spb_id ?? $spb->id
                     ];
-
                     $dataKwitansi->create($data_to_store);
                     $dataTimbangan->where(['id' => $request->timbangan_id ?? $timbangan->id])->update(['status_pembayaran' => "sudah"]);
+                    $getPetani = $this->getDataPetani('nama', $request);
+                    $inv = new Invoice();
+                    $inv->make("Kwitansi")
+                        ->addItem($data_pemilik, $harga_satuan, $total_berat, $request->no_spb)
+                        ->number($request->no_berkas)
+                        ->with_pagination(true)
+                        ->duplicate_header(true)
+                        ->date(Carbon::parse($request->tgl_pembayaran)->locale('id'))
+                        ->notes('Mohon periksa kembali sebelum meninggalkan kasir')
+                        ->customer([
+                            'name' => $getPetani->data_petani,
+                            'nik' => $request->nik,
+                            'id' => $request->no_kendaraan,
+                            'no_ticket' => $request->no_tiket,
+                            'prefix_name' => substr($getPetani->data_petani, 0, 3)])
+                        ->template('print')
+                        ->download("no_berkas-$request->no_berkas");
+                    DB::commit();
+                    return redirect()->route('kwitansi.index')->with('status', "Kwitansi berhasil di cetak");
+                } else {
+                    return redirect()->route('kwitansi.index')->with('status', "Kwitansi dengan nomor berkas $request->no_berkas sudah dicetak, tidak bisa dicetak lagi");
                 }
-                DB::commit();
             } catch (\Exception $exception) {
                 DB::rollBack();
                 return response()->json(array('status' => 'error', 'message' => $exception->getMessage()));

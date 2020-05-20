@@ -2,24 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\DataTimbangan;
-use Symfony\Component\VarDumper\Cloner\Data;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class DataTimbanganController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @param Request $request
+     * @return false|string
      */
-    public function index()
+    public function index(Request $request)
     {
-        $timbangans = DataTimbangan::all();
-        if(isset($_GET['ajax'])){
-            return json_encode($timbangans);
+        $timbangans = DataTimbangan::where('tanggal_masuk', '>=', Carbon::now()->format('Y-m-d'))->where('tanggal_masuk', '<=', Carbon::now()->format('Y-m-d'))->get();;
+        if (isset($_GET['ajax'])) {
+            return response()->json($timbangans);
         }
-        return view('timbangan.index',['timbangans'=>$timbangans]);
+        if (isset($request->start) or isset($request->end)) {
+            $timbangans = DataTimbangan::where('tanggal_masuk', '>=', $request->start)->where('tanggal_masuk', '<=', $request->end)->get();;
+        }
+        return view('timbangan.index', ['timbangans' => $timbangans]);
     }
 
     /**
@@ -35,20 +39,20 @@ class DataTimbanganController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request,DataTimbangan $dataTimbangan)
+    public function store(Request $request, DataTimbangan $dataTimbangan)
     {
         //
         $dataTimbangan->insert($request->payload);
-        return response()->json(['status'=>'success']);
+        return response()->json(['status' => 'success']);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -59,7 +63,7 @@ class DataTimbanganController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -67,16 +71,17 @@ class DataTimbanganController extends Controller
         //
     }
 
-    public function currentData(Request $request,DataTimbangan $dataTimbangan){
-        $timbangans = $dataTimbangan->select('no_ticket')->where(['tanggal_masuk'=>$request->date])->get();
-        return response()->json(['status'=>'success','timbangans'=>$timbangans]);
+    public function currentData(Request $request, DataTimbangan $dataTimbangan)
+    {
+        $timbangans = $dataTimbangan->select('no_ticket')->where(['tanggal_masuk' => $request->date])->get();
+        return response()->json(['status' => 'success', 'timbangans' => $timbangans]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -87,7 +92,7 @@ class DataTimbanganController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(DataTimbangan $timbangan)

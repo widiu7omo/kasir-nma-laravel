@@ -6,7 +6,6 @@ use App\DataKwitansi;
 use App\DataTimbangan;
 use App\MasterKorlap;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -38,11 +37,11 @@ class HomeController extends Controller
             'total_timbangan' => DB::table('data_kwitansis')->join('data_timbangans', 'data_timbangan_id', '=', 'data_timbangans.id')->where(['tanggal_pembayaran' => date('Y-m-d')])->sum('setelah_gradding')
         ];
         $rangkuman_kwitansi = (object)[
-            'total_dibayar' => $dataKwitansi->where(['tanggal_pembayaran'=>date('Y-m-d')])->count('*'),
+            'total_dibayar' => $dataKwitansi->where(['tanggal_pembayaran' => date('Y-m-d')])->count('*'),
         ];
         //Grafik
         Carbon::setLocale('id');
-        $dataBySPB = MasterKorlap::all();
+        $dataBySPB = MasterKorlap::whereIn('nama_korlap', ["Ginting", "Poniman", "Bu Eny"])->get();
         $korlaps = [];
         $data_days = [];
         foreach ($dataBySPB as $key => $bySpb) {
