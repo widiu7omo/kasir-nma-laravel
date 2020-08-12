@@ -41,7 +41,8 @@
                                         <input type="text" name="no_berkas" id="no_berkas" class="form-control"
                                                placeholder="Nomor Berkas" aria-describedby="helpId" readonly
                                                value="{{$last_berkas->no_berkas??"0001/".date('d/m/Y')."/TBS"}}">
-                                        <small id="helpId" class="text-muted">Otomatis</small>
+                                        <small id="helpId" class="text-muted">Otomatis</small><br>
+                                        <small id="helpId" class="text-danger">Pastikan nomor berkas tidak sama dengan yang sebelumnya</small>
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-xs-12">
@@ -300,10 +301,14 @@
             });
 
             function toggleInput(isManual) {
+                $('#' + ids[0]).prop('readonly', isManual).attr('autocomplete', 'off');
+                $('#' + ids[1]).prop('readonly', isManual).attr('autocomplete', 'off');
                 $('#' + ids[2]).prop('readonly', isManual).attr('autocomplete', 'off').val('');
                 $('#' + ids[6]).prop('readonly', isManual).attr('autocomplete', 'off').val('');
                 $('#' + ids[9]).prop('readonly', isManual).attr('autocomplete', 'off').val('');
                 $('#' + ids[10]).prop('readonly', isManual).attr('autocomplete', 'off').val('');
+                $('#' + ids[12]).prop('readonly', isManual).attr('autocomplete', 'off').val('');
+                $('#' + ids[12]).prop('readonly', isManual).attr('autocomplete', 'off').val('');
                 $('#' + ids[12]).prop('readonly', isManual).attr('autocomplete', 'off').val('');
                 $('#input-manual-button').data('manual', !isManual).text(isManual ? "Input Manual" : "Input Otomatis");
             }
