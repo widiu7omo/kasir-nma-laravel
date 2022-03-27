@@ -30,11 +30,11 @@ class DataKwitansiController extends Controller
         $assignStart = "";
         $where = "";
 
-        $kwitansis = DataKwitansi::
-        with(
+        $kwitansis = DataKwitansi::with(
             ['user' => function ($query) {
                 return $query->select('id', 'name');
-            }])
+            }]
+        )
             ->with(['timbangan' => function ($query) {
                 return $query->select('id', 'setelah_gradding', 'no_kendaraan', 'tanggal_masuk');
             }])
@@ -55,8 +55,7 @@ class DataKwitansiController extends Controller
             $end = $request->end;
             $assignStart = ">=";
             $assignEnd = "<=";
-            $kwitansis = DataKwitansi::
-            with(['user' => function ($query) {
+            $kwitansis = DataKwitansi::with(['user' => function ($query) {
                 return $query->select('id', 'name');
             }])
                 ->with(['timbangan' => function ($query) {
@@ -179,7 +178,6 @@ class DataKwitansiController extends Controller
             }
         }
         return (object)['data_petani' => $data_petani, 'petani' => $petani];
-
     }
 
     public function generate(Request $request, DataTimbangan $dataTimbangan, DataKwitansi $dataKwitansi, DataPetani $dataPetani, DataSpb $dataSpb, MasterKorlap $masterKorlap)
@@ -320,7 +318,6 @@ class DataKwitansiController extends Controller
             return redirect()->route('kwitansi.index')->with('status', "Kwitansi dengan nomor berkas $request->no_berkas sudah dicetak, tidak bisa dicetak lagi");
         }
 //        return redirect()->route('kwitansi.index')->withSuccess("Kwitansi dengan nomor berkas $request->no_berkas sudah dicetak, tidak bisa dicetak lagi");
-
     }
 
     /**
@@ -332,7 +329,6 @@ class DataKwitansiController extends Controller
     public function store(Request $request)
     {
         //
-
     }
 
     /**
