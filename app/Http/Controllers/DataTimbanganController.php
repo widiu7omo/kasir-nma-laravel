@@ -16,12 +16,14 @@ class DataTimbanganController extends Controller
      */
     public function index(Request $request)
     {
-        $timbangans = DataTimbangan::where('tanggal_masuk', '>=', Carbon::now()->format('Y-m-d'))->where('tanggal_masuk', '<=', Carbon::now()->format('Y-m-d'))->get();;
+        $timbangans = DataTimbangan::where('tanggal_masuk', '>=', Carbon::now()->format('Y-m-d'))->where('tanggal_masuk', '<=', Carbon::now()->format('Y-m-d'))->get();
+        ;
         if (isset($_GET['ajax'])) {
             return response()->json($timbangans);
         }
         if (isset($request->start) or isset($request->end)) {
-            $timbangans = DataTimbangan::where('tanggal_masuk', '>=', $request->start)->where('tanggal_masuk', '<=', $request->end)->get();;
+            $timbangans = DataTimbangan::where('tanggal_masuk', '>=', $request->start)->where('tanggal_masuk', '<=', $request->end)->get();
+            ;
         }
         return view('timbangan.index', ['timbangans' => $timbangans]);
     }
