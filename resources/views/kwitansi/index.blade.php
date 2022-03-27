@@ -29,12 +29,6 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12 d-flex justify-content-between">
-                                <div>
-                                    <button class="btn btn-sm btn-success"></button>
-                                    <span>Hari ini</span><br>
-                                    <button class="btn btn-sm btn-info"></button>
-                                    <span>Hari sebelumnya</span>
-                                </div>
                                 <div class="form-group">
                                     <label for="">Pilih Tanggal Pembayaran</label>
                                     <input type="text" name="dates" id="dates" class="form-control"

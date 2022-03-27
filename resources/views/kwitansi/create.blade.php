@@ -4,7 +4,7 @@
 ])
 @section('content')
     <div class="content">
-        <form action="{{route('kwitansi.generate')}}" method="POST">
+        <form action="{{route('kwitansi.generate')}}" method="POST" target="_blank">
             @csrf
             <input type="hidden" name="timbangan_id">
             <input type="hidden" name="harga_id">
@@ -41,7 +41,8 @@
                                         <input type="text" name="no_berkas" id="no_berkas" class="form-control"
                                                placeholder="Nomor Berkas" aria-describedby="helpId" readonly
                                                value="{{$last_berkas->no_berkas??"0001/".date('d/m/Y')."/TBS"}}">
-                                        <small id="helpId" class="text-muted">Otomatis</small>
+                                        <small id="helpId" class="text-muted">Otomatis</small><br>
+                                        <small id="helpId" class="text-danger">Pastikan nomor berkas tidak sama dengan yang sebelumnya</small>
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-xs-12">
@@ -82,7 +83,7 @@
                                         </div>
                                     </div>
                                 </div>
-{{--                                NIK--}}
+                                {{--                                NIK--}}
                                 <div class="col-md-4 col-xs-12">
                                     <div class="form-group">
                                         <label for="supir">Masukkan nama pengambil</label>
@@ -91,15 +92,15 @@
                                         <small id="helpId" class="text-muted"></small>
                                     </div>
                                 </div>
-{{--                                <div class="col-md-4 col-xs-12">--}}
-{{--                                    <div class="form-group">--}}
-{{--                                        <label for="nik">Masukkan NIK Pengambil</label>--}}
-{{--                                        <input type="text" name="nik" id="nik" class="form-control"--}}
-{{--                                               placeholder="NIK Pengambil"--}}
-{{--                                               aria-describedby="helpId" autocomplete="off" required>--}}
-{{--                                        <small id="helpId" class="text-muted"></small>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
+                                {{--                                <div class="col-md-4 col-xs-12">--}}
+                                {{--                                    <div class="form-group">--}}
+                                {{--                                        <label for="nik">Masukkan NIK Pengambil</label>--}}
+                                {{--                                        <input type="text" name="nik" id="nik" class="form-control"--}}
+                                {{--                                               placeholder="NIK Pengambil"--}}
+                                {{--                                               aria-describedby="helpId" autocomplete="off" required>--}}
+                                {{--                                        <small id="helpId" class="text-muted"></small>--}}
+                                {{--                                    </div>--}}
+                                {{--                                </div>--}}
                                 <div class="col-md-4 col-xs-12">
                                     <div class="form-group">
                                         <label for="no_spb">Masukkan Nomor SPB</label>
@@ -119,7 +120,7 @@
                                         <small id="helpId" class="text-muted">Otomatis</small>
                                     </div>
                                 </div>
-{{--                                Supir--}}
+                                {{--                                Supir--}}
                                 <div class="col-md-4 col-xs-12">
                                     <div class="form-group">
                                         <label for="nik"></label>
@@ -129,14 +130,14 @@
                                         <small id="helpId" class="text-muted">Masukkan NIK Pengambil</small>
                                     </div>
                                 </div>
-{{--                                <div class="col-md-4 col-xs-12">--}}
-{{--                                    <div class="form-group">--}}
-{{--                                        <label for="supir"></label>--}}
-{{--                                        <select class="custom-select" name="supir" id="supir">--}}
-{{--                                        </select>--}}
-{{--                                        <small id="helpId" class="text-muted">Masukkan nama pengambil</small>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
+                                {{--                                <div class="col-md-4 col-xs-12">--}}
+                                {{--                                    <div class="form-group">--}}
+                                {{--                                        <label for="supir"></label>--}}
+                                {{--                                        <select class="custom-select" name="supir" id="supir">--}}
+                                {{--                                        </select>--}}
+                                {{--                                        <small id="helpId" class="text-muted">Masukkan nama pengambil</small>--}}
+                                {{--                                    </div>--}}
+                                {{--                                </div>--}}
                                 <div class="col-md-4 col-xs-12">
                                     <div class="form-group">
                                         <label for="pemilik_spb"></label>
@@ -287,23 +288,27 @@
             }
         });
         console.log(ids)
-        // $('#btn-cetak-kwitansi').on('click', function () {
-        //     setTimeout(function () {
-        //         window.location.reload();
-        //     }, 1000)
-        // })
+        $('#btn-cetak-kwitansi').on('click', function () {
+            setTimeout(function () {
+                window.location.reload();
+            }, 500)
+        })
         $(document).ready(function () {
             $('.datepicker-dropdown').datepicker({
                 format: "yyyy-mm-dd",
                 language: "id",
-                autoclose:true,
+                autoclose: true,
             });
 
             function toggleInput(isManual) {
+                $('#' + ids[0]).prop('readonly', isManual).attr('autocomplete', 'off');
+                $('#' + ids[1]).prop('readonly', isManual).attr('autocomplete', 'off');
                 $('#' + ids[2]).prop('readonly', isManual).attr('autocomplete', 'off').val('');
                 $('#' + ids[6]).prop('readonly', isManual).attr('autocomplete', 'off').val('');
                 $('#' + ids[9]).prop('readonly', isManual).attr('autocomplete', 'off').val('');
                 $('#' + ids[10]).prop('readonly', isManual).attr('autocomplete', 'off').val('');
+                $('#' + ids[12]).prop('readonly', isManual).attr('autocomplete', 'off').val('');
+                $('#' + ids[12]).prop('readonly', isManual).attr('autocomplete', 'off').val('');
                 $('#' + ids[12]).prop('readonly', isManual).attr('autocomplete', 'off').val('');
                 $('#input-manual-button').data('manual', !isManual).text(isManual ? "Input Manual" : "Input Otomatis");
             }
