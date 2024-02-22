@@ -18,7 +18,12 @@ class DataKwitansi extends Model
         'data_timbangan_id',
         'master_harga_id',
         'data_spb_id',
-        'data_petani_id'
+        'data_petani_id',
+        'custom_price',
+        'is_custom_price'
+    ];
+    protected $casts = [
+        'is_custom_price' => 'boolean'
     ];
 
     public function timbangan()
@@ -40,8 +45,10 @@ class DataKwitansi extends Model
     {
         return $this->belongsTo('App\DataSpb', 'data_spb_id');
     }
-    public function petani(){
-        return $this->belongsTo('App\DataPetani','data_petani_id');
+
+    public function petani()
+    {
+        return $this->belongsTo('App\DataPetani', 'data_petani_id');
     }
 }
 

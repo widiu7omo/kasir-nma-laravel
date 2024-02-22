@@ -42,7 +42,8 @@
                                                placeholder="Nomor Berkas" aria-describedby="helpId" readonly
                                                value="{{$last_berkas->no_berkas??"0001/".date('d/m/Y')."/TBS"}}">
                                         <small id="helpId" class="text-muted">Otomatis</small><br>
-                                        <small id="helpId" class="text-danger">Pastikan nomor berkas tidak sama dengan yang sebelumnya</small>
+                                        <small id="helpId" class="text-danger">Pastikan nomor berkas tidak sama dengan
+                                            yang sebelumnya</small>
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-xs-12">
@@ -256,6 +257,15 @@
                                                placeholder="Harga Satuan"
                                                aria-describedby="helpId" readonly>
                                         <small id="helpId" class="text-muted">Harga satuan tanggal timbangan</small>
+                                        <div class="form-check" style="padding-top: 10px">
+                                            <label class="form-check-label">
+                                                <input name="is_custom_price" class="form-check-input price-manual"
+                                                       type="checkbox">
+                                                Input Harga Manual
+                                                <span class="form-check-sign">
+                                                </span>
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -387,6 +397,28 @@
 
             }
 
+            const hargaSatuanRef = $('#harga_satuan');
+            $('.price-manual').on('change', function () {
+                if ($(this).is(':checked')) {
+                    hargaSatuanRef.prop('readonly', false);
+
+                } else {
+                    hargaSatuanRef.prop('readonly', true).val("");
+                    getHarga($('#tgl_timbangan').val())
+                }
+            })
+            hargaSatuanRef.on("keyup", function () {
+                let harga_satuan = hargaSatuanRef.val();
+                if (harga_satuan.includes(' ') || harga_satuan.includes('Rp')) {
+                    console.log('Contain white space')
+                    const splitedHarga = harga_satuan.split(" ");
+                    harga_satuan = splitedHarga.at(splitedHarga.length - 1)
+                }
+                console.log(harga_satuan)
+                const total_berat = parseFloat($('#' + ids[14]).val());
+                const total_semua = harga_satuan * total_berat;
+                $('#' + ids[16]).val("Rp. " + total_semua);
+            })
             $('.tiketEmpty').on('change', function () {
                 if ($(this).is(':checked')) {
                     $.ajax({

@@ -71,12 +71,20 @@
                                         <td>{{$kwitansi->petani->nama_petani}}</td>
                                         <td>{{$kwitansi->timbangan->no_kendaraan}}</td>
                                         <td>{{$kwitansi->spb->korlap->nama_korlap}}</td>
-                                        <td>{{$kwitansi->harga->harga}}</td>
+                                        @if($kwitansi->is_custom_price)
+                                            <td>{{$kwitansi->custom_price}}</td>
+                                        @else
+                                            <td>{{$kwitansi->harga->harga}}</td>
+                                        @endif
                                         <td>{{$kwitansi->timbangan->setelah_gradding}}</td>
                                         <td>{{$kwitansi->total_harga}}</td>
                                         @if(strtolower(substr($kwitansi->petani->nama_petani,0,3)) == 'cv.' || strtolower(substr($kwitansi->petani->nama_petani,0,3)) == 'pt.')
-                                            <td>(Rp. {{round(get_potongan($kwitansi->total_harga,0.25),0,PHP_ROUND_HALF_DOWN)}}) 0.25 %</td>
-                                            <td>Rp. {{round(get_total_with_potongan($kwitansi->total_harga,get_potongan($kwitansi->total_harga,0.25)))}}</td>
+                                            <td>
+                                                (Rp. {{round(get_potongan($kwitansi->total_harga,0.25),0,PHP_ROUND_HALF_DOWN)}}
+                                                ) 0.25 %
+                                            </td>
+                                            <td>
+                                                Rp. {{round(get_total_with_potongan($kwitansi->total_harga,get_potongan($kwitansi->total_harga,0.25)))}}</td>
                                         @else
                                             <td>0 %</td>
                                             <td>{{$kwitansi->total_harga}}</td>

@@ -186,9 +186,14 @@ class DataKwitansiController extends Controller
     {
         $berkas_past = $dataKwitansi->select('no_berkas')->where(['no_berkas' => $request->no_berkas, 'no_pembayaran' => $request->no_tiket])->latest()->first();
         if (!(isset($berkas_past->no_berkas)) or $berkas_past->no_berkas != $request->no_berkas) {
+            //TODO: check price is 3000 or Rp. 3000 or Rp.3000
             $exharga = explode(' ', $request->harga_satuan);
             $extotal_berat = explode(' ', $request->setelah_grading);
-            $harga_satuan = $exharga[1];
+            if (count($exharga) > 1) {
+                $harga_satuan = $exharga[1];
+            } else {
+                $harga_satuan = $exharga[0];
+            }
             $total_berat = $extotal_berat[0];
             $data_pemilik = (object)[
                 'pemilik' => $request->pemilik_spb,
@@ -286,7 +291,9 @@ class DataKwitansiController extends Controller
                         'user_id' => Auth::id(),
                         'data_timbangan_id' => $request->timbangan_id ?? $timbangan->id,
                         'master_harga_id' => $request->harga_id,
-                        'data_spb_id' => $request->spb_id ?? $spb->id
+                        'data_spb_id' => $request->spb_id ?? $spb->id,
+                        'custom_price' => $harga_satuan,
+                        'is_custom_price' => $request->is_custom_price === "on"
                     ];
                     $dataKwitansi->create($data_to_store);
                     $dataTimbangan->where(['id' => $request->timbangan_id ?? $timbangan->id])->update(['status_pembayaran' => "sudah"]);
