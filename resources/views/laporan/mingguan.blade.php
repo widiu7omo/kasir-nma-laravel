@@ -70,7 +70,11 @@
                                         <td>{{$spb->no_spb}}</td>
                                         <td>{{$spb->nama_korlap}}</td>
                                         <td>{{$spb->penerima}}</td>
+                                        @if($spb->is_custom_price)
+                                            <td>{{$spb->custom_price}}</td>
+                                            @else
                                         <td>{{$spb->harga}}</td>
+                                        @endif
                                         <td>{{$spb->setelah_gradding}}</td>
                                         @if(strtolower(substr($spb->penerima,0,3)) == 'cv.' || strtolower(substr($spb->penerima,0,3)) == 'pt.')
                                             <td>(Rp. {{round(get_potongan($spb->total_harga,0.25),0,PHP_ROUND_HALF_DOWN)}}) 0.25 %</td>

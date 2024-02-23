@@ -13,13 +13,14 @@ class LaporanController extends Controller
      * Display a listing of the resource.
      *
      * @param string $subpage
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function index(string $subpage, Request $request)
     {
         $data = [];
-        if (view()->exists("laporan.{$subpage}")) {
+        if (view()->exists("laporan.$subpage")) {
             switch ($subpage) {
+                case 'bulanan':
                 case 'harian':
                     break;
                 case 'mingguan':
@@ -27,7 +28,7 @@ class LaporanController extends Controller
                     Carbon::setLocale('id');
                     $days = Carbon::getDays();
                     array_shift($days);
-                    array_push($days, 'Sunday');
+                    $days[] = 'Sunday';
                     $dataBySPB = MasterKorlap::where('nama_korlap','like','%eny%')->orWhere('nama_korlap','like','%ginting%')->orWhere('nama_korlap','like','%poniman%')->get();
                     $dataChartSpbByKorlap = [];
                     $colorKorlap = ['#6bd098', '#f17e5d', '#fcc468', '#51CACF'];
@@ -43,11 +44,11 @@ class LaporanController extends Controller
                         $incrementDate = $start;
                         for ($i = 0; $i <= $diffDay; $i++) {
                             if ($i == 0) {
-                                array_push($days, $startDayName);
+                                $days[] = $startDayName;
                             } elseif ($i == $diffDay) {
-                                array_push($days, $endDayName);
+                                $days[] = $endDayName;
                             } else {
-                                array_push($days, $incrementDate->addDay()->locale('id')->translatedFormat('D - d'));
+                                $days[] = $incrementDate->addDay()->locale('id')->translatedFormat('D - d');
                             }
                         }
                     }
@@ -69,7 +70,7 @@ class LaporanController extends Controller
                                 ->where(['tanggal_pembayaran' => $day_date, 'master_korlaps.id' => $bySpb->id])
                                 ->get('total');
 
-                            array_push($data_days, $berat_by_korlap[0]->total);
+                            $data_days[] = $berat_by_korlap[0]->total;
                         }
                         $single_spb_chart = [
                             "label" => $bySpb->nama_korlap,
@@ -83,7 +84,7 @@ class LaporanController extends Controller
                             "pointBorderWidth" => 8,
                             "data" => $data_days
                         ];
-                        array_push($dataChartSpbByKorlap, $single_spb_chart);
+                        $dataChartSpbByKorlap[] = $single_spb_chart;
                     }
                     //Table
                     $spbs = [];
@@ -93,7 +94,7 @@ class LaporanController extends Controller
                             ->join('master_hargas', 'master_hargas.id', '=', 'data_kwitansis.master_harga_id')
                             ->join('master_korlaps', 'data_spbs.master_korlap_id', '=', 'master_korlaps.id')
                             ->join('data_petanis', 'data_kwitansis.data_petani_id', '=', 'data_petanis.id')
-                            ->selectRaw('tanggal_pembayaran,no_pembayaran,no_kendaraan,tanggal_masuk tgl_spb,no_spb,nama_petani penerima,nama_korlap,harga,setelah_gradding,total_harga')
+                            ->selectRaw('tanggal_pembayaran,no_pembayaran,no_kendaraan,tanggal_masuk tgl_spb,no_spb,nama_petani penerima,nama_korlap,harga,custom_price,is_custom_price,setelah_gradding,total_harga')
                             ->where(['tanggal_pembayaran' => $request->start])
                             ->get();
                     }
@@ -103,7 +104,7 @@ class LaporanController extends Controller
                             ->join('master_hargas', 'master_hargas.id', '=', 'data_kwitansis.master_harga_id')
                             ->join('master_korlaps', 'data_spbs.master_korlap_id', '=', 'master_korlaps.id')
                             ->join('data_petanis', 'data_kwitansis.data_petani_id', '=', 'data_petanis.id')
-                            ->selectRaw('tanggal_pembayaran,no_pembayaran,no_kendaraan,tanggal_masuk tgl_spb,no_spb,nama_petani penerima,nama_korlap,harga,setelah_gradding,total_harga')
+                            ->selectRaw('tanggal_pembayaran,no_pembayaran,no_kendaraan,tanggal_masuk tgl_spb,no_spb,nama_petani penerima,nama_korlap,harga,custom_price,is_custom_price,setelah_gradding,total_harga')
                             ->whereBetween('tanggal_pembayaran',[$request->start,$request->end])
                             ->get();
                     }
@@ -114,8 +115,6 @@ class LaporanController extends Controller
                         'end' => Carbon::parse($request->end ?? date('Y-m-d'))->translatedFormat('jS F Y'),
                         'rekap_sbps' => $spbs
                     ];
-                    break;
-                case 'bulanan':
                     break;
                 default:
                     abort(404);

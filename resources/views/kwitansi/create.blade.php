@@ -297,7 +297,6 @@
                 ids.push(item.id);
             }
         });
-        console.log(ids)
         $('#btn-cetak-kwitansi').on('click', function () {
             setTimeout(function () {
                 window.location.reload();
@@ -354,11 +353,16 @@
                                 icon: "error",
                                 buttons: {
                                     close: "Tutup",
-                                    update: "Atur Harga"
+                                    update: "Atur Harga",
+                                    manual: "Input Manual"
                                 }
                             }).then(val => {
                                 if (val === 'update') {
                                     window.location.href = "{{route('harga.index')}}"
+                                }
+                                if (val === 'manual') {
+                                    console.log('Manual')
+                                    $('.price-manual').trigger('click')
                                 }
                             })
                         } else {
@@ -401,7 +405,7 @@
             $('.price-manual').on('change', function () {
                 if ($(this).is(':checked')) {
                     hargaSatuanRef.prop('readonly', false);
-
+                    $('#btn-cetak-kwitansi').prop('disabled', false);
                 } else {
                     hargaSatuanRef.prop('readonly', true).val("");
                     getHarga($('#tgl_timbangan').val())
@@ -437,6 +441,7 @@
                                 let nextIncrementNull = parseInt(sliceNull[1]);
                                 nextIncrementNull++;
                                 $('#no_tiket').val("NULL-" + nextIncrementNull);
+                                $('#input-manual-button').trigger('click')
                             }
                         }
                     })
@@ -680,11 +685,16 @@
                                                 icon: "error",
                                                 buttons: {
                                                     close: "Tutup",
-                                                    update: "Atur Harga"
+                                                    update: "Atur Harga",
+                                                    manual: "Input Manual"
                                                 }
                                             }).then(val => {
                                                 if (val === 'update') {
                                                     window.location.href = "{{route('harga.index')}}"
+                                                }
+                                                if (val === "manual") {
+                                                    console.log('Manual')
+                                                    $('.price-manual').trigger('click')
                                                 }
                                             })
                                         } else {
