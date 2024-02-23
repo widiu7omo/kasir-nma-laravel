@@ -220,10 +220,7 @@
                                 let splitData = [];
                                 switch (column) {
                                     case 8 :
-                                        if (data !== "") {
-                                            // newData = convertToRupiah(data);
-                                            newData = parseInt(data).toLocaleString('id-ID');
-                                        }
+                                        newData = data
                                         break;
                                     case 10:
                                         splitData = data.split(" ");
