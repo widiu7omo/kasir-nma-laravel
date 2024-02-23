@@ -1,0 +1,4 @@
+.form-check .form-check-sign::after{
+    content: url('/paper/img/check.svg') !important;
+    padding: 1px;
+}

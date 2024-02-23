@@ -34,6 +34,7 @@ The above copyright notice and this permission notice shall be included in all c
     <!-- CSS Files -->
     <link href="{{ asset('paper') }}/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="{{ asset('paper') }}/css/paper-dashboard.css?v=2.0.0" rel="stylesheet"/>
+    <link href="{{ asset('paper') }}/css/custom.css" rel="stylesheet"/>
     <link href="{{asset('paper')}}/vendors/DataTables/datatables.min.css" rel="stylesheet">
     <link href="{{asset('paper')}}/vendors/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
     <link href="{{asset('paper')}}/vendors/filepond/filepond.min.css" rel="stylesheet">
