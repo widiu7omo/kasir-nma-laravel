@@ -72,13 +72,17 @@
                                         <td>{{$spb->penerima}}</td>
                                         @if($spb->is_custom_price)
                                             <td>{{$spb->custom_price}}</td>
-                                            @else
-                                        <td>{{$spb->harga}}</td>
+                                        @else
+                                            <td>{{$spb->harga}}</td>
                                         @endif
                                         <td>{{$spb->setelah_gradding}}</td>
                                         @if(strtolower(substr($spb->penerima,0,3)) == 'cv.' || strtolower(substr($spb->penerima,0,3)) == 'pt.')
-                                            <td>(Rp. {{round(get_potongan($spb->total_harga,0.25),0,PHP_ROUND_HALF_DOWN)}}) 0.25 %</td>
-                                            <td>Rp. {{round(get_total_with_potongan($spb->total_harga,get_potongan($spb->total_harga,0.25)))}}</td>
+                                            <td>
+                                                (Rp. {{round(get_potongan($spb->total_harga,0.25),0,PHP_ROUND_HALF_DOWN)}}
+                                                ) 0.25 %
+                                            </td>
+                                            <td>
+                                                Rp. {{round(get_total_with_potongan($spb->total_harga,get_potongan($spb->total_harga,0.25)))}}</td>
                                         @else
                                             <td>0 %</td>
                                             <td>{{$spb->total_harga}}</td>
@@ -123,6 +127,7 @@
             for (var i = 0; i < angkarev.length; i++) if (i % 3 == 0) rupiah += angkarev.substr(i, 3) + '.';
             return 'Rp. ' + rupiah.split('', rupiah.length - 1).reverse().join('');
         }
+
         $(document).ready(function () {
             let table = $('#rekap-table').dataTable({
                 responsive: true,
@@ -161,10 +166,10 @@
                             return intVal(a) + intVal(b);
                         }, 0);
                     $(api.column(11).footer()).html(
-                        "Total Rupiah : "+convertToRupiah(pageTotal)
+                        "Total Rupiah : " + convertToRupiah(pageTotal)
                     );
                     $(api.column(9).footer()).html(
-                        "Total KG : "+totalKGbyPage
+                        "Total KG : " + totalKGbyPage
                     );
                 },
                 buttons: [
@@ -181,13 +186,15 @@
                                     let splitData = [];
                                     switch (column) {
                                         case 8 :
-                                            if(data !== ""){
-                                                newData = convertToRupiah(data);
+                                            if (data !== "") {
+                                                // newData = convertToRupiah(data);
+                                                newData = data;
                                             }
                                             break;
                                         case 11:
                                             splitData = data.split(" ");
-                                            newData = convertToRupiah(splitData[1]);
+                                            // newData = convertToRupiah(splitData[1]);
+                                            newData = parseInt(splitData[1]).toLocaleString('id-ID')
                                             break;
                                     }
                                     return newData;

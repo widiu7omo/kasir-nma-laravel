@@ -195,10 +195,10 @@
                         return intVal(a) + intVal(b);
                     }, 0);
                 $(api.column(10).footer()).html(
-                    "Total Rupiah : " + convertToRupiah(pageTotal)
+                    "Total Rupiah : " + parseInt(pageTotal).toLocaleString('id-ID')
                 );
                 $(api.column(12).footer()).html(
-                    "Total Rupiah : " + convertToRupiah(pageTotalAll)
+                    "Total Rupiah : " + parseInt(pageTotalAll).toLocaleString('id-ID')
                 );
                 $(api.column(9).footer()).html(
                     "Total KG : " + totalKGbyPage
@@ -221,16 +221,19 @@
                                 switch (column) {
                                     case 8 :
                                         if (data !== "") {
-                                            newData = convertToRupiah(data);
+                                            // newData = convertToRupiah(data);
+                                            newData = parseInt(data).toLocaleString('id-ID');
                                         }
                                         break;
                                     case 10:
                                         splitData = data.split(" ");
-                                        newData = convertToRupiah(splitData[1]);
+                                        // newData = convertToRupiah(splitData[1]);
+                                        newData = parseInt(splitData[1]).toLocaleString('id-ID')
                                         break;
                                     case 12:
                                         splitData = data.split(" ");
-                                        newData = convertToRupiah(splitData[1]);
+                                        // newData = convertToRupiah(splitData[1]);
+                                        newData = parseInt(splitData[1]).toLocaleString('id-ID')
                                         break;
                                 }
                                 return newData;
